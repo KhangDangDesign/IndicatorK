@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-02T16:29:11.077155",
+  "generated_at": "2026-03-02T16:57:52.885399",
   "strategy_id": "trend_momentum_atr_regime_adaptive",
   "strategy_version": "1.0.0",
   "allocation_targets": {
@@ -104,15 +104,16 @@
     "Regime-Adaptive Strategy | Current regime: BULL",
     "MA10w/MA30w trend + RSI(14)\u226550 momentum",
     "ATR(14)-based stops: 1.8x stop, 4.0x target",
-    "Position sizing: 15.0% per trade"
+    "Position sizing: 1.50x base allocation (config-driven)"
   ],
   "ai_analysis": {
     "generated": false,
     "market_context": "AI analysis unavailable \u2014 check logs for the actual error (rate limit, bad key, or wrong model).",
-    "analysis_date": "2026-03-02 16:29:11",
+    "analysis_date": "2026-03-02 16:57:53",
     "data_sources": "AI analysis failed \u2014 see GitHub Actions logs",
     "scores": {},
     "status": "AI_FAILED",
     "notice": "\u26a0 Gemini AI analysis failed. Check logs: may be rate limit, invalid key, or model issue."
-  }
+  },
+  "market_regime": "bull"
 }
