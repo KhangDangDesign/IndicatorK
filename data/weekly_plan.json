@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-02T03:16:10.188419",
+  "generated_at": "2026-03-02T03:40:56.504507",
   "strategy_id": "trend_momentum_atr",
   "strategy_version": "2.0.0",
   "allocation_targets": {
@@ -18,9 +18,9 @@
       "position_target_pct": 0.07,
       "rationale_bullets": [
         "Trend UP: price 69 > MA10w 67 > MA30w 62",
-        "RSI(14): 63.3",
+        "RSI(14): 63.4",
         "ATR: 5",
-        "Vol: 3,485,800 (0.1x avg)",
+        "Vol: 3,939,200 (0.1x avg)",
         "Entry: pullback mid-zone"
       ],
       "entry_type": "pullback",
@@ -39,10 +39,10 @@
       "take_profit": 100.0,
       "position_target_pct": 0.09,
       "rationale_bullets": [
-        "Trend UP: price 91 > MA10w 89 > MA30w 82",
-        "RSI(14): 62.7",
+        "Trend UP: price 92 > MA10w 89 > MA30w 82",
+        "RSI(14): 63.1",
         "ATR: 5",
-        "Vol: 4,250,000 (0.1x avg)",
+        "Vol: 4,804,500 (0.2x avg)",
         "Entry: pullback mid-zone"
       ],
       "entry_type": "pullback",
@@ -61,10 +61,10 @@
       "take_profit": 70.0,
       "position_target_pct": 0.06,
       "rationale_bullets": [
-        "Trend UP: price 66 > MA10w 61 > MA30w 56",
-        "RSI(14): 67.9",
+        "Trend UP: price 67 > MA10w 61 > MA30w 56",
+        "RSI(14): 68.5",
         "ATR: 5",
-        "Vol: 8,010,400 (0.1x avg)",
+        "Vol: 9,466,400 (0.2x avg)",
         "Entry: pullback mid-zone"
       ],
       "entry_type": "pullback",
@@ -84,9 +84,9 @@
       "position_target_pct": 0.0533,
       "rationale_bullets": [
         "Trend UP: price 170 > MA10w 160 > MA30w 117",
-        "RSI(14): 67.4",
+        "RSI(14): 67.2",
         "ATR: 21",
-        "Vol: 1,238,100 (0.0x avg)",
+        "Vol: 1,418,800 (0.1x avg)",
         "Entry: pullback mid-zone"
       ],
       "entry_type": "pullback",
@@ -104,7 +104,7 @@
   "ai_analysis": {
     "generated": false,
     "market_context": "AI analysis unavailable due to Gemini rate limit (429). This is normal for free tier.",
-    "analysis_date": "2026-03-02 03:16:10",
+    "analysis_date": "2026-03-02 03:40:56",
     "data_sources": "Rate limit encountered - AI will work when quota resets",
     "scores": {},
     "status": "RATE_LIMITED",
