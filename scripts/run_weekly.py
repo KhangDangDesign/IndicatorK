@@ -90,6 +90,7 @@ def main() -> None:
 
     # AI analysis (run BEFORE saving plan so we can cache the results)
     from src.ai.gemini_analyzer import analyze_weekly_plan, is_available as ai_available
+    from datetime import datetime
     ai_analysis = None
     if ai_available():
         logger.info("Running Gemini AI analysis...")
@@ -99,11 +100,11 @@ def main() -> None:
             f"Positions: {len(portfolio_state.positions)} | "
             f"Unrealized PnL: {portfolio_state.unrealized_pnl:+,.0f}"
         )
-        ai_analysis = analyze_weekly_plan(plan.to_dict(), portfolio_summary)
+        as_of_ts = datetime.utcnow().isoformat()
+        ai_analysis = analyze_weekly_plan(plan.to_dict(), portfolio_summary, as_of=as_of_ts)
         if ai_analysis.generated:
             logger.info("AI analysis complete: %d scores", len(ai_analysis.scores))
             # Convert AIAnalysis to dict for caching (compatible with Cloudflare Workers format)
-            from datetime import datetime
             ai_dict = {
                 "generated": ai_analysis.generated,
                 "market_context": ai_analysis.market_context,
@@ -124,7 +125,6 @@ def main() -> None:
             logger.warning("🚨 AI analysis returned empty — continuing without it")
             logger.warning("📊 Weekly plan generated successfully without AI scoring")
 
-            from datetime import datetime
             from types import SimpleNamespace
 
             failure_notice = {
