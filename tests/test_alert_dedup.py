@@ -111,11 +111,14 @@ class TestBuyZoneAlert:
         assert changed is True
 
 
+_HELD = {"HPG": True}  # simulate a held position for SL/TP tests
+
+
 class TestStopLossAlert:
     def test_stop_loss_hit(self):
         plan = _make_plan([_make_rec(stop_loss=22000)])
         prices = {"HPG": 21000}  # Below stop
-        alerts, state, changed = check_alerts(plan, prices, {})
+        alerts, state, changed = check_alerts(plan, prices, {}, held_positions=_HELD)
         sl_alerts = [a for a in alerts if a.alert_type == "STOP_LOSS_HIT"]
         assert len(sl_alerts) == 1
         assert changed is True
@@ -123,7 +126,7 @@ class TestStopLossAlert:
     def test_stop_loss_not_hit(self):
         plan = _make_plan([_make_rec(stop_loss=22000)])
         prices = {"HPG": 23000}  # Above stop
-        alerts, _, _ = check_alerts(plan, prices, {})
+        alerts, _, _ = check_alerts(plan, prices, {}, held_positions=_HELD)
         sl_alerts = [a for a in alerts if a.alert_type == "STOP_LOSS_HIT"]
         assert len(sl_alerts) == 0
 
@@ -131,7 +134,7 @@ class TestStopLossAlert:
         """Regression: price=29000 with SL=22000 must NOT trigger (was firing spuriously)."""
         plan = _make_plan([_make_rec(stop_loss=22000)])
         prices = {"HPG": 29000}
-        alerts, _, _ = check_alerts(plan, prices, {})
+        alerts, _, _ = check_alerts(plan, prices, {}, held_positions=_HELD)
         sl_alerts = [a for a in alerts if a.alert_type == "STOP_LOSS_HIT"]
         assert len(sl_alerts) == 0
 
@@ -147,7 +150,7 @@ class TestStopLossAlert:
         """Boundary: price=21999 with SL=22000 MUST trigger."""
         plan = _make_plan([_make_rec(stop_loss=22000)])
         prices = {"HPG": 21999}
-        alerts, _, _ = check_alerts(plan, prices, {})
+        alerts, _, _ = check_alerts(plan, prices, {}, held_positions=_HELD)
         sl_alerts = [a for a in alerts if a.alert_type == "STOP_LOSS_HIT"]
         assert len(sl_alerts) == 1
         assert sl_alerts[0].current_price == 21999
@@ -157,7 +160,7 @@ class TestStopLossAlert:
         """Boundary: price == SL threshold must trigger (price <= SL)."""
         plan = _make_plan([_make_rec(stop_loss=22000)])
         prices = {"HPG": 22000}
-        alerts, _, _ = check_alerts(plan, prices, {})
+        alerts, _, _ = check_alerts(plan, prices, {}, held_positions=_HELD)
         sl_alerts = [a for a in alerts if a.alert_type == "STOP_LOSS_HIT"]
         assert len(sl_alerts) == 1
 
@@ -166,7 +169,7 @@ class TestTakeProfitAlert:
     def test_take_profit_hit(self):
         plan = _make_plan([_make_rec(take_profit=30000)])
         prices = {"HPG": 31000}  # Above target
-        alerts, state, changed = check_alerts(plan, prices, {})
+        alerts, state, changed = check_alerts(plan, prices, {}, held_positions=_HELD)
         tp_alerts = [a for a in alerts if a.alert_type == "TAKE_PROFIT_HIT"]
         assert len(tp_alerts) == 1
         assert changed is True

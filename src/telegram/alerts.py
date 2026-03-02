@@ -60,9 +60,9 @@ def check_alerts(
         if price is None:
             continue
 
-        # Check buy zone - one-time alert for all symbols (no position filter)
+        # Check buy zone — 24h dedup with re-entry support
         if rec.buy_zone_low > 0 and rec.buy_zone_high > 0:
-            alert, changed = check_zone_once(
+            alert, changed = _check_zone(
                 alerts_state, sym, "ENTERED_BUY_ZONE",
                 price, rec.buy_zone_low, rec.buy_zone_high, now,
             )
@@ -82,7 +82,7 @@ def check_alerts(
         )
 
         if should_check_tpsl and rec.stop_loss > 0:
-            alert, changed = check_threshold_below_once(
+            alert, changed = _check_threshold_below(
                 alerts_state, sym, "STOP_LOSS_HIT",
                 price, rec.stop_loss, now,
             )
@@ -96,7 +96,7 @@ def check_alerts(
 
         # Check take profit - ONLY for held positions or explicit HOLD/REDUCE/SELL actions
         if should_check_tpsl and rec.take_profit > 0:
-            alert, changed = check_threshold_above_once(
+            alert, changed = _check_threshold_above(
                 alerts_state, sym, "TAKE_PROFIT_HIT",
                 price, rec.take_profit, now,
             )

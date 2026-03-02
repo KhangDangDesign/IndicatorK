@@ -127,8 +127,9 @@ def get_portfolio_state(
 
     Uses atomic JSON state when USE_ATOMIC_STATE=true, falls back to CSV otherwise.
     """
-    # Use atomic state system if enabled and available
-    if USE_ATOMIC_STATE:
+    # Use atomic state system if enabled and using the default path
+    # (skip atomic when a custom/test path is explicitly provided)
+    if USE_ATOMIC_STATE and trades_path == "data/trades.csv":
         try:
             return get_atomic_portfolio_state(current_prices)
         except Exception as e:

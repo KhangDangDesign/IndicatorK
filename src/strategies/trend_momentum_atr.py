@@ -54,7 +54,7 @@ class TrendMomentumATRStrategy(Strategy):
         # Small buffer above breakout_level for the entry_price
         self.entry_buffer_pct = float(params.get("entry_buffer_pct", 0.001))
         # VN price tick size — all output prices are rounded to this step
-        self.price_tick = float(params.get("price_tick", 10))
+        self.price_tick = params.get("price_tick", None)  # None → auto vnd_tick_size per price band
 
     @property
     def id(self) -> str:
@@ -106,7 +106,7 @@ class TrendMomentumATRStrategy(Strategy):
 
             rsi_overbought = rsi is not None and rsi > 70
 
-            tick = vnd_tick_size(current)
+            tick = float(self.price_tick) if self.price_tick is not None else vnd_tick_size(current)
             signal_week_end = weekly[-1].date  # Friday of week T
 
             if trend_up and not rsi_overbought:
