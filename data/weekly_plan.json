@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-02T23:08:53.000000",
+  "generated_at": "2026-03-02T16:29:11.077155",
   "strategy_id": "trend_momentum_atr_regime_adaptive",
   "strategy_version": "1.0.0",
   "allocation_targets": {
@@ -11,23 +11,108 @@
       "symbol": "VNM",
       "asset_class": "stock",
       "action": "BUY",
-      "entry_price": 0,
-      "stop_loss": 0,
-      "take_profit": 0,
+      "buy_zone_low": 60.0,
+      "buy_zone_high": 60.0,
+      "stop_loss": 50.0,
+      "take_profit": 80.0,
       "position_target_pct": 0.15,
       "rationale_bullets": [
-        "Regime: BULL | RSI≥50 | Position: 15.0% | SL: 1.8x | TP: 4.0x",
-        "MA10w/MA30w trend + RSI(14) momentum",
-        "ATR(14)-based adaptive stops: 1.8x stop, 4.0x target",
-        "Position sizing optimized for bull market"
-      ]
+        "Regime: BULL | RSI\u226550",
+        "Trend UP: price 67 > MA10w 66 > MA30w 62",
+        "RSI(14): 59.9",
+        "ATR: 5",
+        "Vol: 12,468,700 (0.4x avg)",
+        "Entry: pullback mid-zone"
+      ],
+      "entry_type": "pullback",
+      "breakout_level": 0.0,
+      "entry_price": 60.0,
+      "signal_week_end": "2026-03-02",
+      "earliest_entry_date": null
+    },
+    {
+      "symbol": "MWG",
+      "asset_class": "stock",
+      "action": "BUY",
+      "buy_zone_low": 80.0,
+      "buy_zone_high": 90.0,
+      "stop_loss": 80.0,
+      "take_profit": 110.0,
+      "position_target_pct": 0.15,
+      "rationale_bullets": [
+        "Regime: BULL | RSI\u226550",
+        "Trend UP: price 90 > MA10w 89 > MA30w 82",
+        "RSI(14): 60.9",
+        "ATR: 5",
+        "Vol: 10,738,700 (0.3x avg)",
+        "Entry: pullback mid-zone"
+      ],
+      "entry_type": "pullback",
+      "breakout_level": 0.0,
+      "entry_price": 90.0,
+      "signal_week_end": "2026-03-02",
+      "earliest_entry_date": null
+    },
+    {
+      "symbol": "STB",
+      "asset_class": "stock",
+      "action": "BUY",
+      "buy_zone_low": 60.0,
+      "buy_zone_high": 60.0,
+      "stop_loss": 50.0,
+      "take_profit": 80.0,
+      "position_target_pct": 0.15,
+      "rationale_bullets": [
+        "Regime: BULL | RSI\u226550",
+        "Trend UP: price 67 > MA10w 61 > MA30w 56",
+        "RSI(14): 68.3",
+        "ATR: 5",
+        "Vol: 22,266,500 (0.4x avg)",
+        "Entry: pullback mid-zone"
+      ],
+      "entry_type": "pullback",
+      "breakout_level": 0.0,
+      "entry_price": 60.0,
+      "signal_week_end": "2026-03-02",
+      "earliest_entry_date": null
+    },
+    {
+      "symbol": "VIC",
+      "asset_class": "stock",
+      "action": "BUY",
+      "buy_zone_low": 150.0,
+      "buy_zone_high": 160.0,
+      "stop_loss": 120.0,
+      "take_profit": 250.0,
+      "position_target_pct": 0.15,
+      "rationale_bullets": [
+        "Regime: BULL | RSI\u226550",
+        "Trend UP: price 167 > MA10w 160 > MA30w 117",
+        "RSI(14): 66.1",
+        "ATR: 22",
+        "Vol: 4,989,000 (0.2x avg)",
+        "Entry: pullback mid-zone"
+      ],
+      "entry_type": "pullback",
+      "breakout_level": 0.0,
+      "entry_price": 160.0,
+      "signal_week_end": "2026-03-02",
+      "earliest_entry_date": null
     }
   ],
   "notes": [
-    "🟢 BULL MARKET DETECTED - Aggressive Mode Active",
-    "Market regime (from universe): BULL (avg return: 17.34%, avg vol: 39.73%)",
-    "Regime: BULL | RSI≥50 | Position: 15.0% | SL: 1.8x | TP: 4.0x",
-    "MA10w/MA30w trend + RSI(14)≥50 momentum (regime-adaptive)",
-    "ATR(14)-based stops: 1.8x stop, 4.0x target (regime-specific)"
-  ]
+    "Regime-Adaptive Strategy | Current regime: BULL",
+    "MA10w/MA30w trend + RSI(14)\u226550 momentum",
+    "ATR(14)-based stops: 1.8x stop, 4.0x target",
+    "Position sizing: 15.0% per trade"
+  ],
+  "ai_analysis": {
+    "generated": false,
+    "market_context": "AI analysis unavailable \u2014 check logs for the actual error (rate limit, bad key, or wrong model).",
+    "analysis_date": "2026-03-02 16:29:11",
+    "data_sources": "AI analysis failed \u2014 see GitHub Actions logs",
+    "scores": {},
+    "status": "AI_FAILED",
+    "notice": "\u26a0 Gemini AI analysis failed. Check logs: may be rate limit, invalid key, or model issue."
+  }
 }
