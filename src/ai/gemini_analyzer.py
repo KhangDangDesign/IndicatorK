@@ -115,6 +115,22 @@ Respond ONLY with valid JSON in this exact format:
 }}"""
 
 
+def _is_rate_limited(resp) -> bool:
+    """Check if a response indicates a rate limit (429 or 503 quota exceeded)."""
+    if resp.status_code == 429:
+        return True
+    if resp.status_code == 503:
+        # Gemini sometimes returns 503 with a quota/rate-limit message
+        try:
+            body = resp.json()
+            msg = str(body).lower()
+            if "quota" in msg or "rate" in msg or "resource_exhausted" in msg:
+                return True
+        except Exception:
+            pass
+    return False
+
+
 def _call_gemini(prompt: str, api_keys: list[str]) -> Optional[dict]:
     """Make Gemini API calls with automatic failover between keys."""
     import requests
@@ -132,7 +148,7 @@ def _call_gemini(prompt: str, api_keys: list[str]) -> Optional[dict]:
 
     for i, api_key in enumerate(api_keys):
         key_label = f"API key {i+1}/{len(api_keys)}"
-        logger.info(f"Trying {key_label} (...{api_key[-8:]})")
+        logger.info("Trying %s (...%s)", key_label, api_key[-8:])
 
         try:
             resp = requests.post(
@@ -142,39 +158,38 @@ def _call_gemini(prompt: str, api_keys: list[str]) -> Optional[dict]:
                 json=payload,
                 timeout=_TIMEOUT,
             )
+
+            # Check for rate limit BEFORE raise_for_status so we can failover
+            if _is_rate_limited(resp):
+                logger.warning("🚨 %s RATE LIMIT (%d) — trying next key", key_label, resp.status_code)
+                continue  # Always try next key; loop ends naturally when exhausted
+
             resp.raise_for_status()
 
             data = resp.json()
             text = data["candidates"][0]["content"]["parts"][0]["text"]
             result = json.loads(text)
-            logger.info(f"✅ {key_label} succeeded")
+            logger.info("✅ %s succeeded", key_label)
             return result
 
         except requests.exceptions.Timeout:
-            logger.warning(f"⏰ {key_label} timeout after {_TIMEOUT}s")
-            continue  # Try next API key
+            logger.warning("⏰ %s timeout after %ds — trying next key", key_label, _TIMEOUT)
+            continue
 
         except requests.exceptions.RequestException as e:
-            # Detect specific rate limit error (429)
-            if hasattr(e, 'response') and e.response is not None and e.response.status_code == 429:
-                logger.warning(f"🚨 {key_label} RATE LIMIT (429) - switching to next API key")
-                if i < len(api_keys) - 1:
-                    logger.info(f"🔄 Automatically switching to API key {i+2}")
-                    continue  # Try next API key
-                else:
-                    logger.warning("🚨 ALL API KEYS rate limited - AI analysis skipped")
-                    logger.warning("⏰ This is normal for free tier. AI will work when quotas reset.")
-                    logger.warning("✅ System deployment is working correctly, just hitting rate limits")
-            else:
-                logger.warning(f"❌ {key_label} request failed: {e}")
-                continue  # Try next API key
+            logger.warning("❌ %s request failed: %s — trying next key", key_label, e)
+            continue
 
         except (KeyError, IndexError, json.JSONDecodeError) as e:
-            logger.warning(f"❌ {key_label} failed to parse response: {e}")
-            continue  # Try next API key
+            logger.warning("❌ %s failed to parse response: %s — trying next key", key_label, e)
+            continue
 
-    # All API keys failed
-    logger.warning("❌ All Gemini API keys exhausted - returning None")
+    # All API keys exhausted
+    if len(api_keys) > 1:
+        logger.warning("🚨 ALL %d API KEYS exhausted — AI analysis skipped", len(api_keys))
+    else:
+        logger.warning("🚨 GEMINI RATE LIMIT — AI analysis skipped")
+    logger.warning("⏰ Free tier quota reached. AI will resume when quotas reset.")
     return None
 
 
