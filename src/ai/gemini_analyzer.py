@@ -45,14 +45,27 @@ class AIAnalysis:
     generated: bool = False  # True if AI actually ran
 
 
+def get_api_keys() -> list[str]:
+    """Read all available Gemini API keys from environment."""
+    keys = []
+    # Primary API key
+    if key1 := os.environ.get("GEMINI_API_KEY"):
+        keys.append(key1)
+    # Secondary API key (for rate limit failover)
+    if key2 := os.environ.get("GEMINI_API_KEY_2"):
+        keys.append(key2)
+    return keys
+
+
 def get_api_key() -> Optional[str]:
-    """Read Gemini API key from environment."""
-    return os.environ.get("GEMINI_API_KEY")
+    """Read primary Gemini API key from environment (legacy compatibility)."""
+    keys = get_api_keys()
+    return keys[0] if keys else None
 
 
 def is_available() -> bool:
     """Check if Gemini integration is configured."""
-    return bool(get_api_key())
+    return bool(get_api_keys())
 
 
 def _build_scoring_prompt(recommendations: list[dict], portfolio_summary: str) -> str:
@@ -102,8 +115,8 @@ Respond ONLY with valid JSON in this exact format:
 }}"""
 
 
-def _call_gemini(prompt: str, api_key: str) -> Optional[dict]:
-    """Make a single Gemini API call and parse the JSON response."""
+def _call_gemini(prompt: str, api_keys: list[str]) -> Optional[dict]:
+    """Make Gemini API calls with automatic failover between keys."""
     import requests
 
     url = _API_URL_TEMPLATE.format(model=_DEFAULT_MODEL)
@@ -117,35 +130,52 @@ def _call_gemini(prompt: str, api_key: str) -> Optional[dict]:
         },
     }
 
-    try:
-        resp = requests.post(
-            url,
-            headers=headers,
-            params={"key": api_key},
-            json=payload,
-            timeout=_TIMEOUT,
-        )
-        resp.raise_for_status()
+    for i, api_key in enumerate(api_keys):
+        key_label = f"API key {i+1}/{len(api_keys)}"
+        logger.info(f"Trying {key_label} (...{api_key[-8:]})")
 
-        data = resp.json()
-        text = data["candidates"][0]["content"]["parts"][0]["text"]
-        return json.loads(text)
+        try:
+            resp = requests.post(
+                url,
+                headers=headers,
+                params={"key": api_key},
+                json=payload,
+                timeout=_TIMEOUT,
+            )
+            resp.raise_for_status()
 
-    except requests.exceptions.Timeout:
-        logger.warning("Gemini API timeout after %ds", _TIMEOUT)
-        return None
-    except requests.exceptions.RequestException as e:
-        # Detect specific rate limit error (429)
-        if hasattr(e, 'response') and e.response is not None and e.response.status_code == 429:
-            logger.warning("🚨 GEMINI RATE LIMIT (429) - AI analysis skipped")
-            logger.warning("⏰ This is normal for free tier. AI will work when quota resets.")
-            logger.warning("✅ System deployment is working correctly, just hitting rate limits")
-        else:
-            logger.warning("Gemini API request failed: %s", e)
-        return None
-    except (KeyError, IndexError, json.JSONDecodeError) as e:
-        logger.warning("Failed to parse Gemini response: %s", e)
-        return None
+            data = resp.json()
+            text = data["candidates"][0]["content"]["parts"][0]["text"]
+            result = json.loads(text)
+            logger.info(f"✅ {key_label} succeeded")
+            return result
+
+        except requests.exceptions.Timeout:
+            logger.warning(f"⏰ {key_label} timeout after {_TIMEOUT}s")
+            continue  # Try next API key
+
+        except requests.exceptions.RequestException as e:
+            # Detect specific rate limit error (429)
+            if hasattr(e, 'response') and e.response is not None and e.response.status_code == 429:
+                logger.warning(f"🚨 {key_label} RATE LIMIT (429) - switching to next API key")
+                if i < len(api_keys) - 1:
+                    logger.info(f"🔄 Automatically switching to API key {i+2}")
+                    continue  # Try next API key
+                else:
+                    logger.warning("🚨 ALL API KEYS rate limited - AI analysis skipped")
+                    logger.warning("⏰ This is normal for free tier. AI will work when quotas reset.")
+                    logger.warning("✅ System deployment is working correctly, just hitting rate limits")
+            else:
+                logger.warning(f"❌ {key_label} request failed: {e}")
+                continue  # Try next API key
+
+        except (KeyError, IndexError, json.JSONDecodeError) as e:
+            logger.warning(f"❌ {key_label} failed to parse response: {e}")
+            continue  # Try next API key
+
+    # All API keys failed
+    logger.warning("❌ All Gemini API keys exhausted - returning None")
+    return None
 
 
 def analyze_weekly_plan(
@@ -163,9 +193,9 @@ def analyze_weekly_plan(
         If API is unavailable or fails, returns an empty AIAnalysis
         with generated=False.
     """
-    api_key = get_api_key()
-    if not api_key:
-        logger.info("Gemini API key not set — skipping AI analysis")
+    api_keys = get_api_keys()
+    if not api_keys:
+        logger.info("No Gemini API keys configured — skipping AI analysis")
         return AIAnalysis()
 
     recommendations = plan_dict.get("recommendations", [])
@@ -173,7 +203,8 @@ def analyze_weekly_plan(
         return AIAnalysis(generated=True, market_context="No recommendations to analyze.")
 
     prompt = _build_scoring_prompt(recommendations, portfolio_summary)
-    result = _call_gemini(prompt, api_key)
+    logger.info(f"Starting Gemini analysis with {len(api_keys)} API key(s)")
+    result = _call_gemini(prompt, api_keys)
 
     if result is None:
         logger.warning("Gemini analysis failed — returning empty analysis")
