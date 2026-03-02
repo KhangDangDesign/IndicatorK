@@ -66,8 +66,13 @@ def format_weekly_digest(
 ) -> str:
     """Format the weekly digest Telegram message."""
     total = portfolio_state.total_value
+
+    # Add market regime indicator
+    regime_emoji = {"bull": "🐂", "bear": "🐻", "sideways": "🦀"}.get(plan.market_regime, "📊")
+    regime_text = f" — {regime_emoji} {plan.market_regime.upper()}" if plan.market_regime else ""
+
     lines = [
-        f"📊 *Weekly Plan — S1 v{plan.strategy_version}*",
+        f"📊 *Weekly Plan — S1 v{plan.strategy_version}*{regime_text}",
         f"📅 {plan.generated_at[:10]}  💰 {total:,.0f} ₫",
         "",
     ]
@@ -84,7 +89,7 @@ def format_weekly_digest(
             lines.append(f"  📈 `{r.symbol}` {icon} {r.entry_type.capitalize()}{alloc_str}{ai_tag}")
             lines.append(f"    🎯 Entry: {r.entry_price:,.0f}")
             lines.append(f"    📊 Zone: {r.buy_zone_low:,.0f}–{r.buy_zone_high:,.0f}")
-            lines.append(f"    🛡️ Protection: SL {r.stop_loss:,.0f} | TP {r.take_profit:,.0f}")
+            lines.append(f"    🛡️ SL {r.stop_loss:,.0f} | TP {r.take_profit:,.0f}")
             lines.append("")
 
     # Simplified - treat all held positions the same
@@ -134,9 +139,10 @@ def format_weekly_digest(
         f"Bond {targets.get('bond_fund', 0):.0%}"
     )
 
-    if guardrails and guardrails.recommendations:
+    # Only show guardrails when there are actual warnings (not just empty report)
+    if guardrails and guardrails.recommendations and len(guardrails.recommendations) > 0:
         lines.append("")
-        lines.append("*⚠️ Guardrails*")
+        lines.append("*⚠️ Alerts*")
         for rec in guardrails.recommendations:
             lines.append(f"  {rec}")
 
@@ -297,7 +303,7 @@ def format_plan_summary(plan_data: dict, total_value: float = 0.0) -> str:
 
             lines.append(f"    🎯 Entry: {entry:,.0f}")
             lines.append(f"    📊 Zone: {r.get('buy_zone_low', 0):,.0f}–{r.get('buy_zone_high', 0):,.0f}")
-            lines.append(f"    🛡️ Protection: SL {r.get('stop_loss', 0):,.0f} | TP {r.get('take_profit', 0):,.0f}")
+            lines.append(f"    🛡️ SL {r.get('stop_loss', 0):,.0f} | TP {r.get('take_profit', 0):,.0f}")
             lines.append("")
 
     if others:

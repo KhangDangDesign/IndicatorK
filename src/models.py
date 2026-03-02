@@ -90,6 +90,7 @@ class WeeklyPlan:
     recommendations: list[Recommendation]
     notes: list[str] = field(default_factory=list)
     ai_analysis: Optional[dict] = None  # Cache AI analysis results
+    market_regime: Optional[str] = None  # Current market regime (bull/bear/sideways)
 
     def to_dict(self) -> dict:
         return {
@@ -100,6 +101,7 @@ class WeeklyPlan:
             "recommendations": [r.to_dict() for r in self.recommendations],
             "notes": self.notes,
             "ai_analysis": self.ai_analysis,  # Include cached AI analysis
+            "market_regime": self.market_regime,
         }
 
     @classmethod
@@ -121,6 +123,7 @@ class WeeklyPlan:
             recommendations=recs,
             notes=d.get("notes", []),
             ai_analysis=d.get("ai_analysis"),  # Load cached AI analysis
+            market_regime=d.get("market_regime"),
         )
 
 
