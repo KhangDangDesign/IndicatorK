@@ -1,4 +1,4 @@
-"""Test position sizing is config-driven and has no hard-coded values."""
+"""Test risk-based position sizing with regime multipliers."""
 
 import pytest
 from src.strategies.trend_momentum_atr_regime_adaptive import (
@@ -7,78 +7,53 @@ from src.strategies.trend_momentum_atr_regime_adaptive import (
 )
 
 
-def test_fixed_pct_mode():
-    """Test fixed_pct mode uses configured value."""
+def test_risk_based_stop_distance_8pct():
+    """Test entry=100, stop=92 (8% distance), risk_per_trade=1% => base=12.5%."""
     config = {
         "allocation": {
-            "alloc_mode": "fixed_pct",
-            "fixed_alloc_pct_per_trade": 0.08,
+            "alloc_mode": "risk_based",
+            "risk_per_trade_pct": 0.01,  # Risk 1%
             "min_alloc_pct": 0.03,
             "max_alloc_pct": 0.15,
         }
     }
 
-    result = _compute_alloc_pct(config, entry_price=100, sl=95)
-    assert result == 0.08, f"Expected 0.08, got {result}"
+    # 8% stop distance: 1% / 8% = 12.5%
+    result = _compute_alloc_pct(config, entry_price=100, sl=92)
+    expected = 0.01 / 0.08  # 0.125
+    assert result == 0.125, f"Expected 0.125 (12.5%), got {result}"
 
 
-def test_fixed_pct_mode_with_different_value():
-    """Test changing fixed_pct changes position size."""
-    config1 = {
+def test_risk_based_with_regime_multipliers():
+    """Test regime multipliers applied to risk-based allocation."""
+    config = {
         "allocation": {
-            "alloc_mode": "fixed_pct",
-            "fixed_alloc_pct_per_trade": 0.10,
+            "alloc_mode": "risk_based",
+            "risk_per_trade_pct": 0.01,
             "min_alloc_pct": 0.03,
             "max_alloc_pct": 0.15,
         }
     }
 
-    config2 = {
-        "allocation": {
-            "alloc_mode": "fixed_pct",
-            "fixed_alloc_pct_per_trade": 0.12,
-            "min_alloc_pct": 0.03,
-            "max_alloc_pct": 0.15,
-        }
-    }
+    # entry=100, stop=92 => 8% stop distance => base = 1% / 8% = 12.5%
+    base_alloc = _compute_alloc_pct(config, entry_price=100, sl=92)
+    assert base_alloc == 0.125, f"Expected base 0.125, got {base_alloc}"
 
-    result1 = _compute_alloc_pct(config1, entry_price=100, sl=95)
-    result2 = _compute_alloc_pct(config2, entry_price=100, sl=95)
+    # BULL: 12.5% × 1.5 = 18.75%, clamped to 15%
+    bull_result = _apply_regime_multiplier(base_alloc, 1.5, config)
+    assert bull_result == 0.15, f"Expected 0.15 (clamped), got {bull_result}"
 
-    assert result1 == 0.10, f"Expected 0.10, got {result1}"
-    assert result2 == 0.12, f"Expected 0.12, got {result2}"
-    assert result1 != result2, "Position size should change with different fixed_pct"
+    # SIDEWAYS: 12.5% × 1.0 = 12.5%
+    sideways_result = _apply_regime_multiplier(base_alloc, 1.0, config)
+    assert sideways_result == 0.125, f"Expected 0.125, got {sideways_result}"
 
-
-def test_fixed_pct_mode_clamping():
-    """Test fixed_pct mode respects min/max bounds."""
-    # Test max clamping
-    config_high = {
-        "allocation": {
-            "alloc_mode": "fixed_pct",
-            "fixed_alloc_pct_per_trade": 0.20,  # Above max
-            "min_alloc_pct": 0.03,
-            "max_alloc_pct": 0.15,
-        }
-    }
-    result_high = _compute_alloc_pct(config_high, entry_price=100, sl=95)
-    assert result_high == 0.15, f"Should be clamped to max 0.15, got {result_high}"
-
-    # Test min clamping
-    config_low = {
-        "allocation": {
-            "alloc_mode": "fixed_pct",
-            "fixed_alloc_pct_per_trade": 0.01,  # Below min
-            "min_alloc_pct": 0.03,
-            "max_alloc_pct": 0.15,
-        }
-    }
-    result_low = _compute_alloc_pct(config_low, entry_price=100, sl=95)
-    assert result_low == 0.03, f"Should be clamped to min 0.03, got {result_low}"
+    # BEAR: 12.5% × 0.7 = 8.75%
+    bear_result = _apply_regime_multiplier(base_alloc, 0.7, config)
+    assert bear_result == 0.0875, f"Expected 0.0875, got {bear_result}"
 
 
-def test_risk_based_mode():
-    """Test risk_based mode calculates based on stop distance."""
+def test_risk_based_different_stop_distances():
+    """Test risk-based sizing with different stop distances."""
     config = {
         "allocation": {
             "alloc_mode": "risk_based",
@@ -88,17 +63,19 @@ def test_risk_based_mode():
         }
     }
 
-    # 5% stop distance: risk 1% / 5% = 20% position
+    # 5% stop distance: 1% / 5% = 20%, clamped to 15%
     result = _compute_alloc_pct(config, entry_price=100, sl=95)
-    expected = 0.01 / 0.05  # 0.20, but will be clamped to max 0.15
     assert result == 0.15, f"Expected 0.15 (clamped), got {result}"
 
-    # 10% stop distance: risk 1% / 10% = 10% position
+    # 10% stop distance: 1% / 10% = 10%
     result = _compute_alloc_pct(config, entry_price=100, sl=90)
-    expected = 0.01 / 0.10  # 0.10
     assert result == 0.10, f"Expected 0.10, got {result}"
 
-    # 1% stop distance: risk 1% / 1% = 100% position (will be clamped)
+    # 20% stop distance: 1% / 20% = 5%
+    result = _compute_alloc_pct(config, entry_price=100, sl=80)
+    assert result == 0.05, f"Expected 0.05, got {result}"
+
+    # 1% stop distance: 1% / 1% = 100%, clamped to 15%
     result = _compute_alloc_pct(config, entry_price=100, sl=99)
     assert result == 0.15, f"Expected 0.15 (clamped to max), got {result}"
 
@@ -177,44 +154,39 @@ def test_regime_multiplier_clamping():
 
 def test_no_hardcoded_015():
     """Test there are no hard-coded 0.15 values in position sizing."""
-    # This test verifies that position size comes from config, not hard-coded values
-    config_08 = {
+    config = {
         "allocation": {
-            "alloc_mode": "fixed_pct",
-            "fixed_alloc_pct_per_trade": 0.08,
+            "alloc_mode": "risk_based",
+            "risk_per_trade_pct": 0.01,
             "min_alloc_pct": 0.03,
-            "max_alloc_pct": 0.20,
+            "max_alloc_pct": 0.20,  # Higher ceiling to avoid clamping
         }
     }
 
-    config_12 = {
-        "allocation": {
-            "alloc_mode": "fixed_pct",
-            "fixed_alloc_pct_per_trade": 0.12,
-            "min_alloc_pct": 0.03,
-            "max_alloc_pct": 0.20,
-        }
-    }
+    # 8% stop distance: 1% / 8% = 12.5% (not 0.15)
+    result1 = _compute_alloc_pct(config, entry_price=100, sl=92)
+    assert result1 == 0.125, f"Expected 0.125, got {result1}"
+    assert result1 != 0.15, "Position size should not be hard-coded to 0.15"
 
-    result_08 = _compute_alloc_pct(config_08, entry_price=100, sl=95)
-    result_12 = _compute_alloc_pct(config_12, entry_price=100, sl=95)
+    # 10% stop distance: 1% / 10% = 10% (not 0.15)
+    result2 = _compute_alloc_pct(config, entry_price=100, sl=90)
+    assert result2 == 0.10, f"Expected 0.10, got {result2}"
+    assert result2 != 0.15, "Position size should not be hard-coded to 0.15"
 
-    # Neither should be 0.15 if we're using 0.08 and 0.12
-    assert result_08 != 0.15, "Position size should not be hard-coded to 0.15"
-    assert result_12 != 0.15, "Position size should not be hard-coded to 0.15"
-    assert result_08 == 0.08, f"Expected 0.08, got {result_08}"
-    assert result_12 == 0.12, f"Expected 0.12, got {result_12}"
+    # 20% stop distance: 1% / 20% = 5% (not 0.15)
+    result3 = _compute_alloc_pct(config, entry_price=100, sl=80)
+    assert result3 == 0.05, f"Expected 0.05, got {result3}"
+    assert result3 != 0.15, "Position size should not be hard-coded to 0.15"
 
 
 if __name__ == "__main__":
     # Run tests
-    test_fixed_pct_mode()
-    test_fixed_pct_mode_with_different_value()
-    test_fixed_pct_mode_clamping()
-    test_risk_based_mode()
+    test_risk_based_stop_distance_8pct()
+    test_risk_based_with_regime_multipliers()
+    test_risk_based_different_stop_distances()
     test_regime_multiplier_bull()
     test_regime_multiplier_bear()
     test_regime_multiplier_sideways()
     test_regime_multiplier_clamping()
     test_no_hardcoded_015()
-    print("✅ All position sizing tests passed!")
+    print("✅ All risk-based position sizing tests passed!")

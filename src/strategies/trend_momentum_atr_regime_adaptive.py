@@ -392,11 +392,30 @@ class TrendMomentumATRRegimeAdaptive(Strategy):
             # Ensure stop_loss is not negative
             stop_loss = max(stop_loss, 0.0)
 
-            # Regime-adaptive position sizing using config + regime multiplier
+            # Regime-adaptive position sizing: risk-based + regime multiplier
             if action == "BUY":
+                # 1. Calculate base allocation using stop-distance (risk-based)
                 base_alloc = _compute_alloc_pct(config, entry_price, stop_loss)
-                regime_multiplier = regime_params["position_multiplier"]
+
+                # 2. Get regime multiplier from config
+                regime_cfg = config.get("regime", {})
+                regime_mult_map = {
+                    "bull": regime_cfg.get("bull_mult", 1.5),
+                    "sideways": regime_cfg.get("sideways_mult", 1.0),
+                    "bear": regime_cfg.get("bear_mult", 0.7),
+                }
+                regime_multiplier = regime_mult_map.get(self.current_regime, 1.0)
+
+                # 3. Apply regime multiplier and clamp
                 position_target_pct = _apply_regime_multiplier(base_alloc, regime_multiplier, config)
+
+                # 4. Add sizing debug info to rationale
+                stop_distance_pct = abs(entry_price - stop_loss) / entry_price if entry_price > 0 else 0.0
+                rationale.append(
+                    f"Position: {position_target_pct:.1%} "
+                    f"(base {base_alloc:.1%} × {regime_multiplier}x = "
+                    f"{base_alloc * regime_multiplier:.1%}, stop dist {stop_distance_pct:.1%})"
+                )
             else:
                 position_target_pct = 0.0
 
@@ -522,25 +541,30 @@ def _std(values: list[float]) -> float:
 
 
 def _compute_alloc_pct(config: dict, entry_price: float, sl: float) -> float:
-    """Compute base position allocation from risk.yml config.
+    """Compute base position allocation using risk-based sizing (stop-distance).
 
-    fixed_pct mode:  returns fixed_alloc_pct_per_trade (clamped)
-    risk_based mode: risk_per_trade_pct / stop_distance_pct (clamped)
+    Formula: base_alloc_pct = risk_per_trade_pct / stop_distance_pct
+    Then clamp to [min_alloc_pct, max_alloc_pct]
     """
     alloc_cfg = config.get("allocation", {})
-    mode = alloc_cfg.get("alloc_mode", "fixed_pct")
+    risk_per_trade = alloc_cfg.get("risk_per_trade_pct", 0.01)
     lo = alloc_cfg.get("min_alloc_pct", 0.03)
     hi = alloc_cfg.get("max_alloc_pct", 0.15)
 
-    if mode == "risk_based":
-        stop_dist = abs(entry_price - sl) / entry_price if entry_price > 0 else 0.0
-        if stop_dist < 0.001:  # Avoid division by zero
-            raw = alloc_cfg.get("fixed_alloc_pct_per_trade", 0.10)
-        else:
-            raw = alloc_cfg.get("risk_per_trade_pct", 0.01) / stop_dist
+    # Calculate stop distance percentage
+    if entry_price > 0 and sl > 0:
+        stop_dist = abs(entry_price - sl) / entry_price
     else:
-        raw = alloc_cfg.get("fixed_alloc_pct_per_trade", 0.10)
+        stop_dist = 0.10  # Default 10% if invalid prices
 
+    # Avoid division by zero
+    if stop_dist < 0.001:
+        stop_dist = 0.001
+
+    # Risk-based sizing: risk / stop_distance
+    raw = risk_per_trade / stop_dist
+
+    # Clamp to min/max
     return round(max(lo, min(hi, raw)), 4)
 
 
