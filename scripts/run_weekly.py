@@ -122,31 +122,27 @@ def main() -> None:
             plan.ai_analysis = ai_dict
         else:
             logger.warning("🚨 AI analysis returned empty — continuing without it")
-            logger.warning("💡 Most likely cause: Gemini rate limit (429) - this is NORMAL for free tier")
-            logger.warning("✅ System is working correctly, AI will resume when quota resets")
             logger.warning("📊 Weekly plan generated successfully without AI scoring")
 
-            # Add rate limit notice to weekly plan and create ai_analysis object for Telegram
             from datetime import datetime
             from types import SimpleNamespace
 
-            rate_limit_notice = {
+            failure_notice = {
                 "generated": False,
-                "market_context": "AI analysis unavailable due to Gemini rate limit (429). This is normal for free tier.",
+                "market_context": "AI analysis unavailable — check logs for the actual error (rate limit, bad key, or wrong model).",
                 "analysis_date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                "data_sources": "Rate limit encountered - AI will work when quota resets",
+                "data_sources": "AI analysis failed — see GitHub Actions logs",
                 "scores": {},
-                "status": "RATE_LIMITED",
-                "notice": "🚨 Gemini API rate limit hit. System is working correctly, just need to wait for quota reset."
+                "status": "AI_FAILED",
+                "notice": "⚠ Gemini AI analysis failed. Check logs: may be rate limit, invalid key, or model issue."
             }
-            plan.ai_analysis = rate_limit_notice
+            plan.ai_analysis = failure_notice
 
-            # Also create ai_analysis object for immediate use
             ai_analysis = SimpleNamespace(
                 generated=False,
-                market_context=rate_limit_notice["market_context"],
-                notice=rate_limit_notice["notice"],
-                status=rate_limit_notice["status"]
+                market_context=failure_notice["market_context"],
+                notice=failure_notice["notice"],
+                status=failure_notice["status"]
             )
     else:
         logger.info("Gemini API not configured — skipping AI analysis")

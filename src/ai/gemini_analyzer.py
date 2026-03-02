@@ -20,12 +20,15 @@ from typing import Optional
 
 logger = logging.getLogger(__name__)
 
-# Gemini model for weekly stock analysis — using proven free tier model
-_DEFAULT_MODEL = "gemini-2.0-flash"
+# Gemini model — override via GEMINI_MODEL env var if needed
+_DEFAULT_MODEL = os.environ.get("GEMINI_MODEL", "gemini-1.5-flash")
 _API_URL_TEMPLATE = (
     "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 )
 _TIMEOUT = 30  # seconds
+
+# HTTP status codes that are fatal — don't waste remaining API keys on these
+_FATAL_STATUS_CODES = {400, 401, 403, 404}
 
 
 @dataclass
@@ -120,14 +123,20 @@ def _is_rate_limited(resp) -> bool:
     if resp.status_code == 429:
         return True
     if resp.status_code == 503:
-        # Gemini sometimes returns 503 with a quota/rate-limit message
+        # Gemini uses 503 for RESOURCE_EXHAUSTED — check specific error fields
         try:
             body = resp.json()
-            msg = str(body).lower()
-            if "quota" in msg or "rate" in msg or "resource_exhausted" in msg:
+            error_info = body.get("error", {})
+            status = error_info.get("status", "").upper()
+            message = error_info.get("message", "").lower()
+            if status == "RESOURCE_EXHAUSTED":
                 return True
-        except Exception:
-            pass
+            if "quota" in message and ("exceeded" in message or "exhausted" in message):
+                return True
+            if "rate limit" in message:
+                return True
+        except (json.JSONDecodeError, AttributeError):
+            logger.debug("Could not parse 503 response body for rate limit check")
     return False
 
 
@@ -159,14 +168,31 @@ def _call_gemini(prompt: str, api_keys: list[str]) -> Optional[dict]:
                 timeout=_TIMEOUT,
             )
 
-            # Check for rate limit BEFORE raise_for_status so we can failover
+            logger.info("%s → HTTP %d", key_label, resp.status_code)
+
+            # Fatal errors: bad key, no access, wrong model — don't try other keys
+            if resp.status_code in _FATAL_STATUS_CODES:
+                try:
+                    err_body = resp.json()
+                    err_msg = err_body.get("error", {}).get("message", "no details")
+                except Exception:
+                    err_msg = resp.text[:200]
+                logger.error("🔑 %s FATAL error HTTP %d: %s", key_label, resp.status_code, err_msg)
+                logger.error("💡 Check: API key validity, model name (%s), API enabled in console", _DEFAULT_MODEL)
+                return None  # Don't waste remaining keys on auth/config errors
+
+            # Rate limit — try next key
             if _is_rate_limited(resp):
                 logger.warning("🚨 %s RATE LIMIT (%d) — trying next key", key_label, resp.status_code)
-                continue  # Always try next key; loop ends naturally when exhausted
+                continue
 
-            resp.raise_for_status()
+            resp.raise_for_status()  # Catch remaining unexpected HTTP errors
 
             data = resp.json()
+            if "candidates" not in data or not data["candidates"]:
+                logger.warning("❌ %s returned no candidates — trying next key", key_label)
+                continue
+
             text = data["candidates"][0]["content"]["parts"][0]["text"]
             result = json.loads(text)
             logger.info("✅ %s succeeded", key_label)
@@ -180,15 +206,16 @@ def _call_gemini(prompt: str, api_keys: list[str]) -> Optional[dict]:
             logger.warning("❌ %s request failed: %s — trying next key", key_label, e)
             continue
 
-        except (KeyError, IndexError, json.JSONDecodeError) as e:
-            logger.warning("❌ %s failed to parse response: %s — trying next key", key_label, e)
+        except (KeyError, IndexError) as e:
+            logger.warning("❌ %s unexpected response structure: %s — trying next key", key_label, e)
             continue
 
-    # All API keys exhausted
-    if len(api_keys) > 1:
-        logger.warning("🚨 ALL %d API KEYS exhausted — AI analysis skipped", len(api_keys))
-    else:
-        logger.warning("🚨 GEMINI RATE LIMIT — AI analysis skipped")
+        except json.JSONDecodeError as e:
+            logger.warning("❌ %s non-JSON response (safety filter?): %s — trying next key", key_label, e)
+            continue
+
+    # All API keys exhausted by rate limits / transient errors
+    logger.warning("🚨 ALL %d API KEY(S) exhausted — AI analysis skipped", len(api_keys))
     logger.warning("⏰ Free tier quota reached. AI will resume when quotas reset.")
     return None
 
