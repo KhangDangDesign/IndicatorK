@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-03T07:13:11.286425",
+  "generated_at": "2026-03-03T09:34:37.642052",
   "strategy_id": "trend_momentum_atr_regime_adaptive",
   "strategy_version": "1.0.0",
   "allocation_targets": {
@@ -61,12 +61,12 @@
   ],
   "ai_analysis": {
     "generated": false,
-    "market_context": "AI analysis unavailable \u2014 check logs for the actual error (rate limit, bad key, or wrong model).",
-    "analysis_date": "2026-03-03 07:13:11",
-    "data_sources": "AI analysis failed \u2014 see GitHub Actions logs",
+    "market_context": "AI analysis unavailable - Groq API key not configured.",
+    "analysis_date": "2026-03-03 09:34:37",
+    "data_sources": "Groq API not configured",
     "scores": {},
-    "status": "AI_FAILED",
-    "notice": "\u26a0 Gemini AI analysis failed. Check logs: may be rate limit, invalid key, or model issue."
+    "status": "API_NOT_CONFIGURED",
+    "notice": "\ud83d\udd11 Set GROQ_API_KEY environment variable to enable AI analysis."
   },
   "market_regime": "bull"
 }
