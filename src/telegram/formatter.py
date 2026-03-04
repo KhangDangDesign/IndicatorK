@@ -170,6 +170,47 @@ def format_weekly_digest(
 
             lines.append("")
 
+    # News Analysis section
+    if plan.news_analysis and plan.news_analysis.get("status") == "SUCCESS":
+        lines.append("")
+        lines.append("*📰 News Analysis*")
+        total_news = plan.news_analysis.get("total_news", 0)
+        lines.append(f"_Based on {total_news} Vietnamese news articles_")
+        lines.append("")
+
+        symbol_scores = plan.news_analysis.get("symbol_scores", [])
+        for score_data in symbol_scores[:5]:  # Limit to top 5 symbols
+            sym = score_data.get("symbol")
+            buy_score = score_data.get("buy_potential_score", 0)
+            risk_score = score_data.get("risk_score", 0)
+            confidence = score_data.get("confidence", 0)
+
+            # Score visualization
+            if buy_score >= 60:
+                sentiment = "🟢 Bullish"
+            elif buy_score >= 40:
+                sentiment = "🔵 Neutral"
+            else:
+                sentiment = "🔴 Bearish"
+
+            lines.append(f"  `{sym}` {sentiment} {buy_score}/100")
+            lines.append(f"    Risk: {risk_score}/100 | Confidence: {confidence*100:.0f}%")
+
+            # Bull points
+            bull_points = score_data.get("key_bull_points", [])
+            if bull_points:
+                # Truncate long Vietnamese text to fit Telegram message limits
+                bull_text = bull_points[0][:100] + "..." if len(bull_points[0]) > 100 else bull_points[0]
+                lines.append(f"    ✅ {bull_text}")
+
+            # Risk points
+            risks = score_data.get("key_risks", [])
+            if risks:
+                risk_text = risks[0][:100] + "..." if len(risks[0]) > 100 else risks[0]
+                lines.append(f"    ⚠️ {risk_text}")
+
+            lines.append("")
+
     return "\n".join(lines)
 
 
@@ -376,6 +417,47 @@ def format_plan_summary(plan_data: dict, total_value: float = 0.0) -> str:
             # Rate limit or API not configured notice
             if ai_analysis.get("notice"):
                 lines.append(f"{ai_analysis['notice']}")
+            lines.append("")
+
+    # News Analysis section
+    news_analysis = plan_data.get("news_analysis")
+    if news_analysis and news_analysis.get("status") == "SUCCESS":
+        lines.append("")
+        lines.append("*📰 News Analysis*")
+        total_news = news_analysis.get("total_news", 0)
+        lines.append(f"_Based on {total_news} Vietnamese news articles_")
+        lines.append("")
+
+        symbol_scores = news_analysis.get("symbol_scores", [])
+        for score_data in symbol_scores[:5]:  # Limit to top 5
+            sym = score_data.get("symbol")
+            buy_score = score_data.get("buy_potential_score", 0)
+            risk_score = score_data.get("risk_score", 0)
+            confidence = score_data.get("confidence", 0)
+
+            # Score visualization
+            if buy_score >= 60:
+                sentiment = "🟢 Bullish"
+            elif buy_score >= 40:
+                sentiment = "🔵 Neutral"
+            else:
+                sentiment = "🔴 Bearish"
+
+            lines.append(f"  `{sym}` {sentiment} {buy_score}/100")
+            lines.append(f"    Risk: {risk_score}/100 | Confidence: {confidence*100:.0f}%")
+
+            # Bull points with Vietnamese text
+            bull_points = score_data.get("key_bull_points", [])
+            if bull_points:
+                bull_text = bull_points[0][:100] + "..." if len(bull_points[0]) > 100 else bull_points[0]
+                lines.append(f"    ✅ {bull_text}")
+
+            # Risk points
+            risks = score_data.get("key_risks", [])
+            if risks:
+                risk_text = risks[0][:100] + "..." if len(risks[0]) > 100 else risks[0]
+                lines.append(f"    ⚠️ {risk_text}")
+
             lines.append("")
 
     return "\n".join(lines)
