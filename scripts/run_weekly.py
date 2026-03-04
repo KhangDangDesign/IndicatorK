@@ -129,20 +129,27 @@ def main() -> None:
 
     # News-based buy potential scoring (after AI analysis)
     try:
-        from src.news_ai import score_buy_potential
+        from src.news_ai import score_buy_potential, fetch_recent_news
         logger.info("Running news-based buy potential analysis...")
 
-        # For now, use mock news data until news fetching is implemented
-        # In production, this would fetch real news from APIs
-        mock_news = [
-            {
-                "id": "news_1",
-                "title": f"Market analysis for Vietnamese stocks {datetime.now().strftime('%Y-%m-%d')}",
-                "source": "VnExpress",
-                "snippet": "Vietnamese market shows strong momentum with banking and technology sectors leading gains",
+        # Fetch real news about Vietnamese stocks
+        logger.info("Fetching real news about Vietnamese stock symbols...")
+        try:
+            real_news = fetch_recent_news(
+                symbols=all_symbols[:10],  # Fetch for top 10 symbols to manage API limits
+                days_back=7,
+                use_cache=True,
+            )
+            logger.info(f"Fetched {len(real_news)} real news articles")
+        except Exception as e:
+            logger.warning(f"Failed to fetch real news: {e}, using fallback news")
+            real_news = [{
+                "id": "news_fallback",
+                "title": f"Vietnamese market analysis {datetime.now().strftime('%Y-%m-%d')}",
+                "source": "Default",
+                "snippet": "Vietnamese market sentiment and stock analysis",
                 "published_at": datetime.now().isoformat()
-            }
-        ]
+            }]
 
         # Save plan temporarily for buy potential scoring
         temp_plan_path = "data/weekly_plan_temp.json"
@@ -150,8 +157,8 @@ def main() -> None:
         with open(temp_plan_path, "w") as f:
             json.dump(plan_dict, f, indent=2)
 
-        # Score buy potential
-        news_scores = score_buy_potential(temp_plan_path, mock_news)
+        # Score buy potential with real news
+        news_scores = score_buy_potential(temp_plan_path, real_news)
 
         if news_scores.get("status") == "SUCCESS":
             logger.info("News analysis complete: %d symbols scored", news_scores.get("analyzed_symbols", 0))
