@@ -169,52 +169,6 @@ def main() -> None:
 
     except Exception as e:
         logger.warning("News analysis failed: %s", e)
-
-            from types import SimpleNamespace
-
-            failure_notice = {
-                "generated": False,
-                "market_context": "AI analysis unavailable — check logs for the actual error (rate limit, bad key, or wrong model).",
-                "analysis_date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                "data_sources": "AI analysis failed — see GitHub Actions logs",
-                "scores": {},
-                "status": "AI_FAILED",
-                "notice": "⚠ Groq AI analysis failed. Check logs: may be rate limit, invalid key, or model issue."
-            }
-            plan.ai_analysis = failure_notice
-
-            ai_analysis = SimpleNamespace(
-                generated=False,
-                market_context=failure_notice["market_context"],
-                notice=failure_notice["notice"],
-                status=failure_notice["status"]
-            )
-    else:
-        logger.info("Groq API not configured — skipping AI analysis")
-
-        # Add API not configured notice to weekly plan and create ai_analysis object
-        from datetime import datetime
-        from types import SimpleNamespace
-
-        no_api_notice = {
-            "generated": False,
-            "market_context": "AI analysis unavailable - Groq API key not configured.",
-            "analysis_date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "data_sources": "Groq API not configured",
-            "scores": {},
-            "status": "API_NOT_CONFIGURED",
-            "notice": "🔑 Set GROQ_API_KEY environment variable to enable AI analysis."
-        }
-        plan.ai_analysis = no_api_notice
-
-        # Also create ai_analysis object for immediate use
-        ai_analysis = SimpleNamespace(
-            generated=False,
-            market_context=no_api_notice["market_context"],
-            notice=no_api_notice["notice"],
-            status=no_api_notice["status"]
-        )
-
     # Write weekly plan (now includes AI analysis if available)
     plan_path = Path("data/weekly_plan.json")
     plan_path.parent.mkdir(parents=True, exist_ok=True)
