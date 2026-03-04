@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-04T04:52:22.068264",
+  "generated_at": "2026-03-04T05:06:31.737196",
   "strategy_id": "trend_momentum_atr_regime_adaptive",
   "strategy_version": "1.0.0",
   "allocation_targets": {
@@ -61,21 +61,21 @@
   ],
   "ai_analysis": {
     "generated": true,
-    "market_context": "Portfolio is heavily weighted towards cash with a small position, indicating a cautious market approach.",
+    "market_context": "The portfolio has a total value of 9,999,953 VND, with a cash reserve of 99,98416 VND, indicating a relatively conservative position size.",
     "analysis_date": "2026-03-04",
     "data_sources": "Weekly technical analysis using Groq AI",
     "scores": {
       "STB": {
         "symbol": "STB",
         "score": 8,
-        "rationale": "Strong bull regime with price above MA10w and MA30w, and RSI(14) above 50.",
-        "risk_note": "Risk of stop-loss at 50 due to relatively tight stop distance of 10."
+        "rationale": "STB has a strong bullish trend with price above MA10w and MA30w, and RSI(14) above 50.",
+        "risk_note": "Risk of stop-loss at 50 is relatively high compared to entry at 60."
       },
       "MWG": {
         "symbol": "MWG",
-        "score": 4,
-        "rationale": "Bull regime but weakening trend with price below MA10w, still above MA30w.",
-        "risk_note": "Risk of stop-loss at 70 due to potential for further weakening trend."
+        "score": 5,
+        "rationale": "MWG has a weakening trend with price below MA10w, but still above MA30w.",
+        "risk_note": "Risk of stop-loss at 70 is relatively high compared to entry at 80."
       }
     }
   },
