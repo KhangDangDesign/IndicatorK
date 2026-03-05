@@ -1,6 +1,16 @@
 {
   "symbol_scores": [
     {
+      "symbol": "MBB",
+      "buy_potential_score": 50,
+      "risk_score": 50,
+      "confidence": 0.0,
+      "horizon": "1-4w",
+      "key_bull_points": [],
+      "key_risks": [],
+      "evidence": []
+    },
+    {
       "symbol": "STB",
       "buy_potential_score": 20,
       "risk_score": 80,
@@ -68,6 +78,6 @@
     }
   ],
   "status": "SUCCESS",
-  "analyzed_symbols": 3,
+  "analyzed_symbols": 4,
   "total_news": 10
 }

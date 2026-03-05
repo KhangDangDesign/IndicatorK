@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-05T07:22:54.339090",
+  "generated_at": "2026-03-05T07:50:29.901449",
   "strategy_id": "trend_momentum_atr_regime_adaptive",
   "strategy_version": "1.0.0",
   "allocation_targets": {
@@ -7,6 +7,30 @@
     "bond_fund": 0.4
   },
   "recommendations": [
+    {
+      "symbol": "MBB",
+      "asset_class": "stock",
+      "action": "BUY",
+      "buy_zone_low": 30.0,
+      "buy_zone_high": 30.0,
+      "stop_loss": 30.0,
+      "take_profit": 40.0,
+      "position_target_pct": 0.15,
+      "rationale_bullets": [
+        "Regime: BULL | RSI\u226550",
+        "Trend UP: price 27 > MA10w 27 > MA30w 26",
+        "RSI(14): 69.7",
+        "ATR: 2",
+        "Vol: 152,834,000 (1.1x avg)",
+        "Entry: pullback mid-zone",
+        "Position: 15.0% (base 15.0% \u00d7 1.5x = 22.5%, stop dist 0.0%)"
+      ],
+      "entry_type": "pullback",
+      "breakout_level": 0.0,
+      "entry_price": 30.0,
+      "signal_week_end": "2026-03-05",
+      "earliest_entry_date": null
+    },
     {
       "symbol": "STB",
       "asset_class": "stock",
@@ -18,10 +42,10 @@
       "position_target_pct": 0.09,
       "rationale_bullets": [
         "Regime: BULL | RSI\u226550",
-        "Trend UP: price 66 > MA10w 61 > MA30w 56",
-        "RSI(14): 67.4",
+        "Trend UP: price 65 > MA10w 61 > MA30w 56",
+        "RSI(14): 66.2",
         "ATR: 5",
-        "Vol: 58,137,000 (1.0x avg)",
+        "Vol: 60,106,300 (1.0x avg)",
         "Entry: pullback mid-zone",
         "Position: 9.0% (base 6.0% \u00d7 1.5x = 9.0%, stop dist 16.7%)"
       ],
@@ -42,10 +66,10 @@
       "position_target_pct": 0.0562,
       "rationale_bullets": [
         "Regime: BULL | RSI\u226550",
-        "Trend UP: price 164 > MA10w 159 > MA30w 117",
-        "RSI(14): 64.8",
+        "Trend UP: price 165 > MA10w 159 > MA30w 117",
+        "RSI(14): 65.1",
         "ATR: 23",
-        "Vol: 21,082,400 (0.7x avg)",
+        "Vol: 21,370,300 (0.7x avg)",
         "Entry: pullback mid-zone",
         "Position: 5.6% (base 3.8% \u00d7 1.5x = 5.6%, stop dist 26.7%)"
       ],
@@ -85,32 +109,48 @@
   ],
   "ai_analysis": {
     "generated": true,
-    "market_context": "The portfolio is heavily invested in cash, indicating a cautious market approach.",
+    "market_context": "Portfolio is heavily invested in cash, with only one position, indicating a cautious market approach.",
     "analysis_date": "2026-03-05",
     "data_sources": "Weekly technical analysis using Groq AI",
     "scores": {
+      "MBB": {
+        "symbol": "MBB",
+        "score": 8,
+        "rationale": "Strong uptrend with RSI above 50 and price above both MA10w and MA30w.",
+        "risk_note": ""
+      },
       "STB": {
         "symbol": "STB",
-        "score": 8,
-        "rationale": "Strong uptrend with price above MA10w and MA30w, and RSI(14) above 50.",
+        "score": 9,
+        "rationale": "Bullish regime with price above both MA10w and MA30w and RSI above 50.",
         "risk_note": ""
       },
       "VIC": {
         "symbol": "VIC",
-        "score": 9,
-        "rationale": "Strong uptrend with price above MA10w and MA30w, and RSI(14) above 50.",
-        "risk_note": ""
+        "score": 6,
+        "rationale": "Strong uptrend with price above both MA10w and MA30w, but high ATR and low volume.",
+        "risk_note": "High ATR indicates potential for large price movements."
       },
       "MWG": {
         "symbol": "MWG",
         "score": 4,
-        "rationale": "Trend weakening with price below MA10w, but still above MA30w.",
-        "risk_note": "Consider reducing position as trend weakens"
+        "rationale": "Bullish regime, but trend is weakening with price below MA10w.",
+        "risk_note": "Weakening trend indicates potential for loss of momentum."
       }
     }
   },
   "news_analysis": {
     "symbol_scores": [
+      {
+        "symbol": "MBB",
+        "buy_potential_score": 50,
+        "risk_score": 50,
+        "confidence": 0.0,
+        "horizon": "1-4w",
+        "key_bull_points": [],
+        "key_risks": [],
+        "evidence": []
+      },
       {
         "symbol": "STB",
         "buy_potential_score": 20,
@@ -179,7 +219,7 @@
       }
     ],
     "status": "SUCCESS",
-    "analyzed_symbols": 3,
+    "analyzed_symbols": 4,
     "total_news": 10
   },
   "market_regime": "bull"
