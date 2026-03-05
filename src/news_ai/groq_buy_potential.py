@@ -161,8 +161,8 @@ def _stage_a_scoring(symbol: str, news_items: List[Dict]) -> Dict[str, Any] | No
 
     # Build news context
     news_text = "\n".join([
-        f"ID: {item.get('id', f'news_{i}')} | {item.get('title', 'N/A')} | "
-        f"{item.get('source', 'N/A')} | {item.get('snippet', 'N/A')[:200]}"
+        f"{item.get('title', 'N/A')} | {item.get('source', 'N/A')} | "
+        f"{item.get('snippet', 'N/A')[:200]}"
         for i, item in enumerate(news_items)
     ])
 
@@ -171,10 +171,10 @@ def _stage_a_scoring(symbol: str, news_items: List[Dict]) -> Dict[str, Any] | No
 NEWS ITEMS:
 {news_text}
 
-Score this symbol based ONLY on the provided news. Reference evidence IDs.
+Score this symbol based ONLY on the provided news.
 
 RULES:
-- Every bull point/risk MUST reference a specific news ID from above
+- Base all bull points/risks on the specific news content above
 - If insufficient relevant news, set confidence low (0.1-0.3)
 - No made-up facts or analysis beyond what's in the news
 - Focus on 1-4 week trading horizon
@@ -188,9 +188,8 @@ IMPORTANT: Return ONLY raw JSON. Do NOT wrap in markdown code blocks.
     "risk_score": 0-100,
     "confidence": 0.0-1.0,
     "horizon": "1-4w",
-    "key_bull_points": ["Point referencing evidence ID"],
-    "key_risks": ["Risk referencing evidence ID"],
-    "evidence": [{{"id": "news_1", "supports": "bull/risk/neutral"}}]
+    "key_bull_points": ["Clear bullish insight based on news"],
+    "key_risks": ["Clear risk assessment based on news"],
   }}]
 }}"""
 
@@ -206,12 +205,12 @@ def _stage_b_validation(stage_a_result: Dict[str, Any], news_items: List[Dict]) 
 ORIGINAL ANALYSIS:
 {json.dumps(stage_a_result, indent=2)}
 
-AVAILABLE NEWS IDs: {list(news_ids)}
+NEWS CONTENT AVAILABLE: {len(news_items)} items
 
 VALIDATION TASKS:
 1. Verify JSON schema is correct
-2. Remove any bull_points/risks that don't reference valid evidence IDs
-3. Ensure all evidence IDs exist in the news list
+2. Ensure bull_points and risks are clear and concise
+3. Check analysis is based on provided news content
 4. Normalize scores to 0-100 range
 5. Ensure confidence reflects evidence quality (low if few/weak sources)
 
@@ -262,17 +261,16 @@ def _score_symbol(symbol: str, news_items: List[Dict], cache: Dict[str, Any]) ->
     return stage_b_result
 
 
-def score_buy_potential(weekly_plan_path: str, symbol_news: Dict[str, List[Dict]]) -> Dict[str, Any]:
+def score_buy_potential(weekly_plan_path: str, news_items: List[Dict]) -> Dict[str, Any]:
     """
-    Score buy potential for symbols using per-symbol news analysis.
+    Score buy potential for symbols using news analysis.
 
     Args:
         weekly_plan_path: Path to weekly_plan.json
-        symbol_news: Dict mapping symbol -> list of news items.
-                     Each news item has: id, title, source, snippet, scope (symbol|market)
+        news_items: List of news items with id, title, source, snippet
 
     Returns:
-        Combined analysis results for all symbols with evidence citations
+        Combined analysis results for all symbols
     """
     if not _is_available():
         logger.warning("Groq API not configured - returning empty scores")
@@ -291,13 +289,20 @@ def score_buy_potential(weekly_plan_path: str, symbol_news: Dict[str, List[Dict]
         logger.info("No symbols to analyze")
         return {"symbol_scores": [], "status": "NO_SYMBOLS"}
 
+    # Group news by symbol (simple keyword matching for now)
+    symbol_news = {}
+    for symbol in symbols:
+        symbol_news[symbol] = [
+            item for item in news_items
+            if symbol.lower() in (item.get("title", "") + " " + item.get("snippet", "")).lower()
+        ]
+
     # Load cache
     cache = _load_cache()
     all_scores = []
 
     try:
         for symbol in symbols:
-            # Get pre-matched news for this symbol (already filtered by company keywords)
             news_for_symbol = symbol_news.get(symbol, [])
 
             result = _score_symbol(symbol, news_for_symbol, cache)
@@ -307,12 +312,11 @@ def score_buy_potential(weekly_plan_path: str, symbol_news: Dict[str, List[Dict]
         # Save updated cache
         _save_cache(cache)
 
-        total_news = sum(len(items) for items in symbol_news.values())
         return {
             "symbol_scores": all_scores,
             "status": "SUCCESS",
             "analyzed_symbols": len(all_scores),
-            "total_news": total_news
+            "total_news": len(news_items)
         }
 
     except Exception as e:
