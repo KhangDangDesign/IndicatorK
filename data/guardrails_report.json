@@ -1,20 +1,18 @@
 {
-  "generated_at": "2026-03-05T07:50:31.062816",
+  "generated_at": "2026-03-06T11:19:13.284730",
   "provider_health": {
     "name": "vnstock->http->cache",
     "error_rate": 0.0,
     "missing_rate": 0.0,
-    "last_success_at": "2026-03-05T07:50:29.892324",
+    "last_success_at": "2026-03-06T11:19:13.260955",
     "total_requests": 23,
     "total_errors": 0
   },
   "strategy_health": {
-    "rolling_cagr": -0.0,
+    "rolling_cagr": 0.1487,
     "drawdown": 0.0,
     "turnover": 0.0,
-    "weeks_tracked": 37
+    "weeks_tracked": 43
   },
-  "recommendations": [
-    "SWITCH_STRATEGY: rolling 12w return -0.00% below 1.00% threshold (current: trend_momentum_atr_regime_adaptive)"
-  ]
+  "recommendations": []
 }
