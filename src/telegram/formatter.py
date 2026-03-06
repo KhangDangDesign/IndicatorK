@@ -223,8 +223,17 @@ def format_weekly_digest(
 
             # Show current price + P&L if available
             current = cached.get(r.symbol)
-            if current and r.entry_price and r.entry_price > 0:
-                pnl_pct = ((current - r.entry_price) / r.entry_price) * 100
+
+            # Use actual portfolio entry price, not plan entry price
+            portfolio_pos = portfolio_state.positions.get(r.symbol)
+            if current and portfolio_pos and portfolio_pos.avg_cost > 0:
+                # Handle potential units mismatch - portfolio might use different scale
+                entry_price = portfolio_pos.avg_cost
+                # If entry price seems to be in different units (e.g., 88 vs 88000), adjust
+                if entry_price < 1000 and current > 1000:
+                    entry_price *= 1000  # Convert portfolio price to same units as current price
+
+                pnl_pct = ((current - entry_price) / entry_price) * 100
                 status_line = f"  📊 `{r.symbol}` @ {current:,.0f} ({pnl_pct:+.1f}%)"
             else:
                 status_line = f"  📊 `{r.symbol}` Monitoring"
@@ -423,6 +432,8 @@ def format_plan_summary(plan_data: dict, total_value: float = 0.0) -> str:
             sym = r["symbol"]
 
             # Show current price if available
+            # NOTE: This uses plan entry_price, not actual portfolio entry_price
+            # which can cause P&L calculation errors. Need portfolio_state access to fix.
             now = cached.get(sym)
             if now and r.get("entry_price", 0) > 0:
                 pnl_pct = ((now - r["entry_price"]) / r["entry_price"]) * 100
