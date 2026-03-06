@@ -143,6 +143,233 @@ MBB:
   - quân đội
   - mbbank
 
+VNM:
+  - vinamilk
+  - vina milk
+  - sua vinamilk
+  - sữa vinamilk
+  - vnm group
+  - vietnam dairy
+
+FPT:
+  - fpt corporation
+  - fpt telecom
+  - fpt software
+  - fpt education
+  - fpt university
+  - fpt group
+
+VIX:
+  - vix group
+  - gelex
+  - viglacera
+  - vix corporation
+
+VJC:
+  - vietjet
+  - viet jet air
+  - vietjet air
+  - hang khong vietjet
+  - hàng không vietjet
+  - vjc airline
+
+REE:
+  - ree corporation
+  - refrigeration electrical engineering
+  - may lanh ree
+  - máy lạnh ree
+  - ree group
+
+GEX:
+  - gelex
+  - gia lai electricity
+  - ge lex
+  - gelex group
+
+KBC:
+  - kinh bac
+  - kinh bắc
+  - kbc group
+  - kinh bac city
+  - kinh bắc city
+
+KDH:
+  - khang dien
+  - khang điền
+  - kdh group
+  - khang dien house
+  - khang điền house
+
+FRT:
+  - frt corporation
+  - frt group
+  - frideco
+
+DGC:
+  - hoa sen
+  - hòa sen
+  - dgc group
+  - hoa sen group
+  - hòa sen group
+
+EIB:
+  - eximbank
+  - exim bank
+  - ngan hang xuat nhap khau
+  - ngân hàng xuất nhập khẩu
+  - eib bank
+
+HUT:
+  - hanoi urban infrastructure
+  - ha noi urban
+  - hà nội urban
+  - hut group
+
+DXG:
+  - dat xanh
+  - đất xanh
+  - dat xanh group
+  - đất xanh group
+  - dxg real estate
+
+DPM:
+  - petro vietnam fertilizer
+  - phu my fertilizer
+  - phú mỹ fertilizer
+  - dpm fertilizer
+
+PLX:
+  - petrolimex
+  - petro limex
+  - xang dau petrolimex
+  - xăng dầu petrolimex
+  - plx group
+
+PDR:
+  - phat dat
+  - phát đạt
+  - pdr real estate
+  - phat dat real estate
+  - phát đạt real estate
+
+SAB:
+  - sabeco
+  - saigon beer
+  - bia saigon
+  - sab miller
+  - sabeco group
+
+DIG:
+  - dic group
+  - dic corporation
+  - dong a investment
+  - đông á investment
+  - dig investment
+
+KDC:
+  - kinh do
+  - kinh đô
+  - kdc group
+  - kinh do corporation
+  - kinh đô corporation
+
+DCM:
+  - duc giang chemicals
+  - đức giang chemicals
+  - dcm chemicals
+  - duc giang
+  - đức giang
+
+DGW:
+  - digi world
+  - digiworld
+  - dgw technology
+  - digi world group
+
+GVR:
+  - gemadept
+  - gema dept
+  - port logistics
+  - gvr logistics
+  - gemadept group
+
+HDB:
+  - hd bank
+  - hdbank
+  - thanh cong group
+  - thành công group
+  - hdb bank
+
+HDG:
+  - hoa binh construction
+  - hòa bình construction
+  - hdg construction
+  - hoa binh group
+  - hòa bình group
+
+IMP:
+  - imexpharm
+  - imex pharm
+  - duoc pham imexpharm
+  - dược phẩm imexpharm
+  - imp pharmaceutical
+
+PVD:
+  - petrovietnam drilling
+  - pv drilling
+  - khoan dau pv
+  - khoan dầu pv
+  - pvd drilling
+
+MSB:
+  - maritime bank
+  - msb bank
+  - ngan hang hang hai
+  - ngân hàng hàng hải
+  - maritime commercial bank
+
+TPB:
+  - tpbank
+  - tp bank
+  - tien phong bank
+  - tiền phong bank
+  - tpb bank
+
+OCB:
+  - orient commercial bank
+  - ocb bank
+  - phuong dong bank
+  - phương đông bank
+  - orient bank
+
+VIB:
+  - vib bank
+  - vietnam international bank
+  - ngan hang quoc te
+  - ngân hàng quốc tế
+  - vietinbank international
+
+VHC:
+  - vinh hoan
+  - vĩnh hoàn
+  - vhc group
+  - vinh hoan corporation
+  - vĩnh hoàn corporation
+
+VLB:
+  - viet long bank
+  - việt long bank
+  - vlb bank
+  - viet long
+  - việt long
+
+NT2:
+  - nam theun 2
+  - nt2 power
+  - thuy dien nam theun
+  - thủy điện nam theun
+  - nt2 hydropower
+
 # Generic market-wide keywords (not tied to specific symbols)
 # These will be flagged as "market" scope
 _market_keywords:

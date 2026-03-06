@@ -12,6 +12,13 @@ Regime-Specific Parameters:
 - Bear: Very selective (RSI≥65), defensive sizing (6%), tight TP (2.0x ATR)
 - Bull: More opportunities (RSI≥45), aggressive sizing (15%), wide TP (4.0x ATR)
 - Sideways: Balanced (RSI≥55), moderate sizing (10%), standard TP (2.5x ATR)
+
+Fixed Issues (v1.0.0):
+- ATR vs Tick Size Bug: When ATR is small relative to tick size (e.g., ATR=2, tick=10),
+  all price levels would round to the same value, creating identical buy zones and
+  stop losses. Now ensures meaningful price separation using minimum tick distances.
+- Buy Zone Range: Ensures buy_zone_low and buy_zone_high are always different
+- Stop Loss Protection: Guarantees stop loss is always meaningfully below entry price
 """
 
 from __future__ import annotations
@@ -311,14 +318,18 @@ class TrendMomentumATRRegimeAdaptive(Strategy):
                     if close_confirmed and rsi_ok and vol_ok:
                         # Breakout entry
                         entry_price = round_to_step(breakout_level * (1.0 + self.entry_buffer_pct), tick)
+                        # Ensure meaningful buy zone range (at least 1-2 ticks)
                         buy_zone_low = entry_price
-                        buy_zone_high = round_to_step(entry_price * 1.005, tick)
+                        buy_zone_high = round_to_step(max(entry_price + 2 * tick, entry_price * 1.01), tick)
                         entry_type = "breakout"
                         earliest_entry_date = _next_monday(signal_week_end)
                     else:
-                        # Pullback entry
-                        buy_zone_low = round_to_step(current - 1.0 * atr, tick)
-                        buy_zone_high = round_to_step(current - 0.5 * atr, tick)
+                        # Pullback entry - ensure meaningful range even with small ATR
+                        atr_displacement = _ensure_meaningful_atr(atr, tick)
+                        buy_zone_low = round_to_step(current - 1.0 * atr_displacement, tick)
+                        buy_zone_high = round_to_step(current - 0.5 * atr_displacement, tick)
+                        # Ensure buy zones are different
+                        buy_zone_low, buy_zone_high = _ensure_different_zones(buy_zone_low, buy_zone_high, tick)
                         entry_price = round_to_step((buy_zone_low + buy_zone_high) / 2.0, tick)
                         breakout_level = 0.0
                         entry_type = "pullback"
@@ -335,8 +346,11 @@ class TrendMomentumATRRegimeAdaptive(Strategy):
                     ]
 
                 else:  # HOLD
-                    buy_zone_low = round_to_step(current - 1.0 * atr, tick)
-                    buy_zone_high = round_to_step(current - 0.5 * atr, tick)
+                    atr_displacement = _ensure_meaningful_atr(atr, tick)
+                    buy_zone_low = round_to_step(current - 1.0 * atr_displacement, tick)
+                    buy_zone_high = round_to_step(current - 0.5 * atr_displacement, tick)
+                    # Ensure buy zones are different
+                    buy_zone_low, buy_zone_high = _ensure_different_zones(buy_zone_low, buy_zone_high, tick)
                     entry_price = round_to_step((buy_zone_low + buy_zone_high) / 2.0, tick)
                     breakout_level = 0.0
                     entry_type = "pullback"
@@ -348,19 +362,43 @@ class TrendMomentumATRRegimeAdaptive(Strategy):
                         f"ATR: {atr:.0f}",
                     ]
 
-                # Regime-adaptive SL/TP
-                stop_loss = round_to_step(entry_price - atr_stop_mult * atr, tick)
-                raw_take_profit = round_to_step(entry_price + atr_target_mult * atr, tick)
+                # Regime-adaptive SL/TP with minimum distance guarantees
+                # Ensure stop loss is meaningful - use larger of ATR-based or minimum tick-based distance
+                atr_stop_distance = atr_stop_mult * atr
+                min_stop_distance = tick * 1.5  # Minimum 1.5 ticks away
+                stop_distance = max(atr_stop_distance, min_stop_distance)
+                stop_loss = round_to_step(entry_price - stop_distance, tick)
+
+                # Ensure stop loss is actually different from entry price
+                if stop_loss >= entry_price:
+                    stop_loss = round_to_step(entry_price - tick * 2, tick)
+
+                # Take profit with similar safeguards
+                atr_target_distance = atr_target_mult * atr
+                min_target_distance = tick * 2  # Minimum 2 ticks profit
+                target_distance = max(atr_target_distance, min_target_distance)
+                raw_take_profit = round_to_step(entry_price + target_distance, tick)
                 ath_cap = self._get_ath_cap(symbol, weekly)
                 take_profit = min(raw_take_profit, round_to_step(ath_cap, tick))
 
             elif trend_weakening and is_held:
                 action = "REDUCE"
-                buy_zone_low = round_to_step(current - 1.5 * atr, tick)
-                buy_zone_high = round_to_step(current - 1.0 * atr, tick)
+                atr_displacement = _ensure_meaningful_atr(atr, tick)
+                buy_zone_low = round_to_step(current - 1.5 * atr_displacement, tick)
+                buy_zone_high = round_to_step(current - 1.0 * atr_displacement, tick)
+                # Ensure buy zones are different
+                buy_zone_low, buy_zone_high = _ensure_different_zones(buy_zone_low, buy_zone_high, tick, 0.03)
                 entry_price = round_to_step((buy_zone_low + buy_zone_high) / 2.0, tick)
-                stop_loss = round_to_step(entry_price - 2.0 * atr, tick)
-                take_profit = round_to_step(entry_price + 1.0 * atr, tick)
+
+                # Enhanced stop loss calculation with minimum distance
+                stop_distance = max(2.0 * atr_displacement, tick * 2)
+                stop_loss = round_to_step(entry_price - stop_distance, tick)
+                if stop_loss >= entry_price:
+                    stop_loss = round_to_step(entry_price - tick * 2, tick)
+
+                # Enhanced take profit calculation
+                target_distance = max(1.0 * atr_displacement, tick * 1.5)
+                take_profit = round_to_step(entry_price + target_distance, tick)
                 breakout_level = 0.0
                 entry_type = "pullback"
                 earliest_entry_date = None
@@ -389,11 +427,22 @@ class TrendMomentumATRRegimeAdaptive(Strategy):
 
             elif trend_up and rsi_overbought and is_held:
                 action = "HOLD"
-                buy_zone_low = round_to_step(current - 1.5 * atr, tick)
-                buy_zone_high = round_to_step(current - 1.0 * atr, tick)
+                atr_displacement = _ensure_meaningful_atr(atr, tick)
+                buy_zone_low = round_to_step(current - 1.5 * atr_displacement, tick)
+                buy_zone_high = round_to_step(current - 1.0 * atr_displacement, tick)
+                # Ensure buy zones are different
+                buy_zone_low, buy_zone_high = _ensure_different_zones(buy_zone_low, buy_zone_high, tick, 0.03)
                 entry_price = round_to_step((buy_zone_low + buy_zone_high) / 2.0, tick)
-                stop_loss = round_to_step(entry_price - 2.0 * atr, tick)
-                take_profit = round_to_step(entry_price + 1.5 * atr, tick)
+
+                # Enhanced stop loss calculation with minimum distance
+                stop_distance = max(2.0 * atr_displacement, tick * 2)
+                stop_loss = round_to_step(entry_price - stop_distance, tick)
+                if stop_loss >= entry_price:
+                    stop_loss = round_to_step(entry_price - tick * 2, tick)
+
+                # Enhanced take profit calculation
+                target_distance = max(1.5 * atr_displacement, tick * 2)
+                take_profit = round_to_step(entry_price + target_distance, tick)
                 breakout_level = 0.0
                 entry_type = "pullback"
                 earliest_entry_date = None
@@ -473,10 +522,57 @@ class TrendMomentumATRRegimeAdaptive(Strategy):
         )
 
 
+def _ensure_meaningful_atr(atr: float, tick: float, min_multiplier: float = 0.5) -> float:
+    """Ensure ATR is large enough to create meaningful price differences.
+
+    Args:
+        atr: Calculated ATR value
+        tick: Tick size for the instrument
+        min_multiplier: Minimum multiplier of tick size to use
+
+    Returns:
+        ATR value that's at least min_multiplier * tick
+    """
+    min_atr = tick * min_multiplier
+    return max(atr, min_atr)
+
+
+def _ensure_different_zones(low: float, high: float, tick: float, fallback_pct: float = 0.02) -> tuple[float, float]:
+    """Ensure buy zone low and high are meaningfully different.
+
+    Args:
+        low: Buy zone low price
+        high: Buy zone high price
+        tick: Tick size
+        fallback_pct: Fallback percentage difference if tick adjustment isn't enough
+
+    Returns:
+        Tuple of (adjusted_low, high) ensuring they're different
+    """
+    if low == high:
+        # Try adjusting by one tick first
+        adjusted_low = max(high - tick, high * (1 - fallback_pct))
+        return round_to_step(adjusted_low, tick), high
+    return low, high
+
+
 def round_to_step(price: float, step: float = 10.0) -> float:
-    """Round price to the nearest step size (round-half-up)."""
+    """Round price to the nearest step size (round-half-up).
+
+    Args:
+        price: Price to round
+        step: Tick size step (e.g., 10.0 for VND stocks, 0.01 for USD)
+
+    Returns:
+        Price rounded to nearest step, ensuring minimum precision
+    """
     if step <= 0:
         return price
+
+    # For very small steps relative to price, ensure we don't lose precision
+    if step < price * 0.0001:  # Less than 0.01% of price
+        return round(price, 2)  # Return with 2 decimal precision
+
     return float(math.floor(price / step + 0.5) * step)
 
 
