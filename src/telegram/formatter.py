@@ -21,6 +21,28 @@ def _alloc_vnd(pct: float, total: float) -> int:
     return round(pct * total / 100_000) * 100_000
 
 
+def _smart_format(value: float) -> str:
+    """Smart formatting to show decimals when needed to distinguish values."""
+    if value == 0:
+        return "0"
+
+    # For values > 1000, round to integer unless they need decimals for clarity
+    if value >= 1000:
+        rounded = round(value)
+        # If rounding loses significant information, show 1 decimal place
+        if abs(value - rounded) > value * 0.001:  # More than 0.1% difference
+            return f"{value:,.1f}"
+        return f"{rounded:,.0f}"
+
+    # For values < 1000, show appropriate decimals
+    if value >= 100:
+        return f"{value:,.1f}"
+    elif value >= 10:
+        return f"{value:,.2f}"
+    else:
+        return f"{value:,.3f}"
+
+
 def _load_cached_prices(symbols: list[str]) -> dict[str, float]:
     """Read last known prices from prices_cache.json."""
     p = Path(_CACHE_PATH)
@@ -184,8 +206,8 @@ def format_weekly_digest(
             alloc_str = f" — {vnd:,.0f} ₫" if vnd else ""
             lines.append(f"  📈 `{r.symbol}` {icon} {r.entry_type.capitalize()}{alloc_str}")
             lines.append(f"    🎯 Entry: {r.entry_price:,.0f}")
-            lines.append(f"    📊 Zone: {r.buy_zone_low:,.0f}–{r.buy_zone_high:,.0f}")
-            lines.append(f"    🛡️ SL {r.stop_loss:,.0f} | TP {r.take_profit:,.0f}")
+            lines.append(f"    📊 Zone: {_smart_format(r.buy_zone_low)}–{_smart_format(r.buy_zone_high)}")
+            lines.append(f"    🛡️ SL {_smart_format(r.stop_loss)} | TP {_smart_format(r.take_profit)}")
             lines.append("")
 
     # Simplified - treat all held positions the same
@@ -210,8 +232,8 @@ def format_weekly_digest(
             lines.append(status_line)
 
             # Clean exit alert format
-            tp_str = f"TP {r.take_profit:,.0f}" if r.take_profit else ""
-            sl_str = f"SL {r.stop_loss:,.0f}" if r.stop_loss else ""
+            tp_str = f"TP {_smart_format(r.take_profit)}" if r.take_profit else ""
+            sl_str = f"SL {_smart_format(r.stop_loss)}" if r.stop_loss else ""
             exit_levels = " | ".join(filter(None, [sl_str, tp_str]))
 
             lines.append(f"    🔔 Exit alerts: {exit_levels}")
@@ -388,8 +410,8 @@ def format_plan_summary(plan_data: dict, total_value: float = 0.0) -> str:
                 lines.append(f"    📊 Now {now:,.0f}  {label}")
 
             lines.append(f"    🎯 Entry: {entry:,.0f}")
-            lines.append(f"    📊 Zone: {r.get('buy_zone_low', 0):,.0f}–{r.get('buy_zone_high', 0):,.0f}")
-            lines.append(f"    🛡️ SL {r.get('stop_loss', 0):,.0f} | TP {r.get('take_profit', 0):,.0f}")
+            lines.append(f"    📊 Zone: {_smart_format(r.get('buy_zone_low', 0))}–{_smart_format(r.get('buy_zone_high', 0))}")
+            lines.append(f"    🛡️ SL {_smart_format(r.get('stop_loss', 0))} | TP {_smart_format(r.get('take_profit', 0))}")
             lines.append("")
 
     if others:
@@ -414,8 +436,8 @@ def format_plan_summary(plan_data: dict, total_value: float = 0.0) -> str:
             # Exit levels
             tp = r.get("take_profit", 0)
             sl = r.get("stop_loss", 0)
-            tp_str = f"TP {tp:,.0f}" if tp else ""
-            sl_str = f"SL {sl:,.0f}" if sl else ""
+            tp_str = f"TP {_smart_format(tp)}" if tp else ""
+            sl_str = f"SL {_smart_format(sl)}" if sl else ""
             exit_levels = " | ".join(filter(None, [sl_str, tp_str]))
 
             lines.append(f"    🔔 Exit alerts: {exit_levels}")
