@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-06T08:15:59.984008",
+  "generated_at": "2026-03-06T09:29:22.702425",
   "strategy_id": "trend_momentum_atr_regime_adaptive",
   "strategy_version": "1.0.0",
   "allocation_targets": {
@@ -61,21 +61,21 @@
   ],
   "ai_analysis": {
     "generated": true,
-    "market_context": "The portfolio has a total value of 9,999,905 VND, with a cash balance of 9,998,416 VND, indicating a relatively conservative position size.",
+    "market_context": "The portfolio is heavily invested in cash, with a small position in STB and a recommendation to reduce the position in MWG.",
     "analysis_date": "2026-03-06",
     "data_sources": "Weekly technical analysis using Groq AI",
     "scores": {
       "STB": {
         "symbol": "STB",
         "score": 8,
-        "rationale": "STB has a strong technical setup with price above both MA10w and MA30w, and a suitable risk/reward ratio.",
-        "risk_note": "The stop loss is relatively close to the entry price, with a stop distance of 16.7%."
+        "rationale": "STB has a strong technical setup with price above MA10w and MA30w, and RSI(14) above 55.",
+        "risk_note": "The stop loss is relatively close to the entry price, which may increase the risk of being stopped out."
       },
       "MWG": {
         "symbol": "MWG",
         "score": 4,
-        "rationale": "MWG has a weakening trend with price below MA10w, but still above MA30w.",
-        "risk_note": "The risk of a larger loss is evident due to the relatively close stop loss and the weakening trend."
+        "rationale": "MWG has a weak technical setup with price below MA10w, but still above MA30w.",
+        "risk_note": "The trend is weakening, which may indicate a higher risk of further price decline."
       }
     }
   },
