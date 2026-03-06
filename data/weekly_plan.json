@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-06T13:57:02.506618",
+  "generated_at": "2026-03-06T14:05:54.425751",
   "strategy_id": "trend_momentum_atr_regime_adaptive",
   "strategy_version": "1.0.0",
   "allocation_targets": {
@@ -61,21 +61,21 @@
   ],
   "ai_analysis": {
     "generated": true,
-    "market_context": "The portfolio is heavily invested in cash, with only one position, indicating a conservative market approach.",
+    "market_context": "The portfolio is heavily cashed up, with only 1 position and a relatively small unrealized loss, indicating a conservative market context.",
     "analysis_date": "2026-03-06",
     "data_sources": "Weekly technical analysis using Groq AI",
     "scores": {
       "STB": {
         "symbol": "STB",
         "score": 8,
-        "rationale": "STB has a strong trend with price above MA10w and MA30w, and a suitable risk/reward ratio.",
-        "risk_note": "The stock has a high trading volume, which may lead to increased volatility."
+        "rationale": "STB has a strong technical setup with price above MA10w and MA30w, and RSI(14) above 55, indicating a potential trend up.",
+        "risk_note": "The position size is 6.0% of the portfolio, which may be relatively large given the current portfolio size."
       },
       "MWG": {
         "symbol": "MWG",
-        "score": 5,
-        "rationale": "MWG has a weak trend with price below MA10w, but still above MA30w.",
-        "risk_note": "The stock has a potential risk of a stop-loss being triggered due to the tight stop-loss level of 20 points."
+        "score": 4,
+        "rationale": "MWG has a weakening trend with price below MA10w, but still above MA30w, indicating a potential reversal.",
+        "risk_note": "The risk of a larger loss is evident due to the relatively tight stop-loss of 10 points."
       }
     }
   },
