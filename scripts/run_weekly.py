@@ -20,6 +20,19 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+# Load environment variables from .env file (for local execution)
+try:
+    from dotenv import load_dotenv
+    env_path = Path(__file__).resolve().parent.parent / ".env"
+    if env_path.exists():
+        load_dotenv(env_path)
+        print(f"✅ Loaded environment from {env_path}")
+    else:
+        print("ℹ️  No .env file found - using system environment variables")
+except ImportError:
+    # python-dotenv not installed - OK on GitHub Actions where env vars are set directly
+    print("ℹ️  python-dotenv not available - using system environment variables")
+
 from src.guardrails.engine import run_guardrails, save_guardrails_report
 from src.portfolio.state_manager import PortfolioStateManager
 from src.portfolio.engine import (
@@ -153,7 +166,13 @@ def main() -> None:
             json.dump(plan_dict, f, indent=2)
 
         # Score buy potential with per-symbol news
-        news_scores = score_buy_potential(temp_plan_path, symbol_news)
+        # Fix Bug #2: Flatten symbol_news dict to list for API compatibility
+        all_news_items = []
+        for articles in symbol_news.values():
+            all_news_items.extend(articles)
+        logger.info(f"Flattened {len(all_news_items)} news articles for scoring")
+
+        news_scores = score_buy_potential(temp_plan_path, all_news_items)
 
         if news_scores.get("status") == "SUCCESS":
             logger.info("News analysis complete: %d symbols scored", news_scores.get("analyzed_symbols", 0))

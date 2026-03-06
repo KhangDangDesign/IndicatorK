@@ -316,7 +316,9 @@ def analyze_weekly_plan(
     """
     api_key = get_api_key()
     if not api_key:
-        logger.info("GROQ_API_KEY not configured — skipping AI analysis")
+        logger.warning("🚨 GROQ_API_KEY not configured — AI analysis disabled")
+        logger.warning("💡 Set GROQ_API_KEY environment variable or add to .env file")
+        logger.warning("📖 Get API key from https://console.groq.com")
         return AIAnalysis()
 
     recommendations = plan_dict.get("recommendations", [])

@@ -273,7 +273,8 @@ def score_buy_potential(weekly_plan_path: str, news_items: List[Dict]) -> Dict[s
         Combined analysis results for all symbols
     """
     if not _is_available():
-        logger.warning("Groq API not configured - returning empty scores")
+        logger.warning("🚨 GROQ_API_KEY not configured — News analysis disabled")
+        logger.warning("💡 Set GROQ_API_KEY environment variable or add to .env file")
         return {"symbol_scores": [], "status": "API_NOT_CONFIGURED"}
 
     # Load weekly plan to get symbols
