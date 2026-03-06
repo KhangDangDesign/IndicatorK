@@ -153,8 +153,9 @@ def _handle_plan() -> str:
     try:
         with open(plan_path) as f:
             plan_data = json.load(f)
-        total_value = get_portfolio_state().total_value
-        return format_plan_summary(plan_data, total_value=total_value)
+        portfolio_state = get_portfolio_state()
+        total_value = portfolio_state.total_value
+        return format_plan_summary(plan_data, total_value=total_value, portfolio_state=portfolio_state)
     except Exception as e:
         return f"Error loading plan: {e}"
 

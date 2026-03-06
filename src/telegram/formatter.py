@@ -380,8 +380,8 @@ def format_status(state: PortfolioState) -> str:
     return "\n".join(lines)
 
 
-def format_plan_summary(plan_data: dict, total_value: float = 0.0) -> str:
-    """Format weekly plan for /plan command with cached current prices."""
+def format_plan_summary(plan_data: dict, total_value: float = 0.0, portfolio_state=None) -> str:
+    """Format weekly plan for /plan command with cached current prices and accurate P&L."""
     date_str = plan_data.get("generated_at", "?")[:10]
     balance_str = f"  💰 {total_value:,.0f} ₫" if total_value else ""
     lines = [
@@ -431,13 +431,19 @@ def format_plan_summary(plan_data: dict, total_value: float = 0.0) -> str:
         for r in others:
             sym = r["symbol"]
 
-            # Show current price if available
-            # NOTE: This uses plan entry_price, not actual portfolio entry_price
-            # which can cause P&L calculation errors. Need portfolio_state access to fix.
+            # Show current price with accurate P&L using actual portfolio entry prices
             now = cached.get(sym)
-            if now and r.get("entry_price", 0) > 0:
-                pnl_pct = ((now - r["entry_price"]) / r["entry_price"]) * 100
+
+            # Use actual portfolio entry price, not plan entry price (FIXED BUG #3)
+            portfolio_pos = portfolio_state.positions.get(sym) if portfolio_state else None
+            if now and portfolio_pos and portfolio_pos.avg_cost > 0:
+                actual_entry = portfolio_pos.avg_cost
+                pnl_pct = ((now - actual_entry) / actual_entry) * 100
                 status_line = f"  📊 `{sym}` @ {now:,.0f} ({pnl_pct:+.1f}%)"
+            elif now and r.get("entry_price", 0) > 0:
+                # Fallback to plan entry_price if portfolio_state unavailable
+                pnl_pct = ((now - r["entry_price"]) / r["entry_price"]) * 100
+                status_line = f"  📊 `{sym}` @ {now:,.0f} ({pnl_pct:+.1f}%) [plan-entry]"
             else:
                 now_str = f" — now {now:,.0f}" if now else ""
                 status_line = f"  📊 `{sym}` Monitoring{now_str}"

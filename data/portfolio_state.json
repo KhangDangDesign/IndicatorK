@@ -5,18 +5,18 @@
       "symbol": "MWG",
       "asset_class": "stock",
       "qty": 18,
-      "avg_cost": 88,
-      "current_price": 88,
-      "unrealized_pnl": 0,
+      "avg_cost": 88000,
+      "current_price": 82700,
+      "unrealized_pnl": -95400,
       "realized_pnl": 0
     }
   },
   "total_realized_pnl": 0,
-  "last_updated": "2026-03-03T07:09:39.276Z",
+  "last_updated": "2026-03-06T10:20:22.000Z",
   "sequence_number": 4,
   "lock": null,
   "metadata": {
-    "last_operation": "buy_{\"symbol\":\"MWG\",\"qty\":18,\"price\":88,\"fee\":0,\"note\":\"\",\"asset_class\":\"stock\",\"side\":\"BUY\"}",
+    "last_operation": "buy_{\"symbol\":\"MWG\",\"qty\":18,\"price\":88000,\"fee\":0,\"note\":\"Fixed units mismatch\",\"asset_class\":\"stock\",\"side\":\"BUY\"}",
     "last_source": "worker",
     "github_actions_run_id": "22541830342",
     "total_fees": 0,
