@@ -22,25 +22,26 @@ def _alloc_vnd(pct: float, total: float) -> int:
 
 
 def _smart_format(value: float) -> str:
-    """Smart formatting to show decimals when needed to distinguish values."""
+    """Smart formatting to show decimals only when the value is not a whole number."""
     if value == 0:
         return "0"
 
-    # For values > 1000, round to integer unless they need decimals for clarity
-    if value >= 1000:
-        rounded = round(value)
-        # If rounding loses significant information, show 1 decimal place
-        if abs(value - rounded) > value * 0.001:  # More than 0.1% difference
-            return f"{value:,.1f}"
-        return f"{rounded:,.0f}"
+    # Whole numbers never need decimal places regardless of magnitude
+    if value == int(value):
+        if value >= 1000:
+            return f"{int(value):,}"
+        return str(int(value))
 
-    # For values < 1000, show appropriate decimals
+    # Fractional values: show precision appropriate to magnitude
+    if value >= 1000:
+        if abs(value - round(value)) > value * 0.001:
+            return f"{value:,.1f}"
+        return f"{round(value):,.0f}"
     if value >= 100:
         return f"{value:,.1f}"
-    elif value >= 10:
+    if value >= 10:
         return f"{value:,.2f}"
-    else:
-        return f"{value:,.3f}"
+    return f"{value:,.3f}"
 
 
 def _load_cached_prices(symbols: list[str]) -> dict[str, float]:
@@ -349,11 +350,13 @@ def format_weekly_digest(
             # Use actual portfolio entry price, not plan entry price
             portfolio_pos = portfolio_state.positions.get(r.symbol)
             if current and portfolio_pos and portfolio_pos.avg_cost > 0:
-                # Handle potential units mismatch - portfolio might use different scale
                 entry_price = portfolio_pos.avg_cost
-                # If entry price seems to be in different units (e.g., 88 vs 88000), adjust
+                # Normalise units: avg_cost may be stored in full VND while cache
+                # prices are in thousands (or vice-versa)
                 if entry_price < 1000 and current > 1000:
-                    entry_price *= 1000  # Convert portfolio price to same units as current price
+                    entry_price *= 1000
+                elif entry_price > 1000 and current < 1000:
+                    entry_price /= 1000
 
                 pnl_pct = ((current - entry_price) / entry_price) * 100
                 status_line = f"  📊 `{r.symbol}` @ {current:,.0f} ({pnl_pct:+.1f}%)"

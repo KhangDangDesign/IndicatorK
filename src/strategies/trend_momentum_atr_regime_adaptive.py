@@ -362,24 +362,26 @@ class TrendMomentumATRRegimeAdaptive(Strategy):
                         f"ATR: {atr:.0f}",
                     ]
 
-                # Regime-adaptive SL/TP with minimum distance guarantees
-                # Ensure stop loss is meaningful - use larger of ATR-based or minimum tick-based distance
+                # SL: floor down so rounding never pushes SL up into the buy zone
                 atr_stop_distance = atr_stop_mult * atr
-                min_stop_distance = tick * 1.5  # Minimum 1.5 ticks away
+                min_stop_distance = tick * 2  # Minimum 2 ticks away
                 stop_distance = max(atr_stop_distance, min_stop_distance)
-                stop_loss = round_to_step(entry_price - stop_distance, tick)
+                stop_loss = floor_to_step(entry_price - stop_distance, tick)
 
-                # Ensure stop loss is actually different from entry price
+                # Safety guard: SL must be strictly below buy_zone_low
+                if stop_loss >= buy_zone_low:
+                    stop_loss = floor_to_step(buy_zone_low - tick, tick)
+                # Final guard: SL must differ from entry
                 if stop_loss >= entry_price:
-                    stop_loss = round_to_step(entry_price - tick * 2, tick)
+                    stop_loss = floor_to_step(entry_price - tick * 2, tick)
 
-                # Take profit with similar safeguards
+                # TP: ceil up so rounding never reduces the reward
                 atr_target_distance = atr_target_mult * atr
                 min_target_distance = tick * 2  # Minimum 2 ticks profit
                 target_distance = max(atr_target_distance, min_target_distance)
-                raw_take_profit = round_to_step(entry_price + target_distance, tick)
+                raw_take_profit = ceil_to_step(entry_price + target_distance, tick)
                 ath_cap = self._get_ath_cap(symbol, weekly)
-                take_profit = min(raw_take_profit, round_to_step(ath_cap, tick))
+                take_profit = min(raw_take_profit, ceil_to_step(ath_cap, tick))
 
             elif trend_weakening and is_held:
                 action = "REDUCE"
@@ -390,15 +392,17 @@ class TrendMomentumATRRegimeAdaptive(Strategy):
                 buy_zone_low, buy_zone_high = _ensure_different_zones(buy_zone_low, buy_zone_high, tick, 0.03)
                 entry_price = round_to_step((buy_zone_low + buy_zone_high) / 2.0, tick)
 
-                # Enhanced stop loss calculation with minimum distance
+                # SL: floor down so rounding never pushes SL into the zone
                 stop_distance = max(2.0 * atr_displacement, tick * 2)
-                stop_loss = round_to_step(entry_price - stop_distance, tick)
+                stop_loss = floor_to_step(entry_price - stop_distance, tick)
+                if stop_loss >= buy_zone_low:
+                    stop_loss = floor_to_step(buy_zone_low - tick, tick)
                 if stop_loss >= entry_price:
-                    stop_loss = round_to_step(entry_price - tick * 2, tick)
+                    stop_loss = floor_to_step(entry_price - tick * 2, tick)
 
-                # Enhanced take profit calculation
+                # TP: ceil up so rounding never reduces the reward
                 target_distance = max(1.0 * atr_displacement, tick * 1.5)
-                take_profit = round_to_step(entry_price + target_distance, tick)
+                take_profit = ceil_to_step(entry_price + target_distance, tick)
                 breakout_level = 0.0
                 entry_type = "pullback"
                 earliest_entry_date = None
@@ -560,23 +564,34 @@ def _ensure_different_zones(low: float, high: float, tick: float, fallback_pct: 
 
 
 def round_to_step(price: float, step: float = 10.0) -> float:
-    """Round price to the nearest step size (round-half-up).
+    """Round price to the nearest step size (round-half-up)."""
+    if step <= 0:
+        return price
+    if step < price * 0.0001:
+        return round(price, 2)
+    return float(math.floor(price / step + 0.5) * step)
 
-    Args:
-        price: Price to round
-        step: Tick size step (e.g., 10.0 for VND stocks, 0.01 for USD)
 
-    Returns:
-        Price rounded to nearest step, ensuring minimum precision
+def floor_to_step(price: float, step: float = 10.0) -> float:
+    """Floor price DOWN to the nearest step — always used for stop losses.
+
+    Ensures the SL is at or below the intended level, never rounding up.
+    Example: floor_to_step(55, 10) = 50  (round_to_step would give 60)
     """
     if step <= 0:
         return price
+    return float(math.floor(price / step) * step)
 
-    # For very small steps relative to price, ensure we don't lose precision
-    if step < price * 0.0001:  # Less than 0.01% of price
-        return round(price, 2)  # Return with 2 decimal precision
 
-    return float(math.floor(price / step + 0.5) * step)
+def ceil_to_step(price: float, step: float = 10.0) -> float:
+    """Ceil price UP to the nearest step — always used for take profits.
+
+    Ensures the TP is at or above the intended level, never rounding down.
+    Example: ceil_to_step(75, 10) = 80
+    """
+    if step <= 0:
+        return price
+    return float(math.ceil(price / step) * step)
 
 
 def _next_monday(d: date) -> date:
