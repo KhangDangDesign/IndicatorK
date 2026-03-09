@@ -2,13 +2,28 @@
   "symbol_scores": [
     {
       "symbol": "MWG",
-      "buy_potential_score": 0,
+      "buy_potential_score": 60,
       "risk_score": 0,
-      "confidence": 0.0,
+      "confidence": 0.4,
       "horizon": "1-4w",
-      "key_bull_points": [],
+      "key_bull_points": [
+        "Masan High-Tech Materials' revenue is expected to increase due to high demand for tungsten"
+      ],
       "key_risks": [],
-      "evidence": []
+      "evidence": [
+        {
+          "id": "news1",
+          "supports": "bull"
+        },
+        {
+          "id": "news2",
+          "supports": "bull"
+        },
+        {
+          "id": "news3",
+          "supports": "bull"
+        }
+      ]
     }
   ],
   "status": "SUCCESS",

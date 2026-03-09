@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-09T04:20:26.414237",
+  "generated_at": "2026-03-09T04:36:26.828357",
   "strategy_id": "trend_momentum_atr_regime_adaptive",
   "strategy_version": "1.0.0",
   "allocation_targets": {
@@ -36,15 +36,15 @@
   ],
   "ai_analysis": {
     "generated": true,
-    "market_context": "The portfolio has a total value of 9,999,802 VND, with a cash reserve of 99.98416% and a single open position.",
+    "market_context": "The portfolio is heavily invested in cash, with a total value of 9,999,802 VND and only one position, indicating a conservative approach.",
     "analysis_date": "2026-03-09",
     "data_sources": "Weekly technical analysis using Groq AI",
     "scores": {
       "MWG": {
         "symbol": "MWG",
         "score": 6,
-        "rationale": "MWG is in a downtrend with price below its 30-week moving average.",
-        "risk_note": "The stop loss is set at 70, which is relatively close to the current price."
+        "rationale": "The price is below the 30-week moving average, indicating a downtrend.",
+        "risk_note": "The stop loss is relatively close to the current price, increasing the risk of a stop loss hit."
       }
     }
   },
@@ -52,13 +52,28 @@
     "symbol_scores": [
       {
         "symbol": "MWG",
-        "buy_potential_score": 0,
+        "buy_potential_score": 60,
         "risk_score": 0,
-        "confidence": 0.0,
+        "confidence": 0.4,
         "horizon": "1-4w",
-        "key_bull_points": [],
+        "key_bull_points": [
+          "Masan High-Tech Materials' revenue is expected to increase due to high demand for tungsten"
+        ],
         "key_risks": [],
-        "evidence": []
+        "evidence": [
+          {
+            "id": "news1",
+            "supports": "bull"
+          },
+          {
+            "id": "news2",
+            "supports": "bull"
+          },
+          {
+            "id": "news3",
+            "supports": "bull"
+          }
+        ]
       }
     ],
     "status": "SUCCESS",
