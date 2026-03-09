@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-08T04:45:39.350676",
+  "generated_at": "2026-03-09T04:20:26.414237",
   "strategy_id": "trend_momentum_atr_regime_adaptive",
   "strategy_version": "1.0.0",
   "allocation_targets": {
@@ -8,48 +8,23 @@
   },
   "recommendations": [
     {
-      "symbol": "STB",
-      "asset_class": "stock",
-      "action": "BUY",
-      "buy_zone_low": 60.0,
-      "buy_zone_high": 60.0,
-      "stop_loss": 50.0,
-      "take_profit": 80.0,
-      "position_target_pct": 0.06,
-      "rationale_bullets": [
-        "Regime: SIDEWAYS | RSI\u226555",
-        "Trend UP: price 64 > MA10w 60 > MA30w 56",
-        "RSI(14): 64.5",
-        "ATR: 5",
-        "Vol: 69,801,800 (1.2x avg)",
-        "Entry: pullback mid-zone",
-        "Position: 6.0% (base 6.0% \u00d7 1.0x = 6.0%, stop dist 16.7%)"
-      ],
-      "entry_type": "pullback",
-      "breakout_level": 0.0,
-      "entry_price": 60.0,
-      "signal_week_end": "2026-03-06",
-      "earliest_entry_date": null
-    },
-    {
       "symbol": "MWG",
       "asset_class": "stock",
-      "action": "REDUCE",
-      "buy_zone_low": 70.0,
-      "buy_zone_high": 80.0,
-      "stop_loss": 60.0,
-      "take_profit": 100.0,
+      "action": "SELL",
+      "buy_zone_low": 0,
+      "buy_zone_high": 0,
+      "stop_loss": 70.0,
+      "take_profit": 0,
       "position_target_pct": 0.0,
       "rationale_bullets": [
         "Regime: SIDEWAYS",
-        "Trend WEAKENING: price 83 < MA10w 88",
-        "Still above MA30w 82",
-        "Consider reducing position"
+        "Trend DOWN: price 77 < MA30w 82",
+        "Exit position"
       ],
       "entry_type": "pullback",
       "breakout_level": 0.0,
-      "entry_price": 80.0,
-      "signal_week_end": "2026-03-06",
+      "entry_price": 0.0,
+      "signal_week_end": "2026-03-09",
       "earliest_entry_date": null
     }
   ],
@@ -61,36 +36,20 @@
   ],
   "ai_analysis": {
     "generated": true,
-    "market_context": "The portfolio is heavily cashed up with a total value of 9,999,905 VND and only one position, indicating a cautious market approach.",
-    "analysis_date": "2026-03-08",
+    "market_context": "The portfolio has a total value of 9,999,802 VND, with a cash reserve of 99.98416% and a single open position.",
+    "analysis_date": "2026-03-09",
     "data_sources": "Weekly technical analysis using Groq AI",
     "scores": {
-      "STB": {
-        "symbol": "STB",
-        "score": 8,
-        "rationale": "STB has a strong upward trend with price above MA10w and MA30w, and a suitable risk-reward ratio.",
-        "risk_note": "The stop-loss is relatively close to the entry price, increasing the risk of a stop-loss hit."
-      },
       "MWG": {
         "symbol": "MWG",
-        "score": 4,
-        "rationale": "MWG has a weakening trend with price below MA10w, but still above MA30w.",
-        "risk_note": "The position is being reduced, indicating a decrease in confidence in the stock's upward momentum."
+        "score": 6,
+        "rationale": "MWG is in a downtrend with price below its 30-week moving average.",
+        "risk_note": "The stop loss is set at 70, which is relatively close to the current price."
       }
     }
   },
   "news_analysis": {
     "symbol_scores": [
-      {
-        "symbol": "STB",
-        "buy_potential_score": 0,
-        "risk_score": 0,
-        "confidence": 0.0,
-        "horizon": "1-4w",
-        "key_bull_points": [],
-        "key_risks": [],
-        "evidence": []
-      },
       {
         "symbol": "MWG",
         "buy_potential_score": 0,
@@ -103,7 +62,7 @@
       }
     ],
     "status": "SUCCESS",
-    "analyzed_symbols": 2,
+    "analyzed_symbols": 1,
     "total_news": 31
   },
   "market_regime": "sideways"
