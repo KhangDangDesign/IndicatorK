@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-09T07:41:53.190054",
+  "generated_at": "2026-03-09T07:51:30.010872",
   "strategy_id": "trend_momentum_atr_regime_adaptive",
   "strategy_version": "1.0.0",
   "allocation_targets": {
@@ -11,23 +11,23 @@
       "symbol": "STB",
       "asset_class": "stock",
       "action": "BUY",
-      "buy_zone_low": 60.00,
-      "buy_zone_high": 80.00,
-      "stop_loss": 50.00,
-      "take_profit": 90.00,
-      "position_target_pct": 0.035,
+      "buy_zone_low": 55.20,
+      "buy_zone_high": 58.00,
+      "stop_loss": 48.20,
+      "take_profit": 70.60,
+      "position_target_pct": 0.0674,
       "rationale_bullets": [
         "Regime: SIDEWAYS | RSI\u226555",
         "Trend UP: price 61 > MA10w 61 > MA30w 56",
-        "RSI(14): 64.4",
+        "RSI(14): 64.1",
         "ATR: 6",
-        "Vol: 33,599,100 (0.6x avg)",
+        "Vol: 34,718,500 (0.6x avg)",
         "Entry: pullback mid-zone",
-        "Position: 3.5% (base 3.5% \u00d7 1.0x = 3.5%, stop dist 28.6%)"
+        "Position: 6.7% (base 6.7% \u00d7 1.0x = 6.7%, stop dist 14.8%)"
       ],
       "entry_type": "pullback",
       "breakout_level": 0.00,
-      "entry_price": 70.00,
+      "entry_price": 56.60,
       "signal_week_end": "2026-03-09",
       "earliest_entry_date": null
     },
@@ -37,7 +37,7 @@
       "action": "SELL",
       "buy_zone_low": 0.00,
       "buy_zone_high": 0.00,
-      "stop_loss": 70.00,
+      "stop_loss": 70.80,
       "take_profit": 0.00,
       "position_target_pct": 0.00,
       "rationale_bullets": [
@@ -67,14 +67,14 @@
       "STB": {
         "symbol": "STB",
         "score": 8,
-        "rationale": "STB has a strong uptrend with price above MA10w and MA30w, and RSI(14) is above 55.",
-        "risk_note": "The stop-loss is relatively close to the entry point, which may increase the risk of being stopped out."
+        "rationale": "STB is in an uptrend with RSI above 55 and price above both MA10w and MA30w.",
+        "risk_note": "The stop loss is relatively close to the entry point, with a stop distance of 14.8%."
       },
       "MWG": {
         "symbol": "MWG",
         "score": 2,
-        "rationale": "MWG is in a downtrend with price below MA30w, but the entry type is a pullback which may not be suitable for a downtrend.",
-        "risk_note": "The stop-loss is relatively far from the entry point, which may limit the potential loss."
+        "rationale": "MWG is in a downtrend with price below MA30w, but the entry type is a pullback and the stop loss is above the current price.",
+        "risk_note": "The stop loss is relatively high compared to the entry point, with a potential loss of 71%."
       }
     }
   },
