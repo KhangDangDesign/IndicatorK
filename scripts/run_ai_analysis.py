@@ -50,35 +50,23 @@ def main() -> None:
         logger.error("Failed to load weekly_plan.json: %s", e)
         return
 
-    # Check if there is any AI data worth sending
     ai_dict = plan_data.get("ai_analysis")
     news_dict = plan_data.get("news_analysis")
 
-    if not ai_dict and not news_dict:
-        logger.info("No AI or news analysis data in weekly_plan.json — skipping")
+    # Pre-check: skip early if there is nothing meaningful to send
+    has_tech = bool(ai_dict and ai_dict.get("generated", False) and ai_dict.get("scores"))
+    has_news = bool(news_dict and news_dict.get("symbol_scores"))
+    if not has_tech and not has_news:
+        logger.info("No meaningful AI or news data in weekly_plan.json — skipping")
         return
 
     # Reconstruct WeeklyPlan model
     from src.models import WeeklyPlan
     plan = WeeklyPlan.from_dict(plan_data)
 
-    # Reconstruct AIAnalysis object from cached dict
-    ai_analysis = None
-    if ai_dict and ai_dict.get("generated", False):
-        from src.ai.groq_analyzer import AIAnalysis, AIScore
-        scores = {}
-        for sym, score_data in ai_dict.get("scores", {}).items():
-            scores[sym] = AIScore(
-                symbol=score_data["symbol"],
-                score=score_data["score"],
-                rationale=score_data["rationale"],
-                risk_note=score_data.get("risk_note", ""),
-            )
-        ai_analysis = AIAnalysis(
-            scores=scores,
-            market_context=ai_dict.get("market_context", ""),
-            generated=True,
-        )
+    # Reconstruct AIAnalysis using the canonical from_dict() classmethod
+    from src.ai.groq_analyzer import AIAnalysis
+    ai_analysis = AIAnalysis.from_dict(ai_dict) if ai_dict else None
 
     # Format and send
     from src.telegram.formatter import format_ai_analysis_message

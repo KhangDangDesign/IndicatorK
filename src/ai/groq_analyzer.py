@@ -66,6 +66,33 @@ class AIAnalysis:
     market_context: str = ""  # overall VN market summary
     generated: bool = False  # True if AI actually ran
 
+    @classmethod
+    def from_dict(cls, d: dict) -> "AIAnalysis":
+        """Reconstruct AIAnalysis from a cached JSON dict (e.g. weekly_plan.json).
+
+        Returns an empty AIAnalysis(generated=False) if the dict is missing,
+        empty, or has generated=False. Skips malformed per-symbol entries with
+        a warning rather than raising.
+        """
+        if not d or not d.get("generated", False):
+            return cls()
+        scores: dict[str, AIScore] = {}
+        for sym, score_data in d.get("scores", {}).items():
+            try:
+                scores[sym] = AIScore(
+                    symbol=score_data["symbol"],
+                    score=int(score_data["score"]),
+                    rationale=str(score_data["rationale"]),
+                    risk_note=str(score_data.get("risk_note", "")),
+                )
+            except (KeyError, TypeError, ValueError) as e:
+                logger.warning("Skipping malformed AI score for %s: %s", sym, e)
+        return cls(
+            scores=scores,
+            market_context=str(d.get("market_context", "")),
+            generated=bool(scores),
+        )
+
 
 def get_api_key() -> Optional[str]:
     """Read Groq API key from environment."""
@@ -352,6 +379,8 @@ def analyze_weekly_plan(
 def format_ai_section(analysis: AIAnalysis, recommendations: list[dict]) -> str:
     """Format AI analysis as a Telegram message section.
 
+    Deprecated: use format_ai_analysis_message() in src/telegram/formatter.py instead.
+    Kept for backward compatibility; will be removed in a future cleanup.
     Returns empty string if AI analysis was not generated.
     """
     if not analysis.generated:

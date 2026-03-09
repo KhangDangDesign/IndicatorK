@@ -34,7 +34,6 @@ except ImportError:
     print("ℹ️  python-dotenv not available - using system environment variables")
 
 from src.guardrails.engine import run_guardrails, save_guardrails_report
-from src.portfolio.state_manager import PortfolioStateManager
 from src.portfolio.engine import (
     append_portfolio_snapshot,
     get_portfolio_state,
