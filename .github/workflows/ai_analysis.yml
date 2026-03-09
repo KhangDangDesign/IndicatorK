@@ -1,0 +1,36 @@
+name: AI Analysis
+
+on:
+  workflow_run:
+    workflows: ["Weekly Plan"]
+    types: [completed]
+  workflow_dispatch: {}
+
+concurrency:
+  group: ai-analysis
+  cancel-in-progress: true
+
+jobs:
+  ai-analysis:
+    runs-on: ubuntu-latest
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - run: pip install -r requirements.txt
+
+      - name: Send AI analysis
+        run: python scripts/run_ai_analysis.py
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+          AI_ANALYSIS_ENABLED: ${{ vars.AI_ANALYSIS_ENABLED || 'true' }}

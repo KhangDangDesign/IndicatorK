@@ -177,11 +177,141 @@ def _format_unified_analysis(ai_analysis, plan, recommendations) -> str:
     return "\n".join(lines)
 
 
+def format_ai_analysis_message(plan: WeeklyPlan, ai_analysis: AIAnalysis | None = None) -> str:
+    """Format standalone AI analysis Telegram message with technical + news sections.
+
+    Returns empty string if no analysis data is available.
+    """
+    import re
+
+    has_tech = ai_analysis and ai_analysis.generated and ai_analysis.scores
+    has_news = hasattr(plan, 'news_analysis') and plan.news_analysis and plan.news_analysis.get('symbol_scores')
+
+    if not has_tech and not has_news:
+        return ""
+
+    date_str = plan.generated_at[:10] if plan.generated_at else ""
+    lines = [
+        f"*🤖 AI Market Analysis*",
+        f"📅 {date_str}",
+        "",
+    ]
+
+    # Collect all symbols from recommendations
+    rec_symbols = [r.symbol for r in plan.recommendations] if plan.recommendations else []
+
+    # Build tech scores dict
+    tech_scores = {}
+    market_context = ""
+    if has_tech:
+        tech_scores = ai_analysis.scores if hasattr(ai_analysis, 'scores') else {}
+        market_context = ai_analysis.market_context if hasattr(ai_analysis, 'market_context') else ""
+
+    # Build news scores dict
+    news_scores = {}
+    if has_news:
+        for score_data in plan.news_analysis.get('symbol_scores', []):
+            symbol = score_data.get('symbol')
+            if symbol:
+                news_scores[symbol] = score_data
+
+    # Market context
+    if market_context:
+        lines.append(f"_{market_context}_")
+        lines.append("")
+
+    # --- Technical Analysis Section ---
+    if tech_scores:
+        lines.append("*📊 Technical Analysis*")
+        lines.append("")
+        for sym in rec_symbols[:8]:
+            score = tech_scores.get(sym)
+            if not score:
+                continue
+            s = getattr(score, 'score', 5)
+            indicator = "🟢" if s >= 8 else "🔵" if s >= 6 else "🟡" if s >= 4 else "🔴"
+            lines.append(f"  `{sym}` {indicator} {s}/10")
+            rationale = getattr(score, 'rationale', '')
+            if rationale:
+                lines.append(f"    {rationale}")
+            risk_note = getattr(score, 'risk_note', '')
+            if risk_note:
+                lines.append(f"    ⚠ {risk_note}")
+            lines.append("")
+
+    # --- News Analysis Section ---
+    if news_scores:
+        lines.append("*📰 News Analysis*")
+        lines.append("")
+        for sym in rec_symbols[:8]:
+            news_data = news_scores.get(sym)
+            if not news_data:
+                continue
+            buy_potential = news_data.get('buy_potential_score', 50)
+            # Convert 0-100 to 1-10
+            news_score_val = max(1, min(10, round(buy_potential / 10)))
+            indicator = "🟢" if news_score_val >= 8 else "🔵" if news_score_val >= 6 else "🟡" if news_score_val >= 4 else "🔴"
+            lines.append(f"  `{sym}` {indicator} {news_score_val}/10")
+
+            bull_points = news_data.get('key_bull_points', [])
+            for point in bull_points[:2]:
+                clean = re.sub(r'\s*\(ID:\s*[^)]+\)', '', point.strip())
+                if clean and len(clean) > 10:
+                    lines.append(f"    📈 {clean}")
+
+            risk_points = news_data.get('key_risks', [])
+            for point in risk_points[:1]:
+                clean = re.sub(r'\s*\(ID:\s*[^)]+\)', '', point.strip())
+                if clean and len(clean) > 10:
+                    lines.append(f"    ⚠ {clean}")
+            lines.append("")
+
+    # --- Summary Score ---
+    lines.append("*🎯 Summary Scores*")
+    lines.append("")
+    for sym in rec_symbols[:8]:
+        tech_s = getattr(tech_scores.get(sym), 'score', None) if tech_scores else None
+        news_data = news_scores.get(sym)
+        news_s = None
+        if news_data:
+            buy_potential = news_data.get('buy_potential_score', 50)
+            confidence = news_data.get('confidence', 0.5)
+            news_s = max(1, min(10, round(buy_potential / 10)))
+
+        # Calculate combined score
+        if tech_s is not None and news_s is not None:
+            # Weight: 60% technical, 40% news (adjusted by confidence)
+            combined = tech_s * 0.6 + news_s * 0.4 * confidence + tech_s * 0.4 * (1 - confidence)
+            final = max(1, min(10, round(combined)))
+        elif tech_s is not None:
+            final = tech_s
+        elif news_s is not None:
+            final = news_s
+        else:
+            continue
+
+        indicator = "🟢" if final >= 8 else "🔵" if final >= 6 else "🟡" if final >= 4 else "🔴"
+        parts = []
+        if tech_s is not None:
+            parts.append(f"Tech {tech_s}")
+        if news_s is not None:
+            parts.append(f"News {news_s}")
+        detail = " | ".join(parts)
+        lines.append(f"  `{sym}` {indicator} *{final}/10* ({detail})")
+
+    # Remove trailing blank line
+    if lines and lines[-1] == "":
+        lines.pop()
+
+    return "\n".join(lines)
+
+
 def format_weekly_digest(
     plan: WeeklyPlan,
     portfolio_state: PortfolioState,
     guardrails: GuardrailsReport | None,
     ai_analysis: AIAnalysis | None = None,
+    include_analysis: bool = True,
 ) -> str:
     """Format the weekly digest Telegram message."""
     total = portfolio_state.total_value
@@ -284,8 +414,8 @@ def format_weekly_digest(
             for rec in meaningful_recs:
                 lines.append(f"  {rec}")
 
-    # Unified Market Analysis (Technical + News)
-    if ai_analysis or (hasattr(plan, 'news_analysis') and plan.news_analysis):
+    # AI analysis is sent separately — only include if explicitly requested
+    if include_analysis and (ai_analysis or (hasattr(plan, 'news_analysis') and plan.news_analysis)):
         unified_section = _format_unified_analysis(ai_analysis, plan, plan.recommendations)
         if unified_section:
             lines.append(unified_section)

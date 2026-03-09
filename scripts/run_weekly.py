@@ -216,41 +216,9 @@ def main() -> None:
     provider.save_cache()
     logger.info("Price cache persisted")
 
-    # Send weekly digest via Telegram
+    # Send weekly digest via Telegram (no AI section — sent separately by ai_analysis workflow)
     bot = TelegramBot()
-    # Convert cached AI analysis back to AIAnalysis object for digest formatting
-    digest_ai_analysis = ai_analysis  # Use original AIAnalysis or SimpleNamespace object if available
-    if (ai_analysis is None or (hasattr(ai_analysis, 'generated') and not ai_analysis.generated and not hasattr(ai_analysis, 'notice'))) and plan.ai_analysis:
-        # If we only have cached data, reconstruct AIAnalysis object
-        from src.ai.groq_analyzer import AIAnalysis, AIScore
-        from types import SimpleNamespace
-        cached_ai = plan.ai_analysis
-
-        if cached_ai.get("generated", False):
-            # Normal AI analysis with scores
-            scores = {}
-            for sym, score_data in cached_ai.get("scores", {}).items():
-                scores[sym] = AIScore(
-                    symbol=score_data["symbol"],
-                    score=score_data["score"],
-                    rationale=score_data["rationale"],
-                    risk_note=score_data["risk_note"]
-                )
-            digest_ai_analysis = AIAnalysis(
-                scores=scores,
-                market_context=cached_ai.get("market_context", ""),
-                generated=cached_ai.get("generated", False)
-            )
-        else:
-            # Rate limit or API not configured - create SimpleNamespace with needed attributes
-            digest_ai_analysis = SimpleNamespace(
-                generated=cached_ai.get("generated", False),
-                market_context=cached_ai.get("market_context", ""),
-                notice=cached_ai.get("notice", ""),
-                status=cached_ai.get("status", "UNKNOWN")
-            )
-
-    digest = format_weekly_digest(plan, portfolio_state, guardrails_report, digest_ai_analysis)
+    digest = format_weekly_digest(plan, portfolio_state, guardrails_report, include_analysis=False)
     bot.send_admin(digest)
     logger.info("Weekly digest sent")
 
