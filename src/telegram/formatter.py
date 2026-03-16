@@ -319,31 +319,29 @@ def format_weekly_digest(
 
     buys = [r for r in plan.recommendations if r.action == "BUY"][:10]
     if buys:
-        lines.append(f"*🟢 BUY Signals ({len(buys)})*")
+        lines.append(f"🟢 BUY Signals ({len(buys)})")
         lines.append("")
         for r in buys:
             icon = _ENTRY_ICON.get(r.entry_type, "·")
             vnd = _alloc_vnd(r.position_target_pct, total) if r.position_target_pct and total else 0
             alloc_str = f" — {vnd:,.0f} ₫" if vnd else ""
-            lines.append(f"  📈 `{r.symbol}` {icon} {r.entry_type.capitalize()}{alloc_str}")
+            lines.append(f"📈 {r.symbol} {icon} {r.entry_type.capitalize()}{alloc_str}")
 
-
-            lines.append(f"    🎯 Entry: {r.entry_price:,.0f}")
-            lines.append(f"    📊 Zone: {_smart_format(r.buy_zone_low)}–{_smart_format(r.buy_zone_high)}")
-            lines.append(f"    🛡️ SL {_smart_format(r.stop_loss)} | TP {_smart_format(r.take_profit)}")
+            lines.append(f"   🎯 Entry: {r.entry_price:,.0f}")
+            lines.append(f"   📊 Zone: {_smart_format(r.buy_zone_low)}–{_smart_format(r.buy_zone_high)}")
+            lines.append(f"   🛡️ SL {_smart_format(r.stop_loss)} • TP {_smart_format(r.take_profit)}")
             lines.append("")
 
     # Simplified - treat all held positions the same
     holds = [r for r in plan.recommendations if r.action in ("HOLD", "REDUCE", "SELL")]
     if holds:
-        lines.append("*📋 Open Positions — Alert Monitoring*")
+        lines.append("📋 Open Positions")
         lines.append("")
 
         # Load current prices for better context
         cached = _load_cached_prices([r.symbol for r in holds])
 
         for r in holds:
-
             # Show current price + P&L if available
             current = cached.get(r.symbol)
 
@@ -351,6 +349,7 @@ def format_weekly_digest(
             portfolio_pos = portfolio_state.positions.get(r.symbol)
             if current and portfolio_pos and portfolio_pos.avg_cost > 0:
                 entry_price = portfolio_pos.avg_cost
+                qty = portfolio_pos.qty
                 # Normalise units: avg_cost may be stored in full VND while cache
                 # prices are in thousands (or vice-versa)
                 if entry_price < 1000 and current > 1000:
@@ -359,19 +358,16 @@ def format_weekly_digest(
                     entry_price /= 1000
 
                 pnl_pct = ((current - entry_price) / entry_price) * 100
-                status_line = f"  📊 `{r.symbol}` @ {current:,.0f} ({pnl_pct:+.1f}%)"
+                status_line = f"📊 {r.symbol} ({qty}) @ {current:,.0f} ({pnl_pct:+.1f}%)"
             else:
-                status_line = f"  📊 `{r.symbol}` Monitoring"
+                status_line = f"📊 {r.symbol} Monitoring"
 
             lines.append(status_line)
 
-            # Clean exit alert format
-
-            tp_str = f"TP {_smart_format(r.take_profit)}" if r.take_profit else ""
-            sl_str = f"SL {_smart_format(r.stop_loss)}" if r.stop_loss else ""
-            exit_levels = " | ".join(filter(None, [sl_str, tp_str]))
-
-            lines.append(f"    🔔 Exit alerts: {exit_levels}")
+            # Simple exit levels without "Exit alerts:" prefix
+            sl_str = f"🔔 SL {_smart_format(r.stop_loss)}" if r.stop_loss else ""
+            if sl_str:
+                lines.append(f"    {sl_str}")
             lines.append("")  # Spacing between positions
 
         # Remove extra line at end
@@ -379,33 +375,16 @@ def format_weekly_digest(
             lines.pop()
 
     alloc = portfolio_state.allocation
-    targets = plan.allocation_targets
-    lines.append("*💼 Portfolio*")
+    lines.append("")
+    lines.append("💼 Portfolio")
     lines.append(
-        f"  Stock {alloc.get('stock_pct', 0):.0%}  "
-        f"Bond {alloc.get('bond_fund_pct', 0):.0%}  "
+        f"Stock {alloc.get('stock_pct', 0):.0%} • "
+        f"Bond {alloc.get('bond_fund_pct', 0):.0%} • "
         f"Cash {alloc.get('cash_pct', 0):.0%}"
     )
-    lines.append(
-        f"  Target → Stock {targets.get('stock', 0):.0%}  "
-        f"Bond {targets.get('bond_fund', 0):.0%}"
-    )
 
-    # Only show guardrails when there are meaningful warnings
-    if guardrails and guardrails.recommendations and len(guardrails.recommendations) > 0:
-        # Filter out trivial strategy switch recommendations (e.g., -0.00% differences)
-        meaningful_recs = []
-        for rec in guardrails.recommendations:
-            if "SWITCH_STRATEGY" in rec and "-0.0" in rec:
-                # Skip trivial strategy switch recommendations near zero
-                continue
-            meaningful_recs.append(rec)
-
-        if meaningful_recs:
-            lines.append("")
-            lines.append("*⚠️ Alerts*")
-            for rec in meaningful_recs:
-                lines.append(f"  {rec}")
+    # Hide alerts section - not needed in weekly digest
+    # Guardrails are for internal monitoring only
 
     # AI analysis is sent separately — only include if explicitly requested
     if include_analysis and (ai_analysis or (hasattr(plan, 'news_analysis') and plan.news_analysis)):
@@ -477,32 +456,28 @@ def format_alert(alert: Alert, portfolio_state: PortfolioState | None = None) ->
 
 def format_status(state: PortfolioState) -> str:
     """Format portfolio status for /status command."""
-    lines = ["*💼 Portfolio Status*", ""]
+    lines = ["💼 Portfolio Status", ""]
 
-    if not state.positions:
-        lines.append("No open positions.")
-    else:
-        lines.append("*Positions*")
+    lines.append(f"💰 Cash: {state.cash:,.0f} ₫")
+    lines.append(f"📊 Total Value: {state.total_value:,.0f} ₫")
+    if state.positions:
+        total_position_value = sum(pos.qty * pos.current_price for pos in state.positions.values() if pos.current_price)
+        lines.append(f"📈 Position Value: {total_position_value:,.0f} ₫")
+        lines.append("")
+        lines.append(f"📈 Positions ({len(state.positions)}):")
         for sym, pos in sorted(state.positions.items()):
             pnl = pos.unrealized_pnl or 0
-            lines.append(
-                f"  `{sym}`: {pos.qty:,.0f} @ {pos.avg_cost:,.0f}"
-                f" → {pos.current_price:,.0f}  PnL {pnl:+,.0f}"
-            )
+            lines.append(f"• {sym}: {pos.qty} @ {pos.avg_cost:,.0f}")
+            lines.append(f"  Value: {pos.qty * pos.current_price:,.0f} ₫ ({pnl:+,.0f})")
+        lines.append("")
+    else:
+        lines.append("📈 Position Value: 0 ₫")
+        lines.append("")
 
-    lines.append("")
-    lines.append(f"Total {state.total_value:,.0f} ₫  Cash {state.cash:,.0f}")
-    lines.append(
-        f"PnL  Unrealized {state.unrealized_pnl:+,.0f}  "
-        f"Realized {state.realized_pnl:+,.0f}"
-    )
-    lines.append("")
+    lines.append(f"📊 Total Realized P&L: {state.realized_pnl:+,.0f} ₫")
+
     alloc = state.allocation
-    lines.append(
-        f"Stock {alloc.get('stock_pct', 0):.0%}  "
-        f"Bond {alloc.get('bond_fund_pct', 0):.0%}  "
-        f"Cash {alloc.get('cash_pct', 0):.0%}"
-    )
+    lines.append(f"📋 State: seq={getattr(state, 'sequence_number', 'N/A')} | {getattr(state, 'last_updated', 'N/A')[:16]}")
     return "\n".join(lines)
 
 
