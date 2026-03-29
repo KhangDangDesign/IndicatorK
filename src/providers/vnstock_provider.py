@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import os
 import time as _time
 from datetime import date, timedelta
 
@@ -11,8 +12,12 @@ from src.providers.base import PriceProvider
 
 logger = logging.getLogger(__name__)
 
-_CHUNK_SIZE = 8  # Larger batches with API key (60 requests/minute)
-_CHUNK_DELAY_S = 2.0  # Faster processing with API key
+# Rate limiting configuration (adjusted based on API key registration)
+_CHUNK_SIZE_GUEST = 3  # Guest mode: 20 requests/minute
+_CHUNK_DELAY_GUEST = 10.0  # Conservative delay for guest limits
+
+_CHUNK_SIZE_REGISTERED = 8  # With API key: 60 requests/minute
+_CHUNK_DELAY_REGISTERED = 2.0  # Faster processing with API key
 
 
 class VnstockProvider(PriceProvider):
@@ -23,7 +28,19 @@ class VnstockProvider(PriceProvider):
         self.timeout = timeout
         self._vnstock = None
         self._api_style: str = "legacy"
+        self._api_key_registered: bool = False
         self._init_library()
+        self._register_api_key()
+
+        # Set rate limiting based on API key registration status
+        if self._api_key_registered:
+            self._chunk_size = _CHUNK_SIZE_REGISTERED
+            self._chunk_delay = _CHUNK_DELAY_REGISTERED
+            logger.info("vnstock: using registered rate limits (60 req/min)")
+        else:
+            self._chunk_size = _CHUNK_SIZE_GUEST
+            self._chunk_delay = _CHUNK_DELAY_GUEST
+            logger.info("vnstock: using guest rate limits (20 req/min)")
 
     def _init_library(self):
         # Try new class-based API first (vnstock3 / vnstock >= 3.x)
@@ -49,6 +66,30 @@ class VnstockProvider(PriceProvider):
             "  pip install vnstock\n"
             "See https://pypi.org/project/vnstock/ for details."
         )
+
+    def _register_api_key(self):
+        """Register API key to unlock higher rate limits (60 requests/minute)."""
+        api_key = os.getenv("VNSTOCK_API_KEY")
+        if not api_key:
+            logger.warning(
+                "VNSTOCK_API_KEY not found in environment. "
+                "Running in guest mode (20 requests/minute). "
+                "Get a free API key at https://vnstocks.com/login"
+            )
+            return
+
+        try:
+            from vnstock import register_user
+            register_user(api_key=api_key)
+            self._api_key_registered = True
+            logger.info("vnstock: API key registered successfully")
+        except ImportError:
+            logger.warning(
+                "vnstock: register_user not available in legacy version (0.2.9). "
+                "To use API key, upgrade to vnstock3: pip install -U vnstock"
+            )
+        except Exception as e:
+            logger.warning("vnstock: failed to register API key: %s", e)
 
     def get_daily_history(
         self, symbol: str, start: date, end: date
@@ -109,8 +150,8 @@ class VnstockProvider(PriceProvider):
         end = date.today()
         start = end - timedelta(days=7)
 
-        for i in range(0, len(symbols), _CHUNK_SIZE):
-            chunk = symbols[i : i + _CHUNK_SIZE]
+        for i in range(0, len(symbols), self._chunk_size):
+            chunk = symbols[i : i + self._chunk_size]
             for sym in chunk:
                 try:
                     history = self.get_daily_history(sym, start, end)
@@ -119,8 +160,8 @@ class VnstockProvider(PriceProvider):
                 except Exception as e:
                     logger.warning("vnstock: failed to get price for %s: %s", sym, e)
 
-            if i + _CHUNK_SIZE < len(symbols):
-                _time.sleep(_CHUNK_DELAY_S)
+            if i + self._chunk_size < len(symbols):
+                _time.sleep(self._chunk_delay)
 
         return result
 
