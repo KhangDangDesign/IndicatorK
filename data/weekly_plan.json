@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-29T14:20:25.777496",
+  "generated_at": "2026-04-05T06:49:10.215486",
   "strategy_id": "trend_momentum_atr_regime_adaptive",
   "strategy_version": "1.0.0",
   "allocation_targets": {
@@ -17,35 +17,35 @@
       "take_profit": 0.00,
       "position_target_pct": 0.00,
       "rationale_bullets": [
-        "Regime: SIDEWAYS",
-        "Trend DOWN: price 81 < MA30w 83",
+        "Regime: BEAR",
+        "Trend DOWN: price 79 < MA30w 83",
         "Exit position",
         "Original SL: 70 (preserved from signal)"
       ],
       "entry_type": "pullback",
       "breakout_level": 0.00,
       "entry_price": 0.00,
-      "signal_week_end": "2026-03-27",
+      "signal_week_end": "2026-04-03",
       "earliest_entry_date": null
     }
   ],
   "notes": [
-    "Regime-Adaptive Strategy | Current regime: SIDEWAYS",
-    "MA10w/MA30w trend + RSI(14)\u226555 momentum",
-    "ATR(14)-based stops: 1.5x stop, 2.5x target",
-    "Position sizing: 1.00x base allocation (config-driven)"
+    "Regime-Adaptive Strategy | Current regime: BEAR",
+    "MA10w/MA30w trend + RSI(14)\u226565 momentum",
+    "ATR(14)-based stops: 1.2x stop, 2.0x target",
+    "Position sizing: 0.70x base allocation (config-driven)"
   ],
   "ai_analysis": {
     "generated": true,
-    "market_context": "The portfolio is heavily invested in cash, with a total value of 9,999,874 VND and only one position, indicating a cautious market approach.",
-    "analysis_date": "2026-03-29",
+    "market_context": "The portfolio is heavily invested in cash, with only one position, indicating a cautious market approach.",
+    "analysis_date": "2026-04-05",
     "data_sources": "Weekly technical analysis using Groq AI",
     "scores": {
       "MWG": {
         "symbol": "MWG",
         "score": 6,
-        "rationale": "The stock is in a sideways regime with a downward trend, as the current price is below the 30-week moving average.",
-        "risk_note": "The stop loss is relatively close to the entry price, indicating a relatively high risk."
+        "rationale": "MWG is in a downtrend with price below its 30-week moving average.",
+        "risk_note": "The stop loss is relatively low at 70, which may be triggered easily."
       }
     }
   },
@@ -54,14 +54,14 @@
       {
         "symbol": "MWG",
         "buy_potential_score": 40,
-        "risk_score": 60,
+        "risk_score": 10,
         "confidence": 0.40,
         "horizon": "1-4w",
         "key_bull_points": [
-          "Potential benefits from Vietnam's shift in trade due to the US-China conflict"
+          "Potential benefit from 7-Eleven's cautious expansion plans"
         ],
         "key_risks": [
-          "Potential negative impact on MWG's profits due to Vietnam's carbon tax, estimated at around $500 million"
+          "No significant risks identified"
         ],
         "evidence": [
           {
@@ -70,18 +70,18 @@
           },
           {
             "id": "news2",
-            "supports": "risk"
+            "supports": "neutral"
           },
           {
             "id": "news3",
-            "supports": "bull"
+            "supports": "neutral"
           }
         ]
       }
     ],
     "status": "SUCCESS",
     "analyzed_symbols": 1,
-    "total_news": 30
+    "total_news": 32
   },
-  "market_regime": "sideways"
+  "market_regime": "bear"
 }

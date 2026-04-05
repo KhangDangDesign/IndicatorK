@@ -3,14 +3,14 @@
     {
       "symbol": "MWG",
       "buy_potential_score": 40,
-      "risk_score": 60,
+      "risk_score": 10,
       "confidence": 0.4,
       "horizon": "1-4w",
       "key_bull_points": [
-        "Potential benefits from Vietnam's shift in trade due to the US-China conflict"
+        "Potential benefit from 7-Eleven's cautious expansion plans"
       ],
       "key_risks": [
-        "Potential negative impact on MWG's profits due to Vietnam's carbon tax, estimated at around $500 million"
+        "No significant risks identified"
       ],
       "evidence": [
         {
@@ -19,16 +19,16 @@
         },
         {
           "id": "news2",
-          "supports": "risk"
+          "supports": "neutral"
         },
         {
           "id": "news3",
-          "supports": "bull"
+          "supports": "neutral"
         }
       ]
     }
   ],
   "status": "SUCCESS",
   "analyzed_symbols": 1,
-  "total_news": 30
+  "total_news": 32
 }
