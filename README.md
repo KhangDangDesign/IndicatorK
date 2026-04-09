@@ -9,7 +9,7 @@ Zero-cost, zero-LLM personal finance MVP for the Vietnamese market. Generates we
 ## 🚀 Quick Start
 
 ### 1. Entry Point
-Start here: **[00_START_HERE_FIRST.txt](00_START_HERE_FIRST.txt)** (5 minutes)
+Start here: **[QUICK_START.md](QUICK_START.md)** (2 minutes)
 
 ### 2. Deploy to GitHub
 Choose one:
@@ -172,7 +172,7 @@ make run_weekly_once
 
 ## 📋 Quick Links
 
-- **Start here**: [00_START_HERE_FIRST.txt](00_START_HERE_FIRST.txt)
+- **Start here**: [QUICK_START.md](QUICK_START.md)
 - **Deploy guide**: [docs/01_DEPLOYMENT_GUIDE.md](docs/01_DEPLOYMENT_GUIDE.md)
 - **Commands**: [docs/07_COMMANDS_REFERENCE.txt](docs/07_COMMANDS_REFERENCE.txt)
 - **Troubleshooting**: [docs/02_TECHNICAL_SETUP.md](docs/02_TECHNICAL_SETUP.md)
@@ -202,8 +202,8 @@ This is a **personal tracking and alerting tool**, not investment advice. All st
 
 1. **Deploy now**: `./GITHUB_DEPLOY.sh`
 2. **Read guide**: [docs/01_DEPLOYMENT_GUIDE.md](docs/01_DEPLOYMENT_GUIDE.md)
-3. **Learn first**: [00_START_HERE_FIRST.txt](00_START_HERE_FIRST.txt)
+3. **Learn first**: [QUICK_START.md](QUICK_START.md)
 
 ---
 
-**Ready?** → Start with [00_START_HERE_FIRST.txt](00_START_HERE_FIRST.txt) 🚀
+**Ready?** → Start with [QUICK_START.md](QUICK_START.md) 🚀

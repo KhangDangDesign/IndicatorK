@@ -118,3 +118,71 @@ These create risk/reward ratio of 1.67:1 (excellent)
 - ✅ No same-day entry+exit
 - ✅ Transaction costs via position sizing (risk-based)
 - ✅ Tie-breaker for same-day SL+TP (worst-case = SL first)
+
+## VN Daily Trade Signals Analysis (2026-04-07)
+
+### Daily Strategy Performance Assessment
+- **Analysis Period**: Feb 6 - Apr 7, 2026 (2 months)
+- **Data Source**: iResearch Trade Signals
+- **Strategy Type**: Short-term momentum/breakout (2-7 day holds)
+- **Performance Grade**: C (Average) - Needs Significant Improvement
+
+### Key Performance Metrics
+- **Total Signals**: 23 signals over 2 months
+- **Completed Trades**: 17 (73.9%)
+- **Open Positions**: 6 (26.1%) 
+- **Win Rate**: 41.2% (7 wins / 10 losses) - BELOW ACCEPTABLE
+- **Hold Times**: 2-7 days (3.8 day average)
+- **Entry Zones**: 2.01% average width (acceptable precision)
+- **Exit Discipline**: Excellent (100% rule-based TP/SL)
+
+### Strategy Methodology (Identified)
+- **Entry Method**: Morning gap/breakout signals (7:00-8:30 AM)
+- **Entry Zones**: Tight 1-4% breakout ranges (good precision)
+- **Exit Rules**: Mechanical TP/SL (excellent discipline)
+- **Universe**: Large-cap VN stocks (VCB, HPG, CTD, etc.)
+- **Trade Management**: Let winners run (4.3d), cut losses quickly (3.3d) ✓
+
+### Critical Performance Issues
+1. **Win Rate Too Low**: 41.2% vs 50%+ required for profitability
+2. **No Trend Filter**: Trading against/with market regime randomly
+3. **No Volume Validation**: Missing surge/breakout confirmation
+4. **Missing Risk Controls**: No drawdown or correlation limits
+
+### Enhancement Roadmap (Target: 55-60% Win Rate)
+
+**Phase 1: Quick Wins (Week 1-2) - Expected +8-12% Win Rate**
+1. Market regime filter (VN-Index > 20 EMA only)
+2. Volume surge requirement (2x average volume)
+3. Tighten entry zones to 1.5-2% width max
+
+**Phase 2: Risk Management (Week 3-4) - Better Risk-Adjusted Returns**
+1. 1% risk per trade position sizing
+2. ATR-based dynamic stops (1.5x ATR)
+3. Drawdown reduction rules (50% size after 2 losses)
+
+**Phase 3: Advanced Filters (Month 2) - Expected +5-8% Win Rate**
+1. RSI momentum filter (40-70 range)
+2. Sector relative strength validation
+3. Multiple timeframe alignment
+
+### Daily vs Weekly Strategy Comparison
+| Metric | Daily Strategy | IndicatorK Weekly | Winner |
+|--------|---------------|-------------------|---------|
+| Win Rate | 41.2% | 66.7% | Weekly ✓ |
+| Sharpe | ~1.0 (est) | 3.23 | Weekly ✓ |
+| Max DD | Unknown | 8.72% | Weekly ✓ |
+| Frequency | 138 signals/year | 35 signals/year | Daily ✓ |
+| Hold Time | 3.8 days | 25 days | Daily ✓ |
+
+### Hybrid Strategy Recommendation
+**Best of Both Worlds**: Use weekly trend direction + daily entry execution
+1. Weekly regime filter from IndicatorK (trend_momentum_atr_regime_adaptive)
+2. Daily breakout signals within weekly trend
+3. Weekly position sizing with daily stops
+4. **Expected Outcome**: 55%+ win rate with daily frequency
+
+### Implementation Files Created
+- `/Users/khangdang/Vibe code Project/IndicatorK/analyze_trade_signals.py`
+- `/Users/khangdang/Vibe code Project/IndicatorK/detailed_performance_analysis.py`
+- `/Users/khangdang/Vibe code Project/IndicatorK/VN_Trade_Signals_Analysis.csv`
