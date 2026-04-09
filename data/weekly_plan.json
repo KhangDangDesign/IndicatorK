@@ -1,12 +1,37 @@
 {
-  "generated_at": "2026-04-05T06:49:10.215486",
-  "strategy_id": "trend_momentum_atr_regime_adaptive",
+  "generated_at": "2026-04-09T09:33:16.541049",
+  "strategy_id": "dual_stream_combined",
   "strategy_version": "1.0.0",
   "allocation_targets": {
     "stock": 0.60,
     "bond_fund": 0.40
   },
   "recommendations": [
+    {
+      "symbol": "VIC",
+      "asset_class": "stock",
+      "action": "BUY",
+      "buy_zone_low": 127.50,
+      "buy_zone_high": 138.30,
+      "stop_loss": 106.80,
+      "take_profit": 176.40,
+      "position_target_pct": 0.0611,
+      "rationale_bullets": [
+        "\ud83d\udcc8 WEEKLY: Regime: BEAR | RSI\u226565",
+        "\ud83d\udcc8 WEEKLY: Trend UP: price 149 > MA10w 146 > MA30w 130",
+        "\ud83d\udcc8 WEEKLY: RSI(14): 48.3",
+        "\ud83d\udcc8 WEEKLY: ATR: 22",
+        "\ud83d\udcc8 WEEKLY: Vol: 11,759,400 (0.5x avg)",
+        "\ud83d\udcc8 WEEKLY: Entry: pullback mid-zone",
+        "\ud83d\udcc8 WEEKLY: Position: 3.6% (base 5.1% \u00d7 0.7x = 3.6%, stop dist 19.6%)",
+        "\ud83d\udcc8 WEEKLY ONLY: 6.1% position"
+      ],
+      "entry_type": "pullback",
+      "breakout_level": 0.00,
+      "entry_price": 132.90,
+      "signal_week_end": "2026-04-09",
+      "earliest_entry_date": null
+    },
     {
       "symbol": "MWG",
       "asset_class": "stock",
@@ -18,70 +43,154 @@
       "position_target_pct": 0.00,
       "rationale_bullets": [
         "Regime: BEAR",
-        "Trend DOWN: price 79 < MA30w 83",
+        "Trend DOWN: price 81 < MA30w 83",
         "Exit position",
-        "Original SL: 70 (preserved from signal)"
+        "Original SL: 70 (preserved from signal)",
+        "\ud83d\udd12 Preserved original SL: 70",
+        "\ud83d\udcca Primary signal: WEEKLY"
       ],
       "entry_type": "pullback",
       "breakout_level": 0.00,
       "entry_price": 0.00,
-      "signal_week_end": "2026-04-03",
+      "signal_week_end": null,
+      "earliest_entry_date": null
+    },
+    {
+      "symbol": "STB",
+      "asset_class": "stock",
+      "action": "BUY",
+      "buy_zone_low": 60.00,
+      "buy_zone_high": 63.10,
+      "stop_loss": 53.90,
+      "take_profit": 74.20,
+      "position_target_pct": 0.0971,
+      "rationale_bullets": [
+        "\ud83d\udcc8 WEEKLY: Regime: BEAR | RSI\u226565",
+        "\ud83d\udcc8 WEEKLY: Trend UP: price 66 > MA10w 63 > MA30w 57",
+        "\ud83d\udcc8 WEEKLY: RSI(14): 61.2",
+        "\ud83d\udcc8 WEEKLY: ATR: 6",
+        "\ud83d\udcc8 WEEKLY: Vol: 28,481,700 (0.5x avg)",
+        "\ud83d\udcc8 WEEKLY: Entry: pullback mid-zone",
+        "\ud83d\udcc8 WEEKLY: Position: 5.7% (base 8.1% \u00d7 0.7x = 5.7%, stop dist 12.4%)",
+        "\ud83d\udcc8 WEEKLY ONLY: 9.7% position"
+      ],
+      "entry_type": "pullback",
+      "breakout_level": 0.00,
+      "entry_price": 61.50,
+      "signal_week_end": "2026-04-09",
       "earliest_entry_date": null
     }
   ],
   "notes": [
-    "Regime-Adaptive Strategy | Current regime: BEAR",
-    "MA10w/MA30w trend + RSI(14)\u226565 momentum",
-    "ATR(14)-based stops: 1.2x stop, 2.0x target",
-    "Position sizing: 0.70x base allocation (config-driven)"
+    "\ud83d\udd04 DUAL-STREAM COMBINED STRATEGY",
+    "\ud83d\udcc8 Weekly Strategy: trend_momentum_atr_regime_adaptive v1.0.0",
+    "\u26a1 Intraweek Strategy: institutional_intraweek_enhanced v1.0.0-institutional",
+    "\u2696\ufe0f Signal Weights: 60% Weekly + 40% Intraweek",
+    "\ud83c\udfaf Max Combined Position: 25%",
+    "",
+    "\ud83d\udcc8 WEEKLY PLAN NOTES:",
+    "  \u2022 Regime-Adaptive Strategy | Current regime: BEAR",
+    "  \u2022 MA10w/MA30w trend + RSI(14)\u226565 momentum",
+    "  \u2022 ATR(14)-based stops: 1.2x stop, 2.0x target",
+    "  \u2022 Position sizing: 0.70x base allocation (config-driven)",
+    "",
+    "\u26a1 INTRAWEEK PLAN NOTES:",
+    "  \u2022 \ud83c\udfdb\ufe0f INSTITUTIONAL Enhanced System | Active: MEAN_REVERSION",
+    "  \u2022 \ud83d\udcca Market Regime: SIDEWAYS_QUIET",
+    "  \u2022 \u26a1 Strategy Focus: Conservative mean reversion | RSI signals | Balanced sizing",
+    "  \u2022 \ud83c\udfaf Risk Management: Enhanced Kelly Criterion with conviction multipliers",
+    "  \u2022 \ud83d\udd2c Market Efficiency: High (0.85)",
+    "  \u2022 \ud83c\udfc6 Targets: CAGR 15-20%, Sharpe >2.5, MaxDD <5%, WinRate >70%",
+    "  \u2022 \ud83d\udcc8 Enhancements: Sector rotation, Statistical arbitrage, Order flow analysis",
+    "",
+    "\u2705 SYSTEM INHERITANCE:",
+    "  \u2022 Risk-based position sizing (stop-loss distance formula)",
+    "  \u2022 AI news integration (automatic post-strategy)",
+    "  \u2022 Position preservation logic (original stop-loss maintenance)",
+    "  \u2022 Unified asset tracking (single portfolio state)",
+    "  \u2022 All existing risk controls and guardrails"
   ],
   "ai_analysis": {
     "generated": true,
-    "market_context": "The portfolio is heavily invested in cash, with only one position, indicating a cautious market approach.",
-    "analysis_date": "2026-04-05",
+    "market_context": "The portfolio is heavily invested in cash, with a small position in the market, indicating a cautious market approach.",
+    "analysis_date": "2026-04-09",
     "data_sources": "Weekly technical analysis using Groq AI",
     "scores": {
+      "VIC": {
+        "symbol": "VIC",
+        "score": 8,
+        "rationale": "VIC has a bear regime with an up trend and RSI above 65, indicating a potential pullback buy opportunity.",
+        "risk_note": "The risk of a larger pullback or trend reversal is evident given the bear regime."
+      },
       "MWG": {
         "symbol": "MWG",
-        "score": 6,
-        "rationale": "MWG is in a downtrend with price below its 30-week moving average.",
-        "risk_note": "The stop loss is relatively low at 70, which may be triggered easily."
+        "score": 4,
+        "rationale": "MWG has a bear regime with a down trend, indicating a potential sell opportunity.",
+        "risk_note": "The position has already been exited, so no risk is currently evident."
+      },
+      "STB": {
+        "symbol": "STB",
+        "score": 9,
+        "rationale": "STB has a bear regime with an up trend and RSI above 65, indicating a potential pullback buy opportunity.",
+        "risk_note": "The risk of a larger pullback or trend reversal is evident given the bear regime."
       }
     }
   },
   "news_analysis": {
     "symbol_scores": [
       {
+        "symbol": "VIC",
+        "buy_potential_score": 50,
+        "risk_score": 50,
+        "confidence": 0.00,
+        "horizon": "1-4w",
+        "key_bull_points": [],
+        "key_risks": [],
+        "evidence": []
+      },
+      {
         "symbol": "MWG",
-        "buy_potential_score": 40,
-        "risk_score": 10,
-        "confidence": 0.40,
+        "buy_potential_score": 70,
+        "risk_score": 30,
+        "confidence": 0.60,
         "horizon": "1-4w",
         "key_bull_points": [
-          "Potential benefit from 7-Eleven's cautious expansion plans"
+          "Vietnam's market growth potential",
+          "Potential benefits for companies in the industry"
         ],
         "key_risks": [
-          "No significant risks identified"
+          "Production sector volatility",
+          "Potential impact of cost fluctuations on MWG's profitability"
         ],
         "evidence": [
           {
             "id": "news1",
-            "supports": "bull"
+            "supports": "bull_point"
           },
           {
             "id": "news2",
-            "supports": "neutral"
+            "supports": "risk"
           },
           {
             "id": "news3",
-            "supports": "neutral"
+            "supports": "bull_point"
           }
         ]
+      },
+      {
+        "symbol": "STB",
+        "buy_potential_score": 0,
+        "risk_score": 0,
+        "confidence": 0.00,
+        "horizon": "1-4w",
+        "key_bull_points": [],
+        "key_risks": [],
+        "evidence": []
       }
     ],
     "status": "SUCCESS",
-    "analyzed_symbols": 1,
-    "total_news": 32
+    "analyzed_symbols": 3,
+    "total_news": 30
   },
-  "market_regime": "bear"
+  "market_regime": "bear+sideways_quiet"
 }
