@@ -1,33 +1,21 @@
 {
   "symbol_scores": [
     {
-      "symbol": "VIC",
-      "buy_potential_score": 50,
-      "risk_score": 50,
-      "confidence": 0.0,
-      "horizon": "1-4w",
-      "key_bull_points": [],
-      "key_risks": [],
-      "evidence": []
-    },
-    {
       "symbol": "MWG",
-      "buy_potential_score": 70,
-      "risk_score": 30,
-      "confidence": 0.6,
+      "buy_potential_score": 50,
+      "risk_score": 60,
+      "confidence": 0.4,
       "horizon": "1-4w",
       "key_bull_points": [
-        "Vietnam's market growth potential",
-        "Potential benefits for companies in the industry"
+        "Increasing demand and potential for profit growth"
       ],
       "key_risks": [
-        "Production sector volatility",
-        "Potential impact of cost fluctuations on MWG's profitability"
+        "High construction costs may negatively impact profitability"
       ],
       "evidence": [
         {
           "id": "news1",
-          "supports": "bull_point"
+          "supports": "bull"
         },
         {
           "id": "news2",
@@ -35,9 +23,19 @@
         },
         {
           "id": "news3",
-          "supports": "bull_point"
+          "supports": "bull"
         }
       ]
+    },
+    {
+      "symbol": "VIC",
+      "buy_potential_score": 0,
+      "risk_score": 0,
+      "confidence": 0.0,
+      "horizon": "1-4w",
+      "key_bull_points": [],
+      "key_risks": [],
+      "evidence": []
     },
     {
       "symbol": "STB",

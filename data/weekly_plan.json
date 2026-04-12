@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-09T09:33:16.541049",
+  "generated_at": "2026-04-12T05:27:06.587714",
   "strategy_id": "dual_stream_combined",
   "strategy_version": "1.0.0",
   "allocation_targets": {
@@ -7,31 +7,6 @@
     "bond_fund": 0.40
   },
   "recommendations": [
-    {
-      "symbol": "VIC",
-      "asset_class": "stock",
-      "action": "BUY",
-      "buy_zone_low": 127.50,
-      "buy_zone_high": 138.30,
-      "stop_loss": 106.80,
-      "take_profit": 176.40,
-      "position_target_pct": 0.0611,
-      "rationale_bullets": [
-        "\ud83d\udcc8 WEEKLY: Regime: BEAR | RSI\u226565",
-        "\ud83d\udcc8 WEEKLY: Trend UP: price 149 > MA10w 146 > MA30w 130",
-        "\ud83d\udcc8 WEEKLY: RSI(14): 48.3",
-        "\ud83d\udcc8 WEEKLY: ATR: 22",
-        "\ud83d\udcc8 WEEKLY: Vol: 11,759,400 (0.5x avg)",
-        "\ud83d\udcc8 WEEKLY: Entry: pullback mid-zone",
-        "\ud83d\udcc8 WEEKLY: Position: 3.6% (base 5.1% \u00d7 0.7x = 3.6%, stop dist 19.6%)",
-        "\ud83d\udcc8 WEEKLY ONLY: 6.1% position"
-      ],
-      "entry_type": "pullback",
-      "breakout_level": 0.00,
-      "entry_price": 132.90,
-      "signal_week_end": "2026-04-09",
-      "earliest_entry_date": null
-    },
     {
       "symbol": "MWG",
       "asset_class": "stock",
@@ -43,7 +18,7 @@
       "position_target_pct": 0.00,
       "rationale_bullets": [
         "Regime: BEAR",
-        "Trend DOWN: price 81 < MA30w 83",
+        "Trend DOWN: price 82 < MA30w 83",
         "Exit position",
         "Original SL: 70 (preserved from signal)",
         "\ud83d\udd12 Preserved original SL: 70",
@@ -56,28 +31,53 @@
       "earliest_entry_date": null
     },
     {
-      "symbol": "STB",
+      "symbol": "VIC",
       "asset_class": "stock",
       "action": "BUY",
-      "buy_zone_low": 60.00,
-      "buy_zone_high": 63.10,
-      "stop_loss": 53.90,
-      "take_profit": 74.20,
-      "position_target_pct": 0.0971,
+      "buy_zone_low": 130.00,
+      "buy_zone_high": 140.80,
+      "stop_loss": 109.30,
+      "take_profit": 178.90,
+      "position_target_pct": 0.0623,
       "rationale_bullets": [
         "\ud83d\udcc8 WEEKLY: Regime: BEAR | RSI\u226565",
-        "\ud83d\udcc8 WEEKLY: Trend UP: price 66 > MA10w 63 > MA30w 57",
-        "\ud83d\udcc8 WEEKLY: RSI(14): 61.2",
-        "\ud83d\udcc8 WEEKLY: ATR: 6",
-        "\ud83d\udcc8 WEEKLY: Vol: 28,481,700 (0.5x avg)",
+        "\ud83d\udcc8 WEEKLY: Trend UP: price 152 > MA10w 146 > MA30w 130",
+        "\ud83d\udcc8 WEEKLY: RSI(14): 49.1",
+        "\ud83d\udcc8 WEEKLY: ATR: 22",
+        "\ud83d\udcc8 WEEKLY: Vol: 13,954,900 (0.6x avg)",
         "\ud83d\udcc8 WEEKLY: Entry: pullback mid-zone",
-        "\ud83d\udcc8 WEEKLY: Position: 5.7% (base 8.1% \u00d7 0.7x = 5.7%, stop dist 12.4%)",
-        "\ud83d\udcc8 WEEKLY ONLY: 9.7% position"
+        "\ud83d\udcc8 WEEKLY: Position: 3.6% (base 5.2% \u00d7 0.7x = 3.6%, stop dist 19.3%)",
+        "\ud83d\udcc8 WEEKLY ONLY: 6.2% position"
       ],
       "entry_type": "pullback",
       "breakout_level": 0.00,
-      "entry_price": 61.50,
-      "signal_week_end": "2026-04-09",
+      "entry_price": 135.40,
+      "signal_week_end": "2026-04-10",
+      "earliest_entry_date": null
+    },
+    {
+      "symbol": "STB",
+      "asset_class": "stock",
+      "action": "BUY",
+      "buy_zone_low": 60.60,
+      "buy_zone_high": 63.70,
+      "stop_loss": 54.60,
+      "take_profit": 74.90,
+      "position_target_pct": 0.0982,
+      "rationale_bullets": [
+        "\ud83d\udcc8 WEEKLY: Regime: BEAR | RSI\u226565",
+        "\ud83d\udcc8 WEEKLY: Trend UP: price 67 > MA10w 63 > MA30w 57",
+        "\ud83d\udcc8 WEEKLY: RSI(14): 61.8",
+        "\ud83d\udcc8 WEEKLY: ATR: 6",
+        "\ud83d\udcc8 WEEKLY: Vol: 38,630,500 (0.6x avg)",
+        "\ud83d\udcc8 WEEKLY: Entry: pullback mid-zone",
+        "\ud83d\udcc8 WEEKLY: Position: 5.7% (base 8.2% \u00d7 0.7x = 5.7%, stop dist 12.2%)",
+        "\ud83d\udcc8 WEEKLY ONLY: 9.8% position"
+      ],
+      "entry_type": "pullback",
+      "breakout_level": 0.00,
+      "entry_price": 62.20,
+      "signal_week_end": "2026-04-10",
       "earliest_entry_date": null
     }
   ],
@@ -99,7 +99,7 @@
     "  \u2022 \ud83d\udcca Market Regime: SIDEWAYS_QUIET",
     "  \u2022 \u26a1 Strategy Focus: Conservative mean reversion | RSI signals | Balanced sizing",
     "  \u2022 \ud83c\udfaf Risk Management: Enhanced Kelly Criterion with conviction multipliers",
-    "  \u2022 \ud83d\udd2c Market Efficiency: High (0.85)",
+    "  \u2022 \ud83d\udd2c Market Efficiency: High (0.80)",
     "  \u2022 \ud83c\udfc6 Targets: CAGR 15-20%, Sharpe >2.5, MaxDD <5%, WinRate >70%",
     "  \u2022 \ud83d\udcc8 Enhancements: Sector rotation, Statistical arbitrage, Order flow analysis",
     "",
@@ -112,60 +112,48 @@
   ],
   "ai_analysis": {
     "generated": true,
-    "market_context": "The portfolio is heavily invested in cash, with a small position in the market, indicating a cautious market approach.",
-    "analysis_date": "2026-04-09",
+    "market_context": "The portfolio is heavily invested in cash with a small position in MWG and potential new positions in VIC and STB.",
+    "analysis_date": "2026-04-12",
     "data_sources": "Weekly technical analysis using Groq AI",
     "scores": {
-      "VIC": {
-        "symbol": "VIC",
-        "score": 8,
-        "rationale": "VIC has a bear regime with an up trend and RSI above 65, indicating a potential pullback buy opportunity.",
-        "risk_note": "The risk of a larger pullback or trend reversal is evident given the bear regime."
-      },
       "MWG": {
         "symbol": "MWG",
         "score": 4,
-        "rationale": "MWG has a bear regime with a down trend, indicating a potential sell opportunity.",
-        "risk_note": "The position has already been exited, so no risk is currently evident."
+        "rationale": "Price is below MA30w and in a bear regime.",
+        "risk_note": "The stop loss is relatively close to the entry price."
+      },
+      "VIC": {
+        "symbol": "VIC",
+        "score": 9,
+        "rationale": "Price is above MA10w and MA30w with RSI\u226565 in a bear regime.",
+        "risk_note": ""
       },
       "STB": {
         "symbol": "STB",
-        "score": 9,
-        "rationale": "STB has a bear regime with an up trend and RSI above 65, indicating a potential pullback buy opportunity.",
-        "risk_note": "The risk of a larger pullback or trend reversal is evident given the bear regime."
+        "score": 8,
+        "rationale": "Price is above MA10w and MA30w with RSI\u226565 in a bear regime.",
+        "risk_note": ""
       }
     }
   },
   "news_analysis": {
     "symbol_scores": [
       {
-        "symbol": "VIC",
-        "buy_potential_score": 50,
-        "risk_score": 50,
-        "confidence": 0.00,
-        "horizon": "1-4w",
-        "key_bull_points": [],
-        "key_risks": [],
-        "evidence": []
-      },
-      {
         "symbol": "MWG",
-        "buy_potential_score": 70,
-        "risk_score": 30,
-        "confidence": 0.60,
+        "buy_potential_score": 50,
+        "risk_score": 60,
+        "confidence": 0.40,
         "horizon": "1-4w",
         "key_bull_points": [
-          "Vietnam's market growth potential",
-          "Potential benefits for companies in the industry"
+          "Increasing demand and potential for profit growth"
         ],
         "key_risks": [
-          "Production sector volatility",
-          "Potential impact of cost fluctuations on MWG's profitability"
+          "High construction costs may negatively impact profitability"
         ],
         "evidence": [
           {
             "id": "news1",
-            "supports": "bull_point"
+            "supports": "bull"
           },
           {
             "id": "news2",
@@ -173,9 +161,19 @@
           },
           {
             "id": "news3",
-            "supports": "bull_point"
+            "supports": "bull"
           }
         ]
+      },
+      {
+        "symbol": "VIC",
+        "buy_potential_score": 0,
+        "risk_score": 0,
+        "confidence": 0.00,
+        "horizon": "1-4w",
+        "key_bull_points": [],
+        "key_risks": [],
+        "evidence": []
       },
       {
         "symbol": "STB",
