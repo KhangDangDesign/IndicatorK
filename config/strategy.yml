@@ -38,6 +38,7 @@ trend_momentum_atr_regime_adaptive:
   bear_position_multiplier: 0.7    # 0.7x base allocation from risk.yml (defensive)
   bear_atr_stop_mult: 1.2    # Tighter stops to limit losses
   bear_atr_target_mult: 2.0  # Quick exits on bounces
+  bear_use_breakout_entry: true  # Use breakout entry (at current price) instead of pullback entry in bear markets
 
   # Sideways market parameters (choppy/neutral)
   sideways_rsi_threshold: 55 # Moderate selectivity
@@ -128,6 +129,7 @@ dual_stream_combined:
     bear_position_multiplier: 0.7
     bear_atr_stop_mult: 1.2
     bear_atr_target_mult: 2.0
+    bear_use_breakout_entry: true  # Use breakout entry in bear markets
     # Bull market parameters
     bull_rsi_threshold: 45
     bull_position_multiplier: 1.5

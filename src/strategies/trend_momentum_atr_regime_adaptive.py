@@ -59,6 +59,7 @@ class TrendMomentumATRRegimeAdaptive(Strategy):
         self.bear_position_multiplier = params.get("bear_position_multiplier", 0.7)  # 0.7x base allocation
         self.bear_atr_stop_mult = params.get("bear_atr_stop_mult", 1.2)
         self.bear_atr_target_mult = params.get("bear_atr_target_mult", 2.0)
+        self.bear_use_breakout_entry = params.get("bear_use_breakout_entry", False)  # Use breakout entry in bear markets
 
         # Bull market parameters (aggressive)
         self.bull_rsi_threshold = params.get("bull_rsi_threshold", 45)
@@ -347,16 +348,26 @@ class TrendMomentumATRRegimeAdaptive(Strategy):
                         entry_type = "breakout"
                         earliest_entry_date = _next_monday(signal_week_end)
                     else:
-                        # Pullback entry - ensure meaningful range even with small ATR
-                        atr_displacement = _ensure_meaningful_atr(atr, tick)
-                        buy_zone_low = round_to_step(current - 1.0 * atr_displacement, tick)
-                        buy_zone_high = round_to_step(current - 0.5 * atr_displacement, tick)
-                        # Ensure buy zones are different
-                        buy_zone_low, buy_zone_high = _ensure_different_zones(buy_zone_low, buy_zone_high, tick)
-                        entry_price = round_to_step((buy_zone_low + buy_zone_high) / 2.0, tick)
-                        breakout_level = 0.0
-                        entry_type = "pullback"
-                        earliest_entry_date = None
+                        # Check if we should use breakout entry in bear market
+                        if self.current_regime == "bear" and self.bear_use_breakout_entry:
+                            # Breakout entry - buy at current price + buffer (immediate execution)
+                            entry_price = round_to_step(current * (1.0 + self.entry_buffer_pct), tick)
+                            buy_zone_low = entry_price
+                            buy_zone_high = round_to_step(max(entry_price + 2 * tick, entry_price * 1.01), tick)
+                            breakout_level = 0.0
+                            entry_type = "breakout"
+                            earliest_entry_date = None
+                        else:
+                            # Pullback entry - ensure meaningful range even with small ATR
+                            atr_displacement = _ensure_meaningful_atr(atr, tick)
+                            buy_zone_low = round_to_step(current - 1.0 * atr_displacement, tick)
+                            buy_zone_high = round_to_step(current - 0.5 * atr_displacement, tick)
+                            # Ensure buy zones are different
+                            buy_zone_low, buy_zone_high = _ensure_different_zones(buy_zone_low, buy_zone_high, tick)
+                            entry_price = round_to_step((buy_zone_low + buy_zone_high) / 2.0, tick)
+                            breakout_level = 0.0
+                            entry_type = "pullback"
+                            earliest_entry_date = None
 
                     vol_ratio = volumes[-1] / vol_avg if vol_avg and vol_avg > 0 else 0.0
                     rationale = [
@@ -365,19 +376,30 @@ class TrendMomentumATRRegimeAdaptive(Strategy):
                         f"RSI({self.rsi_period}): {rsi:.1f}",
                         f"ATR: {atr:.0f}",
                         f"Vol: {volumes[-1]:,.0f} ({vol_ratio:.1f}x avg)" if vol_avg else f"Vol: {volumes[-1]:,.0f}",
-                        f"Entry: {'breakout @ T-1 high ' + str(int(breakout_level)) + ' [close-confirmed, T+1]' if entry_type == 'breakout' else 'pullback mid-zone'}",
+                        f"Entry: {'breakout @ current price [immediate execution]' if entry_type == 'breakout' and breakout_level == 0.0 else 'breakout @ T-1 high ' + str(int(breakout_level)) + ' [close-confirmed, T+1]' if entry_type == 'breakout' else 'pullback mid-zone'}",
                     ]
 
                 else:  # HOLD
-                    atr_displacement = _ensure_meaningful_atr(atr, tick)
-                    buy_zone_low = round_to_step(current - 1.0 * atr_displacement, tick)
-                    buy_zone_high = round_to_step(current - 0.5 * atr_displacement, tick)
-                    # Ensure buy zones are different - FIXED: now captures the returned tuple
-                    buy_zone_low, buy_zone_high = _ensure_different_zones(buy_zone_low, buy_zone_high, tick)
-                    entry_price = round_to_step((buy_zone_low + buy_zone_high) / 2.0, tick)
-                    breakout_level = 0.0
-                    entry_type = "pullback"
-                    earliest_entry_date = None
+                    # Check if we should use breakout entry in bear market
+                    if self.current_regime == "bear" and self.bear_use_breakout_entry:
+                        # Breakout entry - buy at current price + buffer (immediate execution)
+                        entry_price = round_to_step(current * (1.0 + self.entry_buffer_pct), tick)
+                        buy_zone_low = entry_price
+                        buy_zone_high = round_to_step(max(entry_price + 2 * tick, entry_price * 1.01), tick)
+                        breakout_level = 0.0
+                        entry_type = "breakout"
+                        earliest_entry_date = None
+                    else:
+                        # Pullback entry
+                        atr_displacement = _ensure_meaningful_atr(atr, tick)
+                        buy_zone_low = round_to_step(current - 1.0 * atr_displacement, tick)
+                        buy_zone_high = round_to_step(current - 0.5 * atr_displacement, tick)
+                        # Ensure buy zones are different - FIXED: now captures the returned tuple
+                        buy_zone_low, buy_zone_high = _ensure_different_zones(buy_zone_low, buy_zone_high, tick)
+                        entry_price = round_to_step((buy_zone_low + buy_zone_high) / 2.0, tick)
+                        breakout_level = 0.0
+                        entry_type = "pullback"
+                        earliest_entry_date = None
                     rationale = [
                         f"Regime: {self.current_regime.upper()}",
                         f"Trend UP: price {current:.0f} > MA{self.ma_short}w {ma_short:.0f} > MA{self.ma_long}w {ma_long_val:.0f}",
