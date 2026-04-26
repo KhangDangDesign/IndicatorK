@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-19T05:33:06.303527",
+  "generated_at": "2026-04-26T05:43:57.230744",
   "provider_health": {
     "name": "vnstock->http->cache",
     "error_rate": 2.0,
@@ -9,13 +9,13 @@
     "total_errors": 46
   },
   "strategy_health": {
-    "rolling_cagr": -0.0,
+    "rolling_cagr": -0.1266,
     "drawdown": 0.1295,
     "turnover": 0.0,
-    "weeks_tracked": 66
+    "weeks_tracked": 67
   },
   "recommendations": [
     "SWITCH_PROVIDER: error rate 200% exceeds threshold 30%",
-    "SWITCH_STRATEGY: rolling 12w return -0.00% below 1.00% threshold (current: regime_router_foundation)"
+    "SWITCH_STRATEGY: rolling 12w return -12.66% below 1.00% threshold (current: regime_router_foundation)"
   ]
 }

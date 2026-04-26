@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-19T05:33:00.289660",
+  "generated_at": "2026-04-26T05:43:51.602638",
   "strategy_id": "regime_router_foundation",
   "strategy_version": "1.0.0",
   "allocation_targets": {
@@ -37,15 +37,15 @@
   ],
   "ai_analysis": {
     "generated": true,
-    "market_context": "The portfolio is heavily in cash with a total value of 9,999,879 VND, indicating a cautious market approach.",
-    "analysis_date": "2026-04-19",
+    "market_context": "The portfolio is heavily in cash with a total value of 9,999,879 VND and only one position.",
+    "analysis_date": "2026-04-26",
     "data_sources": "Weekly technical analysis using Groq AI",
     "scores": {
       "MWG": {
         "symbol": "MWG",
-        "score": 5,
-        "rationale": "Bear regime indicates a potential downtrend, supporting the SELL recommendation.",
-        "risk_note": "No specific risk noted, but a pullback entry type may result in missed opportunities if the market reverses direction quickly."
+        "score": 4,
+        "rationale": "Bear regime: preserve capital and move to cash.",
+        "risk_note": ""
       }
     }
   },
@@ -53,32 +53,35 @@
     "symbol_scores": [
       {
         "symbol": "MWG",
-        "buy_potential_score": 80,
-        "risk_score": 20,
+        "buy_potential_score": 40,
+        "risk_score": 10,
         "confidence": 0.40,
         "horizon": "1-4w",
         "key_bull_points": [
-          "Increasing market share",
-          "Growing sales trend"
+          "Increasing demand for MWG's products due to market growth"
         ],
         "key_risks": [
-          "Dependence on market conditions"
+          "Potential market fluctuations"
         ],
         "evidence": [
           {
-            "id": "news1",
-            "supports": "bull"
+            "id": "1",
+            "supports": "News article 1: MWG's sales increase by 10%"
           },
           {
-            "id": "news2",
-            "supports": "bull"
+            "id": "2",
+            "supports": "News article 2: Market trends indicate growth in MWG's sector"
+          },
+          {
+            "id": "3",
+            "supports": "News article 3: MWG's competitors experience decline in sales"
           }
         ]
       }
     ],
     "status": "SUCCESS",
     "analyzed_symbols": 1,
-    "total_news": 31
+    "total_news": 33
   },
   "market_regime": "bear",
   "router_state": null
