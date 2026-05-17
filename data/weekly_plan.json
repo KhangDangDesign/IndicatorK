@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-26T05:43:51.602638",
+  "generated_at": "2026-05-17T06:25:39.105639",
   "strategy_id": "regime_router_foundation",
   "strategy_version": "1.0.0",
   "allocation_targets": {
@@ -37,51 +37,23 @@
   ],
   "ai_analysis": {
     "generated": true,
-    "market_context": "The portfolio is heavily in cash with a total value of 9,999,879 VND and only one position.",
-    "analysis_date": "2026-04-26",
+    "market_context": "The portfolio is heavily in cash with a total value of 9,998,416 VND, indicating a cautious market approach.",
+    "analysis_date": "2026-05-17",
     "data_sources": "Weekly technical analysis using Groq AI",
     "scores": {
       "MWG": {
         "symbol": "MWG",
         "score": 4,
-        "rationale": "Bear regime: preserve capital and move to cash.",
-        "risk_note": ""
+        "rationale": "Bear regime is identified, but no specific entry point or stop loss is defined.",
+        "risk_note": "High risk due to lack of defined stop loss and take profit levels."
       }
     }
   },
   "news_analysis": {
-    "symbol_scores": [
-      {
-        "symbol": "MWG",
-        "buy_potential_score": 40,
-        "risk_score": 10,
-        "confidence": 0.40,
-        "horizon": "1-4w",
-        "key_bull_points": [
-          "Increasing demand for MWG's products due to market growth"
-        ],
-        "key_risks": [
-          "Potential market fluctuations"
-        ],
-        "evidence": [
-          {
-            "id": "1",
-            "supports": "News article 1: MWG's sales increase by 10%"
-          },
-          {
-            "id": "2",
-            "supports": "News article 2: Market trends indicate growth in MWG's sector"
-          },
-          {
-            "id": "3",
-            "supports": "News article 3: MWG's competitors experience decline in sales"
-          }
-        ]
-      }
-    ],
+    "symbol_scores": [],
     "status": "SUCCESS",
-    "analyzed_symbols": 1,
-    "total_news": 33
+    "analyzed_symbols": 0,
+    "total_news": 31
   },
   "market_regime": "bear",
   "router_state": null

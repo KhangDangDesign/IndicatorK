@@ -1,34 +1,6 @@
 {
-  "symbol_scores": [
-    {
-      "symbol": "MWG",
-      "buy_potential_score": 40,
-      "risk_score": 10,
-      "confidence": 0.4,
-      "horizon": "1-4w",
-      "key_bull_points": [
-        "Increasing demand for MWG's products due to market growth"
-      ],
-      "key_risks": [
-        "Potential market fluctuations"
-      ],
-      "evidence": [
-        {
-          "id": "1",
-          "supports": "News article 1: MWG's sales increase by 10%"
-        },
-        {
-          "id": "2",
-          "supports": "News article 2: Market trends indicate growth in MWG's sector"
-        },
-        {
-          "id": "3",
-          "supports": "News article 3: MWG's competitors experience decline in sales"
-        }
-      ]
-    }
-  ],
+  "symbol_scores": [],
   "status": "SUCCESS",
-  "analyzed_symbols": 1,
-  "total_news": 33
+  "analyzed_symbols": 0,
+  "total_news": 31
 }
