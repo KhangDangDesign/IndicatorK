@@ -1,6 +1,34 @@
 {
-  "symbol_scores": [],
+  "symbol_scores": [
+    {
+      "symbol": "MWG",
+      "buy_potential_score": 40,
+      "risk_score": 0,
+      "confidence": 0.2,
+      "horizon": "1-4w",
+      "key_bull_points": [
+        "Potential for increased demand due to competitive pricing"
+      ],
+      "key_risks": [
+        "Dependence on market trends and consumer behavior"
+      ],
+      "evidence": [
+        {
+          "id": "news1",
+          "supports": "bull"
+        },
+        {
+          "id": "news2",
+          "supports": "neutral"
+        },
+        {
+          "id": "news3",
+          "supports": "bull"
+        }
+      ]
+    }
+  ],
   "status": "SUCCESS",
-  "analyzed_symbols": 0,
-  "total_news": 31
+  "analyzed_symbols": 1,
+  "total_news": 32
 }

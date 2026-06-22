@@ -1,306 +1,741 @@
 {
+  "articles": [
+    {
+      "id": "a94d5337fc450e0c",
+      "title": "Th\u1ee9 hai, 22/6/2026",
+      "source": "VnExpress",
+      "snippet": "Th\u1ee9 hai, 22/6/2026",
+      "published_at": "2026-06-22T14:59:43.674113",
+      "url": "/lich-van-nien"
+    },
+    {
+      "id": "974f0921143a13a7",
+      "title": "M\u1edbi nh\u1ea5t",
+      "source": "VnExpress",
+      "snippet": "M\u1edbi nh\u1ea5t",
+      "published_at": "2026-06-22T14:59:43.674129",
+      "url": "/tin-tuc-24h"
+    },
+    {
+      "id": "c538faa71aa68d1e",
+      "title": "H\u00e0 N\u1ed9i",
+      "source": "VnExpress",
+      "snippet": "H\u00e0 N\u1ed9i",
+      "published_at": "2026-06-22T14:59:43.674136",
+      "url": "/chu-de/thanh-pho-ha-noi-2056"
+    },
+    {
+      "id": "4c21a468b979d54e",
+      "title": "TP HCM",
+      "source": "VnExpress",
+      "snippet": "TP HCM",
+      "published_at": "2026-06-22T14:59:43.674142",
+      "url": "/chu-de/thanh-pho-ho-chi-minh-2091"
+    },
+    {
+      "id": "85bf5808ee75477c",
+      "title": "International",
+      "source": "VnExpress",
+      "snippet": "International",
+      "published_at": "2026-06-22T14:59:43.674149",
+      "url": "https://e.vnexpress.net/"
+    },
+    {
+      "id": "87a57a516d11323f",
+      "title": "VnE-GO",
+      "source": "VnExpress",
+      "snippet": "VnE-GO",
+      "published_at": "2026-06-22T14:59:43.674173",
+      "url": "/vne-go"
+    },
+    {
+      "id": "578e5a24f89ef8f2",
+      "title": "Th\u1eddi s\u1ef1",
+      "source": "VnExpress",
+      "snippet": "Th\u1eddi s\u1ef1",
+      "published_at": "2026-06-22T14:59:43.674178",
+      "url": "/thoi-su"
+    },
+    {
+      "id": "2e06331c7fb0d824",
+      "title": "Th\u1ebf gi\u1edbi",
+      "source": "VnExpress",
+      "snippet": "Th\u1ebf gi\u1edbi",
+      "published_at": "2026-06-22T14:59:43.674183",
+      "url": "/the-gioi"
+    },
+    {
+      "id": "2b69332cc06b8475",
+      "title": "Kinh doanh",
+      "source": "VnExpress",
+      "snippet": "Kinh doanh",
+      "published_at": "2026-06-22T14:59:43.674187",
+      "url": "/kinh-doanh"
+    },
+    {
+      "id": "efb90cc7d76de76f",
+      "title": "Ph\u00e1p lu\u1eadt",
+      "source": "VnExpress",
+      "snippet": "Ph\u00e1p lu\u1eadt",
+      "published_at": "2026-06-22T14:59:43.674192",
+      "url": "/phap-luat"
+    },
+    {
+      "id": "3080348cf3eec9b9",
+      "title": "Khoa h\u1ecdc c\u00f4ng ngh\u1ec7",
+      "source": "VnExpress",
+      "snippet": "Khoa h\u1ecdc c\u00f4ng ngh\u1ec7",
+      "published_at": "2026-06-22T14:59:43.674196",
+      "url": "/khoa-hoc-cong-nghe"
+    },
+    {
+      "id": "73f4e11b363da8b2",
+      "title": "Th\u1ec3 thao",
+      "source": "VnExpress",
+      "snippet": "Th\u1ec3 thao",
+      "published_at": "2026-06-22T14:59:43.674200",
+      "url": "/the-thao"
+    },
+    {
+      "id": "dc18aff48fad3d28",
+      "title": "Gi\u1ea3i tr\u00ed",
+      "source": "VnExpress",
+      "snippet": "Gi\u1ea3i tr\u00ed",
+      "published_at": "2026-06-22T14:59:43.674204",
+      "url": "/giai-tri"
+    },
+    {
+      "id": "ba30e829388387d7",
+      "title": "S\u1ee9c kh\u1ecfe",
+      "source": "VnExpress",
+      "snippet": "S\u1ee9c kh\u1ecfe",
+      "published_at": "2026-06-22T14:59:43.674209",
+      "url": "/suc-khoe"
+    },
+    {
+      "id": "e3800123fe30d1ae",
+      "title": "\u0110\u1eddi s\u1ed1ng",
+      "source": "VnExpress",
+      "snippet": "\u0110\u1eddi s\u1ed1ng",
+      "published_at": "2026-06-22T14:59:43.674213",
+      "url": "/doi-song"
+    },
+    {
+      "id": "aa60b694d6f43a0a",
+      "title": "T\u00e2m s\u1ef1",
+      "source": "VnExpress",
+      "snippet": "T\u00e2m s\u1ef1",
+      "published_at": "2026-06-22T14:59:43.674217",
+      "url": "/tam-su"
+    },
+    {
+      "id": "366d9e97a6c3f167",
+      "title": "Gi\u00e1o d\u1ee5c",
+      "source": "VnExpress",
+      "snippet": "Gi\u00e1o d\u1ee5c",
+      "published_at": "2026-06-22T14:59:43.674221",
+      "url": "/giao-duc"
+    },
+    {
+      "id": "84ea62dfb6d579c5",
+      "title": "Xe",
+      "source": "VnExpress",
+      "snippet": "Xe",
+      "published_at": "2026-06-22T14:59:43.674225",
+      "url": "/oto-xe-may"
+    },
+    {
+      "id": "c2e20647690b481e",
+      "title": "B\u1ea5t \u0111\u1ed9ng s\u1ea3n",
+      "source": "VnExpress",
+      "snippet": "B\u1ea5t \u0111\u1ed9ng s\u1ea3n",
+      "published_at": "2026-06-22T14:59:43.674229",
+      "url": "/bat-dong-san"
+    },
+    {
+      "id": "94217a9b2ab8f79f",
+      "title": "G\u00f3c nh\u00ecn",
+      "source": "VnExpress",
+      "snippet": "G\u00f3c nh\u00ecn",
+      "published_at": "2026-06-22T14:59:43.674234",
+      "url": "/goc-nhin"
+    },
+    {
+      "id": "b1b1a67275439acc",
+      "title": "Du l\u1ecbch",
+      "source": "VnExpress",
+      "snippet": "Du l\u1ecbch",
+      "published_at": "2026-06-22T14:59:43.674238",
+      "url": "/du-lich"
+    },
+    {
+      "id": "f9828914f7e4c690",
+      "title": "\u00dd ki\u1ebfn",
+      "source": "VnExpress",
+      "snippet": "\u00dd ki\u1ebfn",
+      "published_at": "2026-06-22T14:59:43.674242",
+      "url": "/y-kien"
+    },
+    {
+      "id": "ed8553192c8d124b",
+      "title": "T\u1ea5t c\u1ea3",
+      "source": "VnExpress",
+      "snippet": "T\u1ea5t c\u1ea3",
+      "published_at": "2026-06-22T14:59:43.674247",
+      "url": "javascript:;"
+    },
+    {
+      "id": "dc3ff83fd4e998db",
+      "title": "'Ti\u1ebft ki\u1ec7m n\u0103ng l\u01b0\u1ee3ng gi\u00fap gi\u1ea3m \u00e1p l\u1ef1c \u0111\u1ea7u t\u01b0 ngu\u1ed3n \u0111i\u1ec7n m\u1edbi'",
+      "source": "VnExpress",
+      "snippet": "Chuy\u00ean gia cho r\u1eb1ng m\u1ed7i kWh \u0111i\u1ec7n ti\u1ebft ki\u1ec7m t\u01b0\u01a1ng \u0111\u01b0\u01a1ng m\u1ed9t kWh \u0111i\u1ec7n \u0111\u01b0\u1ee3c s\u1ea3n xu\u1ea5t th\u00eam, gi\u00fap gi\u1ea3m \u00e1p l\u1ef1c \u0111\u1ea7u t\u01b0 ngu\u1ed3n m\u1edbi v\u00e0 b\u1ea3o \u0111\u1ea3m an ninh n\u0103ng l\u01b0\u1ee3ng qu\u1ed1c gia.",
+      "published_at": "2026-06-22T14:59:44.544145",
+      "url": "https://vnexpress.net/tiet-kiem-nang-luong-giup-giam-ap-luc-dau-tu-nguon-dien-moi-5088593.html"
+    },
+    {
+      "id": "fad764a07bac064a",
+      "title": "C\u1ef1u ch\u1ee7 t\u1ecbch Fed Alan Greenspan qua \u0111\u1eddi \u1edf tu\u1ed5i 100",
+      "source": "VnExpress",
+      "snippet": "Alan Greenspan - ng\u01b0\u1eddi t\u1eebng l\u00e3nh \u0111\u1ea1o Fed 19 n\u0103m, qua 4 \u0111\u1eddi T\u1ed5ng th\u1ed1ng M\u1ef9 - v\u1eeba m\u1ea5t \u1edf tu\u1ed5i 100.",
+      "published_at": "2026-06-22T14:59:44.544277",
+      "url": "https://vnexpress.net/cuu-chu-tich-fed-alan-greenspan-qua-doi-o-tuoi-100-5088640.html"
+    },
+    {
+      "id": "f6cc7e5e1db04d35",
+      "title": "N\u00e2ng tr\u1ea7n v\u1ed1n ng\u1eafn h\u1ea1n cho vay trung d\u00e0i h\u1ea1n",
+      "source": "VnExpress",
+      "snippet": "Ng\u00e2n h\u00e0ng Nh\u00e0 n\u01b0\u1edbc v\u1eeba ban h\u00e0nh Th\u00f4ng t\u01b0 cho ph\u00e9p n\u00e2ng t\u1ef7 l\u1ec7 t\u1ed1i \u0111a ng\u00e2n h\u00e0ng \u0111\u01b0\u1ee3c d\u00f9ng v\u1ed1n ng\u1eafn h\u1ea1n cho vay trung, d\u00e0i h\u1ea1n t\u1eeb 30% l\u00ean 40%.",
+      "published_at": "2026-06-22T14:59:44.544302",
+      "url": "https://vnexpress.net/nang-tran-von-ngan-han-cho-vay-trung-dai-han-5088635.html"
+    },
+    {
+      "id": "bc26879aeef3c4db",
+      "title": "SK Hynix v\u01b0\u1ee3t Samsung Electronics th\u00e0nh c\u00f4ng ty gi\u00e1 tr\u1ecb nh\u1ea5t H\u00e0n Qu\u1ed1c",
+      "source": "VnExpress",
+      "snippet": "Ha\u0303ng chip SK Hynix hi\u00ea\u0323n co\u0301 v\u00f4\u0301n ho\u0301a 1.350 ty\u0309 USD, ta\u0323o ra m\u1ed9t trong nh\u1eefng cu\u00f4\u0323c l\u00f4\u0323i ng\u01b0\u01a1\u0323c do\u0300ng ngo\u1ea1n m\u1ee5c nh\u1ea5t l\u1ecbch s\u1eed doanh nghi\u1ec7p H\u00e0n Qu\u1ed1c.",
+      "published_at": "2026-06-22T14:59:44.544320",
+      "url": "https://vnexpress.net/sk-hynix-vuot-samsung-electronics-thanh-cong-ty-gia-tri-nhat-han-quoc-5088572.html"
+    },
+    {
+      "id": "8d4b07fd442e4627",
+      "title": "VN-Index t\u0103ng m\u1ea1nh nh\u1ea5t hai th\u00e1ng",
+      "source": "VnExpress",
+      "snippet": "VIC v\u00e0 VHM ch\u1ea1m tr\u1ea7n, gi\u00fap ch\u1ec9 s\u1ed1 \u0111\u1ea1i di\u1ec7n cho s\u00e0n TP HCM t\u0103ng 33 \u0111i\u1ec3m, \u0111\u00e1nh d\u1ea5u phi\u00ean kh\u1edfi s\u1eafc nh\u1ea5t t\u1eeb \u0111\u1ea7u th\u00e1ng 4 \u0111\u1ebfn nay.",
+      "published_at": "2026-06-22T14:59:44.544337",
+      "url": "https://vnexpress.net/vn-index-tang-manh-nhat-hai-thang-5088528.html"
+    },
+    {
+      "id": "1860653f97ae20b7",
+      "title": "C\u00f4ng ty kho\u00e1ng s\u1ea3n c\u1ee7a Masan m\u1edf r\u1ed9ng v\u00f9ng khai th\u00e1c vonfram quanh N\u00fai Ph\u00e1o",
+      "source": "VnExpress",
+      "snippet": "N\u00fai Ph\u00e1o m\u1edf r\u1ed9ng v\u00e0 N\u00fai Chi\u1ebfm, hai khu v\u1ef1c s\u1ebd do Masan High-Tech Materials khai th\u00e1c, \u01b0\u1edbc t\u00ednh c\u00f3 ti\u1ec1m n\u0103ng kho\u1ea3ng 115 tri\u1ec7u t\u1ea5n vonfram \u0111a kim.",
+      "published_at": "2026-06-22T14:59:44.544351",
+      "url": "https://vnexpress.net/cong-ty-khoang-san-cua-masan-mo-rong-vung-khai-thac-vonfram-quanh-nui-phao-5088434.html"
+    },
+    {
+      "id": "3d9b99d5774db10e",
+      "title": "Trung Qu\u1ed1c \u00e1p ki\u1ec3m so\u00e1t xu\u1ea5t kh\u1ea9u v\u1edbi 10 c\u00f4ng ty M\u1ef9",
+      "source": "VnExpress",
+      "snippet": "Gi\u01a1\u0301i ch\u01b0\u0301c Trung Qu\u00f4\u0301c v\u01b0\u0300a a\u0301p ki\u00ea\u0309m soa\u0301t xu\u00e2\u0301t kh\u00e2\u0309u v\u01a1\u0301i 10 c\u00f4ng ty My\u0303, \u0111a\u0301p tra\u0309 vi\u00ea\u0323c Washington \u0111\u01b0a nhi\u00ea\u0300u doanh nghi\u00ea\u0323p n\u01b0\u01a1\u0301c na\u0300y va\u0300o danh sa\u0301ch \u0111en.",
+      "published_at": "2026-06-22T14:59:44.544369",
+      "url": "https://vnexpress.net/trung-quoc-ap-kiem-soat-xuat-khau-voi-10-cong-ty-my-5088386.html"
+    },
+    {
+      "id": "12d9357f07c59af8",
+      "title": "Nh\u00e0 \u0111\u1ea7u t\u01b0 'c\u01b0\u1ee3c' Bitcoin c\u00f3 th\u1ec3 gi\u1ea3m v\u1ec1 52.000 USD",
+      "source": "VnExpress",
+      "snippet": "Tr\u00ean s\u00e0n ph\u00e1i sinh l\u1edbn nh\u1ea5t th\u1ebf gi\u1edbi Deribit, nhi\u1ec1u h\u1ee3p \u0111\u1ed3ng quy\u1ec1n ch\u1ecdn b\u00e1n Bitcoin \u1edf gi\u00e1 52.000 USD, cho th\u1ea5y t\u00e2m l\u00fd bi quan v\u1eabn c\u00f2n t\u1ed3n t\u1ea1i.",
+      "published_at": "2026-06-22T14:59:44.544386",
+      "url": "https://vnexpress.net/nha-dau-tu-cuoc-bitcoin-co-the-giam-ve-52-000-usd-5088382.html"
+    },
+    {
+      "id": "75e9c6a987a4eafe",
+      "title": "Gi\u00e1 v\u00e0ng t\u0103ng l\u00ean g\u1ea7n 149 tri\u1ec7u \u0111\u1ed3ng",
+      "source": "VnExpress",
+      "snippet": "M\u1ed7i l\u01b0\u1ee3ng v\u00e0ng t\u0103ng h\u01a1n 1 tri\u1ec7u \u0111\u1ed3ng l\u00ean g\u1ea7n 149 tri\u1ec7u, ch\u00eanh l\u1ec7ch v\u1edbi gi\u00e1 th\u1ebf gi\u1edbi kho\u1ea3ng 15 tri\u1ec7u \u0111\u1ed3ng.",
+      "published_at": "2026-06-22T14:59:44.544409",
+      "url": "https://vnexpress.net/gia-vang-tang-len-gan-149-trieu-dong-5088399.html"
+    },
+    {
+      "id": "b1831e099be31331",
+      "title": "Ng\u00e2n h\u00e0ng \u0111ua ph\u00e1t h\u00e0nh tr\u00e1i phi\u1ebfu l\u00e3i su\u1ea5t tr\u00ean 8,3%",
+      "source": "VnExpress",
+      "snippet": "Tr\u00e1i phi\u1ebfu ng\u00e2n h\u00e0ng thi\u1ebft l\u1eadp m\u1eb7t b\u1eb1ng l\u00e3i su\u1ea5t m\u1edbi tr\u00ean 8,3%, t\u0103ng kho\u1ea3ng 3 \u0111i\u1ec3m ph\u1ea7n tr\u0103m so v\u1edbi c\u00f9ng k\u1ef3 \u0111\u1ec3 b\u1ed5 sung nhu c\u1ea7u v\u1ed1n trung v\u00e0 d\u00e0i h\u1ea1n.",
+      "published_at": "2026-06-22T14:59:44.544423",
+      "url": "https://vnexpress.net/ngan-hang-dua-phat-hanh-trai-phieu-lai-suat-tren-8-3-5088287.html"
+    },
+    {
+      "id": "6d224d9e305b9cdc",
+      "title": "Th\u1ee7 t\u01b0\u1edbng y\u00eau c\u1ea7u chu\u1ea9n b\u1ecb qu\u1ef9 \u0111\u1ea5t s\u1ea1ch x\u00e2y nh\u00e0 \u1edf cho thu\u00ea",
+      "source": "VnExpress",
+      "snippet": "C\u00e1c \u0111\u1ecba ph\u01b0\u01a1ng \u0111\u01b0\u1ee3c y\u00eau c\u1ea7u ch\u1ee7 \u0111\u1ed9ng gi\u1ea3i ph\u00f3ng m\u1eb7t b\u1eb1ng, chu\u1ea9n b\u1ecb qu\u1ef9 \u0111\u1ea5t s\u1ea1ch \u0111\u1ec3 ph\u00e1t tri\u1ec3n nh\u00e0 \u1edf cho thu\u00ea, theo quy\u1ebft \u0111\u1ecbnh c\u1ee7a Th\u1ee7 t\u01b0\u1edbng.",
+      "published_at": "2026-06-22T14:59:44.544436",
+      "url": "https://vnexpress.net/thu-tuong-yeu-cau-chuan-bi-quy-dat-sach-xay-nha-o-cho-thue-5088323.html"
+    },
+    {
+      "id": "fae3e94f8a0a56f1",
+      "title": "S\u1ee9c h\u00fat kinh doanh qu\u1ea7n \u00e1o, gi\u00e0y d\u00e9p tr\u1ef1c tuy\u1ebfn",
+      "source": "VnExpress",
+      "snippet": "Doanh s\u1ed1 th\u1eddi trang tr\u1ef1c tuy\u1ebfn li\u00ean t\u1ee5c t\u0103ng tr\u01b0\u1edfng tr\u00ean hai ch\u1eef s\u1ed1, gi\u00fap m\u1ed9t s\u1ed1 th\u01b0\u01a1ng hi\u1ec7u b\u1ee9t ph\u00e1, song to\u00e0n ng\u00e0nh v\u1eabn \u0111\u1ed1i m\u1eb7t v\u1edbi b\u00e0i to\u00e1n t\u1ed1i \u01b0u v\u1eadn h\u00e0nh v\u00e0 chi ph\u00ed.",
+      "published_at": "2026-06-22T14:59:44.544448",
+      "url": "https://vnexpress.net/suc-hut-kinh-doanh-quan-ao-giay-dep-truc-tuyen-5088011.html"
+    },
+    {
+      "id": "c1dc369f337602b5",
+      "title": "Nh\u1eefng ai s\u1edf h\u1eefu c\u1ed5 ph\u1ea7n t\u1ef7 USD trong SpaceX?",
+      "source": "VnExpress",
+      "snippet": "Ngo\u00e0i Elon Musk, c\u00e1c gi\u00e1m \u0111\u1ed1c c\u1ea5p cao v\u00e0 qu\u1ef9 \u0111\u1ea7u t\u01b0 c\u1ee7a SpaceX c\u0169ng ch\u1ee9ng ki\u1ebfn t\u00e0i s\u1ea3n t\u0103ng v\u1ecdt nh\u1edd IPO c\u1ee7a c\u00f4ng ty.",
+      "published_at": "2026-06-22T14:59:44.544460",
+      "url": "https://vnexpress.net/nhung-ai-so-huu-co-phan-ty-usd-trong-spacex-5088211.html"
+    },
+    {
+      "id": "a643bc4a4c3ec823",
+      "title": "UOB: Ni\u1ec1m tin kinh doanh t\u1ea1i Vi\u1ec7t Nam ph\u1ee5c h\u1ed3i m\u1ea1nh",
+      "source": "VnExpress",
+      "snippet": "85% doanh nghi\u1ec7p Vi\u1ec7t c\u00f3 t\u00e2m l\u00fd kinh doanh t\u00edch c\u1ef1c v\u1edbi c\u00e1c xu h\u01b0\u1edbng \u0111\u1ea9y m\u1ea1nh AI, \u0111a d\u1ea1ng h\u00f3a chu\u1ed7i cung \u1ee9ng, m\u1edf r\u1ed9ng sang ASEAN, theo nghi\u00ean c\u1ee9u m\u1edbi nh\u1ea5t c\u1ee7a UOB.",
+      "published_at": "2026-06-22T14:59:44.544472",
+      "url": "https://vnexpress.net/uob-niem-tin-kinh-doanh-tai-viet-nam-phuc-hoi-manh-5088651.html"
+    },
+    {
+      "id": "c81e88c9a4dace85",
+      "title": "Gi\u00e1 tr\u1ecb giao d\u1ecbch tr\u00ean Lazada t\u0103ng 4 l\u1ea7n d\u1ecbp \u01b0u \u0111\u00e3i 6/6",
+      "source": "VnExpress",
+      "snippet": "Lazada Vi\u1ec7t Nam ghi nh\u1eadn t\u1ed5ng gi\u00e1 tr\u1ecb giao d\u1ecbch to\u00e0n s\u00e0n t\u0103ng g\u1ea7n 4 l\u1ea7n, gi\u00e1 tr\u1ecb h\u00e0ng ch\u00ednh h\u00e3ng qua LazMall t\u0103ng 330%, nhi\u1ec1u ch\u1ec9 s\u1ed1 \u1edf nh\u00f3m d\u1eabn \u0111\u1ea7u khu v\u1ef1c, d\u1ecbp \"Si\u00eau sale 6/6\".",
+      "published_at": "2026-06-22T14:59:44.544483",
+      "url": "https://vnexpress.net/gia-tri-giao-dich-tren-lazada-tang-4-lan-dip-uu-dai-6-6-5088423.html"
+    },
+    {
+      "id": "56b9035693138385",
+      "title": "Hai c\u00f4ng ty c\u1ee7a Vingroup l\u00e0m t\u1ed5ng th\u1ea7u 5 d\u1ef1 \u00e1n \u0111\u01b0\u1eddng s\u1eaft \u0111\u00f4 th\u1ecb m\u1edbi",
+      "source": "VnExpress",
+      "snippet": "Li\u00ean danh Vinhomes - VinSpeed \u0111\u1ea3m nhi\u1ec7m t\u1ed5ng th\u1ea7u 5 d\u1ef1 \u00e1n \u0111\u01b0\u1eddng s\u1eaft \u0111\u00f4 th\u1ecb m\u1edbi t\u1ea1i H\u00e0 N\u1ed9i, kh\u01a1\u0309i c\u00f4ng sa\u0301ng 22/6.",
+      "published_at": "2026-06-22T14:59:44.544494",
+      "url": "https://vnexpress.net/hai-cong-ty-cua-vingroup-lam-tong-thau-5-du-an-duong-sat-do-thi-moi-5088533.html"
+    },
+    {
+      "id": "b7d13fb637d05ec3",
+      "title": "Iraq c\u00f3 th\u1ec3 kh\u00f4i ph\u1ee5c s\u1ea3n xu\u1ea5t d\u1ea7u trong v\u00f2ng 2 th\u00e1ng",
+      "source": "VnExpress",
+      "snippet": "N\u01b0\u1edbc s\u1ea3n xu\u1ea5t d\u1ea7u l\u1edbn th\u1ee9 2 OPEC k\u1ef3 v\u1ecdng s\u1edbm quay v\u1ec1 s\u1ea3n l\u01b0\u1ee3ng tr\u01b0\u1edbc chi\u1ebfn s\u1ef1, t\u00f9y thu\u1ed9c v\u00e0o m\u1ee9c \u0111\u1ed9 l\u01b0u th\u00f4ng qua eo bi\u1ec3n Hormuz.",
+      "published_at": "2026-06-22T14:59:44.544505",
+      "url": "https://vnexpress.net/iraq-co-the-khoi-phuc-san-xuat-dau-trong-vong-2-thang-5088160.html"
+    },
+    {
+      "id": "be03cd63067e5563",
+      "title": "5 b\u1ea5t ng\u1edd c\u1ee7a tri\u1ec7u ph\u00fa t\u1ef1 th\u00e2n khi ngh\u1ec9 h\u01b0u s\u1edbm \u1edf tu\u1ed5i 40",
+      "source": "VnExpress",
+      "snippet": "Bernadette Joy, m\u1ed9t tri\u1ec7u ph\u00fa t\u1ef1 th\u00e2n t\u1ea1i M\u1ef9, v\u1eabn lo l\u1eafng v\u1ec1 ti\u1ec1n b\u1ea1c l\u00fac th\u1ecb tr\u01b0\u1eddng lao d\u1ed1c, g\u1eb7p kh\u00f3 trong s\u1eafp x\u1ebfp l\u1ecbch tr\u00ecnh m\u1ed7i ng\u00e0y v\u00e0 \u0111\u00f4i khi c\u1ea3m th\u1ea5y c\u00f4 \u0111\u01a1n.",
+      "published_at": "2026-06-22T14:59:44.544516",
+      "url": "https://vnexpress.net/5-bat-ngo-cua-trieu-phu-tu-than-khi-nghi-huu-som-o-tuoi-40-5088104.html"
+    },
+    {
+      "id": "620488255ea86a1c",
+      "title": "Xu\u1ea5t kh\u1ea9u gh\u1eb9 Vi\u1ec7t sang M\u1ef9 t\u0103ng m\u1ea1nh",
+      "source": "VnExpress",
+      "snippet": "M\u1ef9 l\u00e0 th\u1ecb tr\u01b0\u1eddng ti\u00eau th\u1ee5 ch\u1ee7 l\u1ef1c m\u1eb7t h\u00e0ng gh\u1eb9 c\u1ee7a Vi\u1ec7t Nam trong 4 th\u00e1ng \u0111\u1ea7u n\u0103m, v\u1edbi kim ng\u1ea1ch t\u0103ng g\u1ea7n g\u1ea5p r\u01b0\u1ee1i so v\u1edbi c\u00f9ng k\u1ef3.",
+      "published_at": "2026-06-22T14:59:44.544528",
+      "url": "https://vnexpress.net/xuat-khau-ghe-viet-sang-my-tang-manh-5088156.html"
+    },
+    {
+      "id": "9fdf97df78e6eca9",
+      "title": "\u0110\u1ebf ch\u1ebf kinh doanh kh\u1ed5ng l\u1ed3 c\u1ee7a Elon Musk",
+      "source": "VnExpress",
+      "snippet": "Elon Musk t\u1eebng \u0111\u1ed3ng s\u00e1ng l\u1eadp PayPal, OpenAI, nh\u01b0ng hi\u1ec7n ch\u1ec9 \u0111i\u1ec1u h\u00e0nh SpaceX, Tesla, Neuralink v\u00e0 The Boring Company.",
+      "published_at": "2026-06-22T14:59:44.544565",
+      "url": "https://vnexpress.net/de-che-kinh-doanh-khong-lo-cua-elon-musk-5088103.html"
+    },
+    {
+      "id": "36c2479c818c223c",
+      "title": "Phong c\u00e1ch \u0111i\u1ec1u h\u00e0nh 'tinh g\u1ecdn' c\u1ee7a t\u00e2n ch\u1ee7 t\u1ecbch Fed",
+      "source": "VnExpress",
+      "snippet": "Ngay cu\u1ed9c h\u1ecdp ch\u00ednh s\u00e1ch \u0111\u1ea7u ti\u00ean, Ch\u1ee7 t\u1ecbch m\u1edbi c\u1ee7a Fed Kevin Warsh \u0111\u00e3 \u0111\u1ec3 l\u1ea1i d\u1ea5u \u1ea5n ri\u00eang, v\u1edbi phong c\u00e1ch \u0111i\u1ec1u h\u00e0nh tinh g\u1ecdn.",
+      "published_at": "2026-06-22T14:59:44.544578",
+      "url": "https://vnexpress.net/phong-cach-dieu-hanh-tinh-gon-cua-tan-chu-tich-fed-5088086.html"
+    },
+    {
+      "id": "eebbf7822c9ca9d2",
+      "title": "Trang tr\u1ea1i \u0111i\u1ec7n gi\u00f3 l\u1edbn nh\u1ea5t n\u01b0\u1edbc M\u1ef9 ho\u00e0n th\u00e0nh sau hai th\u1eadp k\u1ef7",
+      "source": "VnExpress",
+      "snippet": "Trang tr\u1ea1i \u0111i\u1ec7n gi\u00f3 SunZia g\u1ed3m h\u01a1n 900 turbine, v\u1ed1n \u0111\u1ea7u t\u01b0 11 t\u1ef7 USD, c\u00f4ng su\u1ea5t 3.650 MW, g\u1ea5p ba l\u1ea7n trang tr\u1ea1i l\u1edbn th\u1ee9 hai t\u1ea1i M\u1ef9.",
+      "published_at": "2026-06-22T14:59:44.544589",
+      "url": "https://vnexpress.net/trang-trai-dien-gio-lon-nhat-nuoc-my-hoan-thanh-sau-hai-thap-ky-5088028.html"
+    },
+    {
+      "id": "a475494764f8ae8b",
+      "title": "Gi\u00e1 v\u00e0ng c\u00f3 th\u1ec3 gi\u1ea3m ti\u1ebfp tu\u1ea7n t\u1edbi",
+      "source": "VnExpress",
+      "snippet": "Chuy\u00ean gia Ph\u1ed1 Wall d\u1ef1 b\u00e1o v\u00e0ng th\u1ebf gi\u1edbi ti\u1ebfp t\u1ee5c gi\u1ea3m sau \u0111\u1ed9ng th\u00e1i gi\u1eef nguy\u00ean l\u00e3i su\u1ea5t c\u1ee7a Fed, trong khi nh\u00e0 \u0111\u1ea7u t\u01b0 c\u00e1 nh\u00e2n l\u1ea1c quan.",
+      "published_at": "2026-06-22T14:59:44.544600",
+      "url": "https://vnexpress.net/gia-vang-co-the-giam-tiep-tuan-toi-5088242.html"
+    },
+    {
+      "id": "61ed37d9409bcd0c",
+      "title": "H\u00e0n Qu\u1ed1c lo l\u1ea1m ph\u00e1t do c\u00f4ng ty c\u00f4ng ngh\u1ec7 chi th\u01b0\u1edfng 'kh\u1ee7ng'",
+      "source": "VnExpress",
+      "snippet": "Ng\u00e2n h\u00e0ng Trung \u01b0\u01a1ng H\u00e0n Qu\u1ed1c (BOK) c\u1ea3nh b\u00e1o \u00e1p l\u1ef1c l\u1ea1m ph\u00e1t khi ng\u01b0\u1eddi lao \u0111\u1ed9ng trong ng\u00e0nh c\u00f4ng ngh\u1ec7 nh\u1eadn \u0111\u01b0\u1ee3c l\u01b0\u1ee3ng ti\u1ec1n th\u01b0\u1edfng l\u1edbn.",
+      "published_at": "2026-06-22T14:59:44.544612",
+      "url": "https://vnexpress.net/han-quoc-lo-lam-phat-do-cong-ty-cong-nghe-chi-thuong-khung-5088076.html"
+    },
+    {
+      "id": "fe7bd955c50a73e9",
+      "title": "Techcombank \u0111\u1ed3ng h\u00e0nh trong m\u1ecdi chi ti\u00eau h\u00e0ng ng\u00e0y c\u1ee7a kh\u00e1ch h\u00e0ng",
+      "source": "VnExpress",
+      "snippet": "Ch\u01b0\u01a1ng tr\u00ecnh Kh\u00e1ch h\u00e0ng th\u00e2n thi\u1ebft Techcombank OneU cho ph\u00e9p kh\u00e1ch h\u00e0ng t\u00edch l\u0169y U-Point t\u1eeb c\u00e1c giao d\u1ecbch thanh to\u00e1n h\u00f3a \u0111\u01a1n, chuy\u1ec3n kho\u1ea3n hay chi ti\u00eau th\u1ebb\u2026 \u0111\u1ec3 quy \u0111\u1ed5i th\u00e0nh nhi\u1ec1u \u01b0u \u0111\u00e3i trong cu\u1ed9c s\u1ed1",
+      "published_at": "2026-06-22T14:59:44.544623",
+      "url": "https://vnexpress.net/techcombank-dong-hanh-trong-moi-chi-tieu-hang-ngay-cua-khach-hang-5088244.html"
+    },
+    {
+      "id": "a5ef9c828d3f9bd7",
+      "title": "Chuy\u00ean gia: Th\u1eddi gian s\u1ebd b\u00f9 \u0111\u1eafp sai l\u1ea7m n\u1ebfu mua c\u1ed5 phi\u1ebfu \u0111\u1ea7u ng\u00e0nh",
+      "source": "VnExpress",
+      "snippet": "Theo CEO Qu\u1ef9 R\u1ed3ng Vi\u1ec7t, c\u1ed5 phi\u1ebfu doanh nghi\u1ec7p \u0111\u1ea7u ng\u00e0nh gi\u00fap h\u1ea1n ch\u1ebf r\u1ee7i ro, th\u1eadm ch\u00ed theo th\u1eddi gian c\u00f3 th\u1ec3 b\u00f9 \u0111\u1eafp sai l\u1ea7m v\u1ec1 \u0111i\u1ec3m mua.",
+      "published_at": "2026-06-22T14:59:44.544635",
+      "url": "https://vnexpress.net/chuyen-gia-thoi-gian-se-bu-dap-sai-lam-neu-mua-co-phieu-dau-nganh-5088001.html"
+    },
+    {
+      "id": "b9aedeb4ba62656b",
+      "title": "Th\u1ecfa thu\u1eadn M\u1ef9 - Iran th\u1eafp hy v\u1ecdng tho\u00e1t c\u01a1n 'kh\u00e1t' d\u1ea7u c\u1ee7a ch\u00e2u \u00c1",
+      "source": "VnExpress",
+      "snippet": "Th\u1ecfa thu\u1eadn M\u1ef9 - Iran m\u1edf hy v\u1ecdng n\u1ed1i l\u1ea1i ngu\u1ed3n cung d\u1ea7u eo h\u1eb9p v\u00e0 h\u1ea1 nhi\u1ec7t gi\u00e1 n\u0103ng l\u01b0\u1ee3ng \u1edf ch\u00e2u \u00c1, nh\u01b0ng c\u00f3 \u0111\u1ed9 tr\u1ec5 v\u00e0i th\u00e1ng.",
+      "published_at": "2026-06-22T14:59:44.544645",
+      "url": "https://vnexpress.net/thoa-thuan-my-iran-thap-hy-vong-thoat-con-khat-dau-cua-chau-a-5087984.html"
+    },
+    {
+      "id": "062849325036b722",
+      "title": "EVN \u0111\u1ec1 ngh\u1ecb l\u00e0m r\u00f5 hi\u1ec7u qu\u1ea3 \u0111i\u1ec7n m\u1eb7t tr\u1eddi g\u1eafn pin l\u01b0u tr\u1eef",
+      "source": "VnExpress",
+      "snippet": "EVN \u0111\u1ec1 ngh\u1ecb l\u00e0m r\u00f5 hi\u1ec7u qu\u1ea3 c\u1ee7a c\u00e1c d\u1ef1 \u00e1n \u0111i\u1ec7n m\u1eb7t tr\u1eddi g\u1eafn pin l\u01b0u tr\u1eef (BESS), khi m\u00f4 h\u00ecnh n\u00e0y l\u00e0m t\u0103ng gi\u00e1 \u0111i\u1ec7n nh\u01b0ng l\u1ee3i \u00edch v\u1edbi h\u1ec7 th\u1ed1ng ch\u01b0a r\u00f5.",
+      "published_at": "2026-06-22T14:59:44.544655",
+      "url": "https://vnexpress.net/evn-de-nghi-lam-ro-hieu-qua-dien-mat-troi-gan-pin-luu-tru-5087938.html"
+    },
+    {
+      "id": "81dcbfcacaaf758c",
+      "title": "L\u01b0u l\u01b0\u1ee3ng t\u00e0u d\u1ea7u qua eo bi\u1ec3n Hormuz t\u0103ng",
+      "source": "VnExpress",
+      "snippet": "\u00cdt nh\u1ea5t 20 t\u00e0u d\u1ea7u \u0111\u00e3 \u0111i qua Hormuz t\u1eeb khi M\u1ef9 - Iran m\u1edf c\u1eeda l\u1ea1i eo bi\u1ec3n n\u00e0y, theo h\u00e3ng d\u1eef li\u1ec7u th\u01b0\u01a1ng m\u1ea1i Kpler.",
+      "published_at": "2026-06-22T14:59:44.544666",
+      "url": "https://vnexpress.net/luu-luong-tau-dau-qua-eo-bien-hormuz-tang-5087873.html"
+    },
+    {
+      "id": "d8bc8ad17754b3b9",
+      "title": "Gi\u00e1 v\u00e0ng th\u1ebf gi\u1edbi ch\u01b0a d\u1ee9t \u0111\u00e0 gi\u1ea3m",
+      "source": "VnExpress",
+      "snippet": "M\u1ed7i ounce v\u00e0ng hi\u1ec7n xu\u1ed1ng v\u00f9ng 4.150 USD, ghi nh\u1eadn tu\u1ea7n gi\u1ea3m th\u1ee9 3 li\u00ean ti\u1ebfp, ch\u1ee7 y\u1ebfu do kh\u1ea3 n\u0103ng Fed t\u0103ng l\u00e3i su\u1ea5t.",
+      "published_at": "2026-06-22T14:59:44.544677",
+      "url": "https://vnexpress.net/gia-vang-the-gioi-chua-dut-da-giam-5087867.html"
+    }
+  ],
   "symbol_news": {
     "HPG": [
       {
-        "id": "5e552658aff030c0",
-        "title": "Vingroup tuy\u1ec3n 20.000 lao \u0111\u1ed9ng cho d\u1ef1 \u00e1n khu \u0111\u00f4 th\u1ecb th\u1ec3 thao",
+        "id": "d8bc8ad17754b3b9",
+        "title": "Gi\u00e1 v\u00e0ng th\u1ebf gi\u1edbi ch\u01b0a d\u1ee9t \u0111\u00e0 gi\u1ea3m",
         "source": "VnExpress",
-        "snippet": "T\u1eadp \u0111o\u00e0n Vingroup tuy\u1ec3n h\u01a1n 20.000 lao \u0111\u1ed9ng, \u01b0u ti\u00ean d\u00e2n \u0111\u1ecba ph\u01b0\u01a1ng, l\u00e0m vi\u1ec7c t\u1ea1i d\u1ef1 \u00e1n Khu \u0111\u00f4 th\u1ecb Th\u1ec3 thao Qu\u1ed1c t\u1ebf H\u00e0 N\u1ed9i v\u00e0 c\u00e1c d\u1ef1 \u00e1n kh\u00e1c trong th\u00e0nh ph\u1ed1.",
-        "published_at": "2026-05-17T06:25:42.316411",
-        "url": "https://vnexpress.net/vingroup-tuyen-20-000-lao-dong-cho-du-an-khu-do-thi-the-thao-5074359.html",
+        "snippet": "M\u1ed7i ounce v\u00e0ng hi\u1ec7n xu\u1ed1ng v\u00f9ng 4.150 USD, ghi nh\u1eadn tu\u1ea7n gi\u1ea3m th\u1ee9 3 li\u00ean ti\u1ebfp, ch\u1ee7 y\u1ebfu do kh\u1ea3 n\u0103ng Fed t\u0103ng l\u00e3i su\u1ea5t.",
+        "published_at": "2026-06-22T14:59:44.544677",
+        "url": "https://vnexpress.net/gia-vang-the-gioi-chua-dut-da-giam-5087867.html",
         "scope": "market"
       },
       {
-        "id": "7750aaa8151f672c",
-        "title": "'Doanh nghi\u1ec7p c\u1ea7n lu\u1eadt ch\u01a1i r\u00f5 r\u00e0ng \u0111\u1ec3 ph\u00e1t tri\u1ec3n'",
+        "id": "81dcbfcacaaf758c",
+        "title": "L\u01b0u l\u01b0\u1ee3ng t\u00e0u d\u1ea7u qua eo bi\u1ec3n Hormuz t\u0103ng",
         "source": "VnExpress",
-        "snippet": "\u0110\u1ea1i di\u1ec7n T\u00e2n Hi\u1ec7p Ph\u00e1t cho r\u1eb1ng doanh nghi\u1ec7p t\u01b0 nh\u00e2n s\u1eb5n s\u00e0ng \u0111\u1ea7u t\u01b0 d\u00e0i h\u1ea1n, \u0111\u1ed5i m\u1edbi c\u00f4ng ngh\u1ec7 v\u00e0 c\u1ea1nh tranh b\u1eb1ng n\u0103ng l\u1ef1c th\u1ef1c ch\u1ea5t n\u1ebfu m\u00f4i tr\u01b0\u1eddng kinh doanh minh b\u1ea1ch, \u1ed5n \u0111\u1ecbnh v\u00e0 d\u1ec5 d\u1ef1 \u0111o\u00e1n.",
-        "published_at": "2026-05-17T06:25:42.316400",
-        "url": "https://vnexpress.net/doanh-nghiep-can-luat-choi-ro-rang-de-phat-trien-5074487.html",
+        "snippet": "\u00cdt nh\u1ea5t 20 t\u00e0u d\u1ea7u \u0111\u00e3 \u0111i qua Hormuz t\u1eeb khi M\u1ef9 - Iran m\u1edf c\u1eeda l\u1ea1i eo bi\u1ec3n n\u00e0y, theo h\u00e3ng d\u1eef li\u1ec7u th\u01b0\u01a1ng m\u1ea1i Kpler.",
+        "published_at": "2026-06-22T14:59:44.544666",
+        "url": "https://vnexpress.net/luu-luong-tau-dau-qua-eo-bien-hormuz-tang-5087873.html",
         "scope": "market"
       },
       {
-        "id": "f6a247fae9fe3158",
-        "title": "Green SM h\u1ee3p t\u00e1c 75 doanh nghi\u1ec7p, tri\u1ec3n khai g\u1ea7n 18.500 xe VinFast",
+        "id": "062849325036b722",
+        "title": "EVN \u0111\u1ec1 ngh\u1ecb l\u00e0m r\u00f5 hi\u1ec7u qu\u1ea3 \u0111i\u1ec7n m\u1eb7t tr\u1eddi g\u1eafn pin l\u01b0u tr\u1eef",
         "source": "VnExpress",
-        "snippet": "H\u00e3ng taxi \u0111i\u1ec7n k\u00fd bi\u00ean b\u1ea3n ghi nh\u1edb, th\u1ecfa thu\u1eadn \u0111\u1eb7t c\u1ecdc v\u1edbi c\u00e1c doanh nghi\u1ec7p v\u1eadn t\u1ea3i, s\u1eafp v\u1eadn h\u00e0nh 18.497 \u00f4t\u00f4 \u0111i\u1ec7n VinFast t\u1ea1i th\u1ecb tr\u01b0\u1eddng Philippines, h\u00f4m 15/5.",
-        "published_at": "2026-05-17T06:25:42.316390",
-        "url": "https://vnexpress.net/green-sm-hop-tac-75-doanh-nghiep-trien-khai-gan-18-500-xe-vinfast-5074490.html",
+        "snippet": "EVN \u0111\u1ec1 ngh\u1ecb l\u00e0m r\u00f5 hi\u1ec7u qu\u1ea3 c\u1ee7a c\u00e1c d\u1ef1 \u00e1n \u0111i\u1ec7n m\u1eb7t tr\u1eddi g\u1eafn pin l\u01b0u tr\u1eef (BESS), khi m\u00f4 h\u00ecnh n\u00e0y l\u00e0m t\u0103ng gi\u00e1 \u0111i\u1ec7n nh\u01b0ng l\u1ee3i \u00edch v\u1edbi h\u1ec7 th\u1ed1ng ch\u01b0a r\u00f5.",
+        "published_at": "2026-06-22T14:59:44.544655",
+        "url": "https://vnexpress.net/evn-de-nghi-lam-ro-hieu-qua-dien-mat-troi-gan-pin-luu-tru-5087938.html",
         "scope": "market"
       }
     ],
     "VNM": [
       {
-        "id": "5e552658aff030c0",
-        "title": "Vingroup tuy\u1ec3n 20.000 lao \u0111\u1ed9ng cho d\u1ef1 \u00e1n khu \u0111\u00f4 th\u1ecb th\u1ec3 thao",
+        "id": "d8bc8ad17754b3b9",
+        "title": "Gi\u00e1 v\u00e0ng th\u1ebf gi\u1edbi ch\u01b0a d\u1ee9t \u0111\u00e0 gi\u1ea3m",
         "source": "VnExpress",
-        "snippet": "T\u1eadp \u0111o\u00e0n Vingroup tuy\u1ec3n h\u01a1n 20.000 lao \u0111\u1ed9ng, \u01b0u ti\u00ean d\u00e2n \u0111\u1ecba ph\u01b0\u01a1ng, l\u00e0m vi\u1ec7c t\u1ea1i d\u1ef1 \u00e1n Khu \u0111\u00f4 th\u1ecb Th\u1ec3 thao Qu\u1ed1c t\u1ebf H\u00e0 N\u1ed9i v\u00e0 c\u00e1c d\u1ef1 \u00e1n kh\u00e1c trong th\u00e0nh ph\u1ed1.",
-        "published_at": "2026-05-17T06:25:42.316411",
-        "url": "https://vnexpress.net/vingroup-tuyen-20-000-lao-dong-cho-du-an-khu-do-thi-the-thao-5074359.html",
+        "snippet": "M\u1ed7i ounce v\u00e0ng hi\u1ec7n xu\u1ed1ng v\u00f9ng 4.150 USD, ghi nh\u1eadn tu\u1ea7n gi\u1ea3m th\u1ee9 3 li\u00ean ti\u1ebfp, ch\u1ee7 y\u1ebfu do kh\u1ea3 n\u0103ng Fed t\u0103ng l\u00e3i su\u1ea5t.",
+        "published_at": "2026-06-22T14:59:44.544677",
+        "url": "https://vnexpress.net/gia-vang-the-gioi-chua-dut-da-giam-5087867.html",
         "scope": "market"
       },
       {
-        "id": "7750aaa8151f672c",
-        "title": "'Doanh nghi\u1ec7p c\u1ea7n lu\u1eadt ch\u01a1i r\u00f5 r\u00e0ng \u0111\u1ec3 ph\u00e1t tri\u1ec3n'",
+        "id": "81dcbfcacaaf758c",
+        "title": "L\u01b0u l\u01b0\u1ee3ng t\u00e0u d\u1ea7u qua eo bi\u1ec3n Hormuz t\u0103ng",
         "source": "VnExpress",
-        "snippet": "\u0110\u1ea1i di\u1ec7n T\u00e2n Hi\u1ec7p Ph\u00e1t cho r\u1eb1ng doanh nghi\u1ec7p t\u01b0 nh\u00e2n s\u1eb5n s\u00e0ng \u0111\u1ea7u t\u01b0 d\u00e0i h\u1ea1n, \u0111\u1ed5i m\u1edbi c\u00f4ng ngh\u1ec7 v\u00e0 c\u1ea1nh tranh b\u1eb1ng n\u0103ng l\u1ef1c th\u1ef1c ch\u1ea5t n\u1ebfu m\u00f4i tr\u01b0\u1eddng kinh doanh minh b\u1ea1ch, \u1ed5n \u0111\u1ecbnh v\u00e0 d\u1ec5 d\u1ef1 \u0111o\u00e1n.",
-        "published_at": "2026-05-17T06:25:42.316400",
-        "url": "https://vnexpress.net/doanh-nghiep-can-luat-choi-ro-rang-de-phat-trien-5074487.html",
+        "snippet": "\u00cdt nh\u1ea5t 20 t\u00e0u d\u1ea7u \u0111\u00e3 \u0111i qua Hormuz t\u1eeb khi M\u1ef9 - Iran m\u1edf c\u1eeda l\u1ea1i eo bi\u1ec3n n\u00e0y, theo h\u00e3ng d\u1eef li\u1ec7u th\u01b0\u01a1ng m\u1ea1i Kpler.",
+        "published_at": "2026-06-22T14:59:44.544666",
+        "url": "https://vnexpress.net/luu-luong-tau-dau-qua-eo-bien-hormuz-tang-5087873.html",
         "scope": "market"
       },
       {
-        "id": "f6a247fae9fe3158",
-        "title": "Green SM h\u1ee3p t\u00e1c 75 doanh nghi\u1ec7p, tri\u1ec3n khai g\u1ea7n 18.500 xe VinFast",
+        "id": "062849325036b722",
+        "title": "EVN \u0111\u1ec1 ngh\u1ecb l\u00e0m r\u00f5 hi\u1ec7u qu\u1ea3 \u0111i\u1ec7n m\u1eb7t tr\u1eddi g\u1eafn pin l\u01b0u tr\u1eef",
         "source": "VnExpress",
-        "snippet": "H\u00e3ng taxi \u0111i\u1ec7n k\u00fd bi\u00ean b\u1ea3n ghi nh\u1edb, th\u1ecfa thu\u1eadn \u0111\u1eb7t c\u1ecdc v\u1edbi c\u00e1c doanh nghi\u1ec7p v\u1eadn t\u1ea3i, s\u1eafp v\u1eadn h\u00e0nh 18.497 \u00f4t\u00f4 \u0111i\u1ec7n VinFast t\u1ea1i th\u1ecb tr\u01b0\u1eddng Philippines, h\u00f4m 15/5.",
-        "published_at": "2026-05-17T06:25:42.316390",
-        "url": "https://vnexpress.net/green-sm-hop-tac-75-doanh-nghiep-trien-khai-gan-18-500-xe-vinfast-5074490.html",
+        "snippet": "EVN \u0111\u1ec1 ngh\u1ecb l\u00e0m r\u00f5 hi\u1ec7u qu\u1ea3 c\u1ee7a c\u00e1c d\u1ef1 \u00e1n \u0111i\u1ec7n m\u1eb7t tr\u1eddi g\u1eafn pin l\u01b0u tr\u1eef (BESS), khi m\u00f4 h\u00ecnh n\u00e0y l\u00e0m t\u0103ng gi\u00e1 \u0111i\u1ec7n nh\u01b0ng l\u1ee3i \u00edch v\u1edbi h\u1ec7 th\u1ed1ng ch\u01b0a r\u00f5.",
+        "published_at": "2026-06-22T14:59:44.544655",
+        "url": "https://vnexpress.net/evn-de-nghi-lam-ro-hieu-qua-dien-mat-troi-gan-pin-luu-tru-5087938.html",
         "scope": "market"
       }
     ],
     "FPT": [
       {
-        "id": "64968e19064568fa",
-        "title": "Ch\u1ee7 t\u1ecbch FPT Telecom l\u00e0m s\u1ebfp GTEL",
+        "id": "d8bc8ad17754b3b9",
+        "title": "Gi\u00e1 v\u00e0ng th\u1ebf gi\u1edbi ch\u01b0a d\u1ee9t \u0111\u00e0 gi\u1ea3m",
         "source": "VnExpress",
-        "snippet": "Ch\u1ee7 t\u1ecbch FPT Telecom v\u1eeba \u0111\u01b0\u1ee3c b\u1ed5 nhi\u1ec7m gi\u1eef ch\u1ee9c Ph\u00f3 t\u1ed5ng gi\u00e1m \u0111\u1ed1c T\u1ed5ng c\u00f4ng ty C\u00f4ng ngh\u1ec7 - Vi\u1ec5n th\u00f4ng To\u00e0n c\u1ea7u (GTEL) thu\u1ed9c B\u1ed9 C\u00f4ng an.",
-        "published_at": "2026-05-17T06:25:42.316263",
-        "url": "https://vnexpress.net/chu-tich-fpt-telecom-lam-sep-gtel-5074476.html",
-        "scope": "symbol"
-      },
-      {
-        "id": "5e552658aff030c0",
-        "title": "Vingroup tuy\u1ec3n 20.000 lao \u0111\u1ed9ng cho d\u1ef1 \u00e1n khu \u0111\u00f4 th\u1ecb th\u1ec3 thao",
-        "source": "VnExpress",
-        "snippet": "T\u1eadp \u0111o\u00e0n Vingroup tuy\u1ec3n h\u01a1n 20.000 lao \u0111\u1ed9ng, \u01b0u ti\u00ean d\u00e2n \u0111\u1ecba ph\u01b0\u01a1ng, l\u00e0m vi\u1ec7c t\u1ea1i d\u1ef1 \u00e1n Khu \u0111\u00f4 th\u1ecb Th\u1ec3 thao Qu\u1ed1c t\u1ebf H\u00e0 N\u1ed9i v\u00e0 c\u00e1c d\u1ef1 \u00e1n kh\u00e1c trong th\u00e0nh ph\u1ed1.",
-        "published_at": "2026-05-17T06:25:42.316411",
-        "url": "https://vnexpress.net/vingroup-tuyen-20-000-lao-dong-cho-du-an-khu-do-thi-the-thao-5074359.html",
+        "snippet": "M\u1ed7i ounce v\u00e0ng hi\u1ec7n xu\u1ed1ng v\u00f9ng 4.150 USD, ghi nh\u1eadn tu\u1ea7n gi\u1ea3m th\u1ee9 3 li\u00ean ti\u1ebfp, ch\u1ee7 y\u1ebfu do kh\u1ea3 n\u0103ng Fed t\u0103ng l\u00e3i su\u1ea5t.",
+        "published_at": "2026-06-22T14:59:44.544677",
+        "url": "https://vnexpress.net/gia-vang-the-gioi-chua-dut-da-giam-5087867.html",
         "scope": "market"
       },
       {
-        "id": "7750aaa8151f672c",
-        "title": "'Doanh nghi\u1ec7p c\u1ea7n lu\u1eadt ch\u01a1i r\u00f5 r\u00e0ng \u0111\u1ec3 ph\u00e1t tri\u1ec3n'",
+        "id": "81dcbfcacaaf758c",
+        "title": "L\u01b0u l\u01b0\u1ee3ng t\u00e0u d\u1ea7u qua eo bi\u1ec3n Hormuz t\u0103ng",
         "source": "VnExpress",
-        "snippet": "\u0110\u1ea1i di\u1ec7n T\u00e2n Hi\u1ec7p Ph\u00e1t cho r\u1eb1ng doanh nghi\u1ec7p t\u01b0 nh\u00e2n s\u1eb5n s\u00e0ng \u0111\u1ea7u t\u01b0 d\u00e0i h\u1ea1n, \u0111\u1ed5i m\u1edbi c\u00f4ng ngh\u1ec7 v\u00e0 c\u1ea1nh tranh b\u1eb1ng n\u0103ng l\u1ef1c th\u1ef1c ch\u1ea5t n\u1ebfu m\u00f4i tr\u01b0\u1eddng kinh doanh minh b\u1ea1ch, \u1ed5n \u0111\u1ecbnh v\u00e0 d\u1ec5 d\u1ef1 \u0111o\u00e1n.",
-        "published_at": "2026-05-17T06:25:42.316400",
-        "url": "https://vnexpress.net/doanh-nghiep-can-luat-choi-ro-rang-de-phat-trien-5074487.html",
+        "snippet": "\u00cdt nh\u1ea5t 20 t\u00e0u d\u1ea7u \u0111\u00e3 \u0111i qua Hormuz t\u1eeb khi M\u1ef9 - Iran m\u1edf c\u1eeda l\u1ea1i eo bi\u1ec3n n\u00e0y, theo h\u00e3ng d\u1eef li\u1ec7u th\u01b0\u01a1ng m\u1ea1i Kpler.",
+        "published_at": "2026-06-22T14:59:44.544666",
+        "url": "https://vnexpress.net/luu-luong-tau-dau-qua-eo-bien-hormuz-tang-5087873.html",
         "scope": "market"
       },
       {
-        "id": "f6a247fae9fe3158",
-        "title": "Green SM h\u1ee3p t\u00e1c 75 doanh nghi\u1ec7p, tri\u1ec3n khai g\u1ea7n 18.500 xe VinFast",
+        "id": "062849325036b722",
+        "title": "EVN \u0111\u1ec1 ngh\u1ecb l\u00e0m r\u00f5 hi\u1ec7u qu\u1ea3 \u0111i\u1ec7n m\u1eb7t tr\u1eddi g\u1eafn pin l\u01b0u tr\u1eef",
         "source": "VnExpress",
-        "snippet": "H\u00e3ng taxi \u0111i\u1ec7n k\u00fd bi\u00ean b\u1ea3n ghi nh\u1edb, th\u1ecfa thu\u1eadn \u0111\u1eb7t c\u1ecdc v\u1edbi c\u00e1c doanh nghi\u1ec7p v\u1eadn t\u1ea3i, s\u1eafp v\u1eadn h\u00e0nh 18.497 \u00f4t\u00f4 \u0111i\u1ec7n VinFast t\u1ea1i th\u1ecb tr\u01b0\u1eddng Philippines, h\u00f4m 15/5.",
-        "published_at": "2026-05-17T06:25:42.316390",
-        "url": "https://vnexpress.net/green-sm-hop-tac-75-doanh-nghiep-trien-khai-gan-18-500-xe-vinfast-5074490.html",
+        "snippet": "EVN \u0111\u1ec1 ngh\u1ecb l\u00e0m r\u00f5 hi\u1ec7u qu\u1ea3 c\u1ee7a c\u00e1c d\u1ef1 \u00e1n \u0111i\u1ec7n m\u1eb7t tr\u1eddi g\u1eafn pin l\u01b0u tr\u1eef (BESS), khi m\u00f4 h\u00ecnh n\u00e0y l\u00e0m t\u0103ng gi\u00e1 \u0111i\u1ec7n nh\u01b0ng l\u1ee3i \u00edch v\u1edbi h\u1ec7 th\u1ed1ng ch\u01b0a r\u00f5.",
+        "published_at": "2026-06-22T14:59:44.544655",
+        "url": "https://vnexpress.net/evn-de-nghi-lam-ro-hieu-qua-dien-mat-troi-gan-pin-luu-tru-5087938.html",
         "scope": "market"
       }
     ],
     "MWG": [
       {
-        "id": "5e552658aff030c0",
-        "title": "Vingroup tuy\u1ec3n 20.000 lao \u0111\u1ed9ng cho d\u1ef1 \u00e1n khu \u0111\u00f4 th\u1ecb th\u1ec3 thao",
+        "id": "d8bc8ad17754b3b9",
+        "title": "Gi\u00e1 v\u00e0ng th\u1ebf gi\u1edbi ch\u01b0a d\u1ee9t \u0111\u00e0 gi\u1ea3m",
         "source": "VnExpress",
-        "snippet": "T\u1eadp \u0111o\u00e0n Vingroup tuy\u1ec3n h\u01a1n 20.000 lao \u0111\u1ed9ng, \u01b0u ti\u00ean d\u00e2n \u0111\u1ecba ph\u01b0\u01a1ng, l\u00e0m vi\u1ec7c t\u1ea1i d\u1ef1 \u00e1n Khu \u0111\u00f4 th\u1ecb Th\u1ec3 thao Qu\u1ed1c t\u1ebf H\u00e0 N\u1ed9i v\u00e0 c\u00e1c d\u1ef1 \u00e1n kh\u00e1c trong th\u00e0nh ph\u1ed1.",
-        "published_at": "2026-05-17T06:25:42.316411",
-        "url": "https://vnexpress.net/vingroup-tuyen-20-000-lao-dong-cho-du-an-khu-do-thi-the-thao-5074359.html",
+        "snippet": "M\u1ed7i ounce v\u00e0ng hi\u1ec7n xu\u1ed1ng v\u00f9ng 4.150 USD, ghi nh\u1eadn tu\u1ea7n gi\u1ea3m th\u1ee9 3 li\u00ean ti\u1ebfp, ch\u1ee7 y\u1ebfu do kh\u1ea3 n\u0103ng Fed t\u0103ng l\u00e3i su\u1ea5t.",
+        "published_at": "2026-06-22T14:59:44.544677",
+        "url": "https://vnexpress.net/gia-vang-the-gioi-chua-dut-da-giam-5087867.html",
         "scope": "market"
       },
       {
-        "id": "7750aaa8151f672c",
-        "title": "'Doanh nghi\u1ec7p c\u1ea7n lu\u1eadt ch\u01a1i r\u00f5 r\u00e0ng \u0111\u1ec3 ph\u00e1t tri\u1ec3n'",
+        "id": "81dcbfcacaaf758c",
+        "title": "L\u01b0u l\u01b0\u1ee3ng t\u00e0u d\u1ea7u qua eo bi\u1ec3n Hormuz t\u0103ng",
         "source": "VnExpress",
-        "snippet": "\u0110\u1ea1i di\u1ec7n T\u00e2n Hi\u1ec7p Ph\u00e1t cho r\u1eb1ng doanh nghi\u1ec7p t\u01b0 nh\u00e2n s\u1eb5n s\u00e0ng \u0111\u1ea7u t\u01b0 d\u00e0i h\u1ea1n, \u0111\u1ed5i m\u1edbi c\u00f4ng ngh\u1ec7 v\u00e0 c\u1ea1nh tranh b\u1eb1ng n\u0103ng l\u1ef1c th\u1ef1c ch\u1ea5t n\u1ebfu m\u00f4i tr\u01b0\u1eddng kinh doanh minh b\u1ea1ch, \u1ed5n \u0111\u1ecbnh v\u00e0 d\u1ec5 d\u1ef1 \u0111o\u00e1n.",
-        "published_at": "2026-05-17T06:25:42.316400",
-        "url": "https://vnexpress.net/doanh-nghiep-can-luat-choi-ro-rang-de-phat-trien-5074487.html",
+        "snippet": "\u00cdt nh\u1ea5t 20 t\u00e0u d\u1ea7u \u0111\u00e3 \u0111i qua Hormuz t\u1eeb khi M\u1ef9 - Iran m\u1edf c\u1eeda l\u1ea1i eo bi\u1ec3n n\u00e0y, theo h\u00e3ng d\u1eef li\u1ec7u th\u01b0\u01a1ng m\u1ea1i Kpler.",
+        "published_at": "2026-06-22T14:59:44.544666",
+        "url": "https://vnexpress.net/luu-luong-tau-dau-qua-eo-bien-hormuz-tang-5087873.html",
         "scope": "market"
       },
       {
-        "id": "f6a247fae9fe3158",
-        "title": "Green SM h\u1ee3p t\u00e1c 75 doanh nghi\u1ec7p, tri\u1ec3n khai g\u1ea7n 18.500 xe VinFast",
+        "id": "062849325036b722",
+        "title": "EVN \u0111\u1ec1 ngh\u1ecb l\u00e0m r\u00f5 hi\u1ec7u qu\u1ea3 \u0111i\u1ec7n m\u1eb7t tr\u1eddi g\u1eafn pin l\u01b0u tr\u1eef",
         "source": "VnExpress",
-        "snippet": "H\u00e3ng taxi \u0111i\u1ec7n k\u00fd bi\u00ean b\u1ea3n ghi nh\u1edb, th\u1ecfa thu\u1eadn \u0111\u1eb7t c\u1ecdc v\u1edbi c\u00e1c doanh nghi\u1ec7p v\u1eadn t\u1ea3i, s\u1eafp v\u1eadn h\u00e0nh 18.497 \u00f4t\u00f4 \u0111i\u1ec7n VinFast t\u1ea1i th\u1ecb tr\u01b0\u1eddng Philippines, h\u00f4m 15/5.",
-        "published_at": "2026-05-17T06:25:42.316390",
-        "url": "https://vnexpress.net/green-sm-hop-tac-75-doanh-nghiep-trien-khai-gan-18-500-xe-vinfast-5074490.html",
+        "snippet": "EVN \u0111\u1ec1 ngh\u1ecb l\u00e0m r\u00f5 hi\u1ec7u qu\u1ea3 c\u1ee7a c\u00e1c d\u1ef1 \u00e1n \u0111i\u1ec7n m\u1eb7t tr\u1eddi g\u1eafn pin l\u01b0u tr\u1eef (BESS), khi m\u00f4 h\u00ecnh n\u00e0y l\u00e0m t\u0103ng gi\u00e1 \u0111i\u1ec7n nh\u01b0ng l\u1ee3i \u00edch v\u1edbi h\u1ec7 th\u1ed1ng ch\u01b0a r\u00f5.",
+        "published_at": "2026-06-22T14:59:44.544655",
+        "url": "https://vnexpress.net/evn-de-nghi-lam-ro-hieu-qua-dien-mat-troi-gan-pin-luu-tru-5087938.html",
         "scope": "market"
       }
     ],
     "VCB": [
       {
-        "id": "5e552658aff030c0",
-        "title": "Vingroup tuy\u1ec3n 20.000 lao \u0111\u1ed9ng cho d\u1ef1 \u00e1n khu \u0111\u00f4 th\u1ecb th\u1ec3 thao",
+        "id": "d8bc8ad17754b3b9",
+        "title": "Gi\u00e1 v\u00e0ng th\u1ebf gi\u1edbi ch\u01b0a d\u1ee9t \u0111\u00e0 gi\u1ea3m",
         "source": "VnExpress",
-        "snippet": "T\u1eadp \u0111o\u00e0n Vingroup tuy\u1ec3n h\u01a1n 20.000 lao \u0111\u1ed9ng, \u01b0u ti\u00ean d\u00e2n \u0111\u1ecba ph\u01b0\u01a1ng, l\u00e0m vi\u1ec7c t\u1ea1i d\u1ef1 \u00e1n Khu \u0111\u00f4 th\u1ecb Th\u1ec3 thao Qu\u1ed1c t\u1ebf H\u00e0 N\u1ed9i v\u00e0 c\u00e1c d\u1ef1 \u00e1n kh\u00e1c trong th\u00e0nh ph\u1ed1.",
-        "published_at": "2026-05-17T06:25:42.316411",
-        "url": "https://vnexpress.net/vingroup-tuyen-20-000-lao-dong-cho-du-an-khu-do-thi-the-thao-5074359.html",
+        "snippet": "M\u1ed7i ounce v\u00e0ng hi\u1ec7n xu\u1ed1ng v\u00f9ng 4.150 USD, ghi nh\u1eadn tu\u1ea7n gi\u1ea3m th\u1ee9 3 li\u00ean ti\u1ebfp, ch\u1ee7 y\u1ebfu do kh\u1ea3 n\u0103ng Fed t\u0103ng l\u00e3i su\u1ea5t.",
+        "published_at": "2026-06-22T14:59:44.544677",
+        "url": "https://vnexpress.net/gia-vang-the-gioi-chua-dut-da-giam-5087867.html",
         "scope": "market"
       },
       {
-        "id": "7750aaa8151f672c",
-        "title": "'Doanh nghi\u1ec7p c\u1ea7n lu\u1eadt ch\u01a1i r\u00f5 r\u00e0ng \u0111\u1ec3 ph\u00e1t tri\u1ec3n'",
+        "id": "81dcbfcacaaf758c",
+        "title": "L\u01b0u l\u01b0\u1ee3ng t\u00e0u d\u1ea7u qua eo bi\u1ec3n Hormuz t\u0103ng",
         "source": "VnExpress",
-        "snippet": "\u0110\u1ea1i di\u1ec7n T\u00e2n Hi\u1ec7p Ph\u00e1t cho r\u1eb1ng doanh nghi\u1ec7p t\u01b0 nh\u00e2n s\u1eb5n s\u00e0ng \u0111\u1ea7u t\u01b0 d\u00e0i h\u1ea1n, \u0111\u1ed5i m\u1edbi c\u00f4ng ngh\u1ec7 v\u00e0 c\u1ea1nh tranh b\u1eb1ng n\u0103ng l\u1ef1c th\u1ef1c ch\u1ea5t n\u1ebfu m\u00f4i tr\u01b0\u1eddng kinh doanh minh b\u1ea1ch, \u1ed5n \u0111\u1ecbnh v\u00e0 d\u1ec5 d\u1ef1 \u0111o\u00e1n.",
-        "published_at": "2026-05-17T06:25:42.316400",
-        "url": "https://vnexpress.net/doanh-nghiep-can-luat-choi-ro-rang-de-phat-trien-5074487.html",
+        "snippet": "\u00cdt nh\u1ea5t 20 t\u00e0u d\u1ea7u \u0111\u00e3 \u0111i qua Hormuz t\u1eeb khi M\u1ef9 - Iran m\u1edf c\u1eeda l\u1ea1i eo bi\u1ec3n n\u00e0y, theo h\u00e3ng d\u1eef li\u1ec7u th\u01b0\u01a1ng m\u1ea1i Kpler.",
+        "published_at": "2026-06-22T14:59:44.544666",
+        "url": "https://vnexpress.net/luu-luong-tau-dau-qua-eo-bien-hormuz-tang-5087873.html",
         "scope": "market"
       },
       {
-        "id": "f6a247fae9fe3158",
-        "title": "Green SM h\u1ee3p t\u00e1c 75 doanh nghi\u1ec7p, tri\u1ec3n khai g\u1ea7n 18.500 xe VinFast",
+        "id": "062849325036b722",
+        "title": "EVN \u0111\u1ec1 ngh\u1ecb l\u00e0m r\u00f5 hi\u1ec7u qu\u1ea3 \u0111i\u1ec7n m\u1eb7t tr\u1eddi g\u1eafn pin l\u01b0u tr\u1eef",
         "source": "VnExpress",
-        "snippet": "H\u00e3ng taxi \u0111i\u1ec7n k\u00fd bi\u00ean b\u1ea3n ghi nh\u1edb, th\u1ecfa thu\u1eadn \u0111\u1eb7t c\u1ecdc v\u1edbi c\u00e1c doanh nghi\u1ec7p v\u1eadn t\u1ea3i, s\u1eafp v\u1eadn h\u00e0nh 18.497 \u00f4t\u00f4 \u0111i\u1ec7n VinFast t\u1ea1i th\u1ecb tr\u01b0\u1eddng Philippines, h\u00f4m 15/5.",
-        "published_at": "2026-05-17T06:25:42.316390",
-        "url": "https://vnexpress.net/green-sm-hop-tac-75-doanh-nghiep-trien-khai-gan-18-500-xe-vinfast-5074490.html",
+        "snippet": "EVN \u0111\u1ec1 ngh\u1ecb l\u00e0m r\u00f5 hi\u1ec7u qu\u1ea3 c\u1ee7a c\u00e1c d\u1ef1 \u00e1n \u0111i\u1ec7n m\u1eb7t tr\u1eddi g\u1eafn pin l\u01b0u tr\u1eef (BESS), khi m\u00f4 h\u00ecnh n\u00e0y l\u00e0m t\u0103ng gi\u00e1 \u0111i\u1ec7n nh\u01b0ng l\u1ee3i \u00edch v\u1edbi h\u1ec7 th\u1ed1ng ch\u01b0a r\u00f5.",
+        "published_at": "2026-06-22T14:59:44.544655",
+        "url": "https://vnexpress.net/evn-de-nghi-lam-ro-hieu-qua-dien-mat-troi-gan-pin-luu-tru-5087938.html",
         "scope": "market"
       }
     ],
     "TCB": [
       {
-        "id": "5e552658aff030c0",
-        "title": "Vingroup tuy\u1ec3n 20.000 lao \u0111\u1ed9ng cho d\u1ef1 \u00e1n khu \u0111\u00f4 th\u1ecb th\u1ec3 thao",
+        "id": "fe7bd955c50a73e9",
+        "title": "Techcombank \u0111\u1ed3ng h\u00e0nh trong m\u1ecdi chi ti\u00eau h\u00e0ng ng\u00e0y c\u1ee7a kh\u00e1ch h\u00e0ng",
         "source": "VnExpress",
-        "snippet": "T\u1eadp \u0111o\u00e0n Vingroup tuy\u1ec3n h\u01a1n 20.000 lao \u0111\u1ed9ng, \u01b0u ti\u00ean d\u00e2n \u0111\u1ecba ph\u01b0\u01a1ng, l\u00e0m vi\u1ec7c t\u1ea1i d\u1ef1 \u00e1n Khu \u0111\u00f4 th\u1ecb Th\u1ec3 thao Qu\u1ed1c t\u1ebf H\u00e0 N\u1ed9i v\u00e0 c\u00e1c d\u1ef1 \u00e1n kh\u00e1c trong th\u00e0nh ph\u1ed1.",
-        "published_at": "2026-05-17T06:25:42.316411",
-        "url": "https://vnexpress.net/vingroup-tuyen-20-000-lao-dong-cho-du-an-khu-do-thi-the-thao-5074359.html",
+        "snippet": "Ch\u01b0\u01a1ng tr\u00ecnh Kh\u00e1ch h\u00e0ng th\u00e2n thi\u1ebft Techcombank OneU cho ph\u00e9p kh\u00e1ch h\u00e0ng t\u00edch l\u0169y U-Point t\u1eeb c\u00e1c giao d\u1ecbch thanh to\u00e1n h\u00f3a \u0111\u01a1n, chuy\u1ec3n kho\u1ea3n hay chi ti\u00eau th\u1ebb\u2026 \u0111\u1ec3 quy \u0111\u1ed5i th\u00e0nh nhi\u1ec1u \u01b0u \u0111\u00e3i trong cu\u1ed9c s\u1ed1",
+        "published_at": "2026-06-22T14:59:44.544623",
+        "url": "https://vnexpress.net/techcombank-dong-hanh-trong-moi-chi-tieu-hang-ngay-cua-khach-hang-5088244.html",
+        "scope": "symbol"
+      },
+      {
+        "id": "d8bc8ad17754b3b9",
+        "title": "Gi\u00e1 v\u00e0ng th\u1ebf gi\u1edbi ch\u01b0a d\u1ee9t \u0111\u00e0 gi\u1ea3m",
+        "source": "VnExpress",
+        "snippet": "M\u1ed7i ounce v\u00e0ng hi\u1ec7n xu\u1ed1ng v\u00f9ng 4.150 USD, ghi nh\u1eadn tu\u1ea7n gi\u1ea3m th\u1ee9 3 li\u00ean ti\u1ebfp, ch\u1ee7 y\u1ebfu do kh\u1ea3 n\u0103ng Fed t\u0103ng l\u00e3i su\u1ea5t.",
+        "published_at": "2026-06-22T14:59:44.544677",
+        "url": "https://vnexpress.net/gia-vang-the-gioi-chua-dut-da-giam-5087867.html",
         "scope": "market"
       },
       {
-        "id": "7750aaa8151f672c",
-        "title": "'Doanh nghi\u1ec7p c\u1ea7n lu\u1eadt ch\u01a1i r\u00f5 r\u00e0ng \u0111\u1ec3 ph\u00e1t tri\u1ec3n'",
+        "id": "81dcbfcacaaf758c",
+        "title": "L\u01b0u l\u01b0\u1ee3ng t\u00e0u d\u1ea7u qua eo bi\u1ec3n Hormuz t\u0103ng",
         "source": "VnExpress",
-        "snippet": "\u0110\u1ea1i di\u1ec7n T\u00e2n Hi\u1ec7p Ph\u00e1t cho r\u1eb1ng doanh nghi\u1ec7p t\u01b0 nh\u00e2n s\u1eb5n s\u00e0ng \u0111\u1ea7u t\u01b0 d\u00e0i h\u1ea1n, \u0111\u1ed5i m\u1edbi c\u00f4ng ngh\u1ec7 v\u00e0 c\u1ea1nh tranh b\u1eb1ng n\u0103ng l\u1ef1c th\u1ef1c ch\u1ea5t n\u1ebfu m\u00f4i tr\u01b0\u1eddng kinh doanh minh b\u1ea1ch, \u1ed5n \u0111\u1ecbnh v\u00e0 d\u1ec5 d\u1ef1 \u0111o\u00e1n.",
-        "published_at": "2026-05-17T06:25:42.316400",
-        "url": "https://vnexpress.net/doanh-nghiep-can-luat-choi-ro-rang-de-phat-trien-5074487.html",
+        "snippet": "\u00cdt nh\u1ea5t 20 t\u00e0u d\u1ea7u \u0111\u00e3 \u0111i qua Hormuz t\u1eeb khi M\u1ef9 - Iran m\u1edf c\u1eeda l\u1ea1i eo bi\u1ec3n n\u00e0y, theo h\u00e3ng d\u1eef li\u1ec7u th\u01b0\u01a1ng m\u1ea1i Kpler.",
+        "published_at": "2026-06-22T14:59:44.544666",
+        "url": "https://vnexpress.net/luu-luong-tau-dau-qua-eo-bien-hormuz-tang-5087873.html",
         "scope": "market"
       },
       {
-        "id": "f6a247fae9fe3158",
-        "title": "Green SM h\u1ee3p t\u00e1c 75 doanh nghi\u1ec7p, tri\u1ec3n khai g\u1ea7n 18.500 xe VinFast",
+        "id": "062849325036b722",
+        "title": "EVN \u0111\u1ec1 ngh\u1ecb l\u00e0m r\u00f5 hi\u1ec7u qu\u1ea3 \u0111i\u1ec7n m\u1eb7t tr\u1eddi g\u1eafn pin l\u01b0u tr\u1eef",
         "source": "VnExpress",
-        "snippet": "H\u00e3ng taxi \u0111i\u1ec7n k\u00fd bi\u00ean b\u1ea3n ghi nh\u1edb, th\u1ecfa thu\u1eadn \u0111\u1eb7t c\u1ecdc v\u1edbi c\u00e1c doanh nghi\u1ec7p v\u1eadn t\u1ea3i, s\u1eafp v\u1eadn h\u00e0nh 18.497 \u00f4t\u00f4 \u0111i\u1ec7n VinFast t\u1ea1i th\u1ecb tr\u01b0\u1eddng Philippines, h\u00f4m 15/5.",
-        "published_at": "2026-05-17T06:25:42.316390",
-        "url": "https://vnexpress.net/green-sm-hop-tac-75-doanh-nghiep-trien-khai-gan-18-500-xe-vinfast-5074490.html",
+        "snippet": "EVN \u0111\u1ec1 ngh\u1ecb l\u00e0m r\u00f5 hi\u1ec7u qu\u1ea3 c\u1ee7a c\u00e1c d\u1ef1 \u00e1n \u0111i\u1ec7n m\u1eb7t tr\u1eddi g\u1eafn pin l\u01b0u tr\u1eef (BESS), khi m\u00f4 h\u00ecnh n\u00e0y l\u00e0m t\u0103ng gi\u00e1 \u0111i\u1ec7n nh\u01b0ng l\u1ee3i \u00edch v\u1edbi h\u1ec7 th\u1ed1ng ch\u01b0a r\u00f5.",
+        "published_at": "2026-06-22T14:59:44.544655",
+        "url": "https://vnexpress.net/evn-de-nghi-lam-ro-hieu-qua-dien-mat-troi-gan-pin-luu-tru-5087938.html",
         "scope": "market"
       }
     ],
     "MBB": [
       {
-        "id": "5e552658aff030c0",
-        "title": "Vingroup tuy\u1ec3n 20.000 lao \u0111\u1ed9ng cho d\u1ef1 \u00e1n khu \u0111\u00f4 th\u1ecb th\u1ec3 thao",
+        "id": "d8bc8ad17754b3b9",
+        "title": "Gi\u00e1 v\u00e0ng th\u1ebf gi\u1edbi ch\u01b0a d\u1ee9t \u0111\u00e0 gi\u1ea3m",
         "source": "VnExpress",
-        "snippet": "T\u1eadp \u0111o\u00e0n Vingroup tuy\u1ec3n h\u01a1n 20.000 lao \u0111\u1ed9ng, \u01b0u ti\u00ean d\u00e2n \u0111\u1ecba ph\u01b0\u01a1ng, l\u00e0m vi\u1ec7c t\u1ea1i d\u1ef1 \u00e1n Khu \u0111\u00f4 th\u1ecb Th\u1ec3 thao Qu\u1ed1c t\u1ebf H\u00e0 N\u1ed9i v\u00e0 c\u00e1c d\u1ef1 \u00e1n kh\u00e1c trong th\u00e0nh ph\u1ed1.",
-        "published_at": "2026-05-17T06:25:42.316411",
-        "url": "https://vnexpress.net/vingroup-tuyen-20-000-lao-dong-cho-du-an-khu-do-thi-the-thao-5074359.html",
+        "snippet": "M\u1ed7i ounce v\u00e0ng hi\u1ec7n xu\u1ed1ng v\u00f9ng 4.150 USD, ghi nh\u1eadn tu\u1ea7n gi\u1ea3m th\u1ee9 3 li\u00ean ti\u1ebfp, ch\u1ee7 y\u1ebfu do kh\u1ea3 n\u0103ng Fed t\u0103ng l\u00e3i su\u1ea5t.",
+        "published_at": "2026-06-22T14:59:44.544677",
+        "url": "https://vnexpress.net/gia-vang-the-gioi-chua-dut-da-giam-5087867.html",
         "scope": "market"
       },
       {
-        "id": "7750aaa8151f672c",
-        "title": "'Doanh nghi\u1ec7p c\u1ea7n lu\u1eadt ch\u01a1i r\u00f5 r\u00e0ng \u0111\u1ec3 ph\u00e1t tri\u1ec3n'",
+        "id": "81dcbfcacaaf758c",
+        "title": "L\u01b0u l\u01b0\u1ee3ng t\u00e0u d\u1ea7u qua eo bi\u1ec3n Hormuz t\u0103ng",
         "source": "VnExpress",
-        "snippet": "\u0110\u1ea1i di\u1ec7n T\u00e2n Hi\u1ec7p Ph\u00e1t cho r\u1eb1ng doanh nghi\u1ec7p t\u01b0 nh\u00e2n s\u1eb5n s\u00e0ng \u0111\u1ea7u t\u01b0 d\u00e0i h\u1ea1n, \u0111\u1ed5i m\u1edbi c\u00f4ng ngh\u1ec7 v\u00e0 c\u1ea1nh tranh b\u1eb1ng n\u0103ng l\u1ef1c th\u1ef1c ch\u1ea5t n\u1ebfu m\u00f4i tr\u01b0\u1eddng kinh doanh minh b\u1ea1ch, \u1ed5n \u0111\u1ecbnh v\u00e0 d\u1ec5 d\u1ef1 \u0111o\u00e1n.",
-        "published_at": "2026-05-17T06:25:42.316400",
-        "url": "https://vnexpress.net/doanh-nghiep-can-luat-choi-ro-rang-de-phat-trien-5074487.html",
+        "snippet": "\u00cdt nh\u1ea5t 20 t\u00e0u d\u1ea7u \u0111\u00e3 \u0111i qua Hormuz t\u1eeb khi M\u1ef9 - Iran m\u1edf c\u1eeda l\u1ea1i eo bi\u1ec3n n\u00e0y, theo h\u00e3ng d\u1eef li\u1ec7u th\u01b0\u01a1ng m\u1ea1i Kpler.",
+        "published_at": "2026-06-22T14:59:44.544666",
+        "url": "https://vnexpress.net/luu-luong-tau-dau-qua-eo-bien-hormuz-tang-5087873.html",
         "scope": "market"
       },
       {
-        "id": "f6a247fae9fe3158",
-        "title": "Green SM h\u1ee3p t\u00e1c 75 doanh nghi\u1ec7p, tri\u1ec3n khai g\u1ea7n 18.500 xe VinFast",
+        "id": "062849325036b722",
+        "title": "EVN \u0111\u1ec1 ngh\u1ecb l\u00e0m r\u00f5 hi\u1ec7u qu\u1ea3 \u0111i\u1ec7n m\u1eb7t tr\u1eddi g\u1eafn pin l\u01b0u tr\u1eef",
         "source": "VnExpress",
-        "snippet": "H\u00e3ng taxi \u0111i\u1ec7n k\u00fd bi\u00ean b\u1ea3n ghi nh\u1edb, th\u1ecfa thu\u1eadn \u0111\u1eb7t c\u1ecdc v\u1edbi c\u00e1c doanh nghi\u1ec7p v\u1eadn t\u1ea3i, s\u1eafp v\u1eadn h\u00e0nh 18.497 \u00f4t\u00f4 \u0111i\u1ec7n VinFast t\u1ea1i th\u1ecb tr\u01b0\u1eddng Philippines, h\u00f4m 15/5.",
-        "published_at": "2026-05-17T06:25:42.316390",
-        "url": "https://vnexpress.net/green-sm-hop-tac-75-doanh-nghiep-trien-khai-gan-18-500-xe-vinfast-5074490.html",
+        "snippet": "EVN \u0111\u1ec1 ngh\u1ecb l\u00e0m r\u00f5 hi\u1ec7u qu\u1ea3 c\u1ee7a c\u00e1c d\u1ef1 \u00e1n \u0111i\u1ec7n m\u1eb7t tr\u1eddi g\u1eafn pin l\u01b0u tr\u1eef (BESS), khi m\u00f4 h\u00ecnh n\u00e0y l\u00e0m t\u0103ng gi\u00e1 \u0111i\u1ec7n nh\u01b0ng l\u1ee3i \u00edch v\u1edbi h\u1ec7 th\u1ed1ng ch\u01b0a r\u00f5.",
+        "published_at": "2026-06-22T14:59:44.544655",
+        "url": "https://vnexpress.net/evn-de-nghi-lam-ro-hieu-qua-dien-mat-troi-gan-pin-luu-tru-5087938.html",
         "scope": "market"
       }
     ],
     "ACB": [
       {
-        "id": "5e552658aff030c0",
-        "title": "Vingroup tuy\u1ec3n 20.000 lao \u0111\u1ed9ng cho d\u1ef1 \u00e1n khu \u0111\u00f4 th\u1ecb th\u1ec3 thao",
+        "id": "b9aedeb4ba62656b",
+        "title": "Th\u1ecfa thu\u1eadn M\u1ef9 - Iran th\u1eafp hy v\u1ecdng tho\u00e1t c\u01a1n 'kh\u00e1t' d\u1ea7u c\u1ee7a ch\u00e2u \u00c1",
         "source": "VnExpress",
-        "snippet": "T\u1eadp \u0111o\u00e0n Vingroup tuy\u1ec3n h\u01a1n 20.000 lao \u0111\u1ed9ng, \u01b0u ti\u00ean d\u00e2n \u0111\u1ecba ph\u01b0\u01a1ng, l\u00e0m vi\u1ec7c t\u1ea1i d\u1ef1 \u00e1n Khu \u0111\u00f4 th\u1ecb Th\u1ec3 thao Qu\u1ed1c t\u1ebf H\u00e0 N\u1ed9i v\u00e0 c\u00e1c d\u1ef1 \u00e1n kh\u00e1c trong th\u00e0nh ph\u1ed1.",
-        "published_at": "2026-05-17T06:25:42.316411",
-        "url": "https://vnexpress.net/vingroup-tuyen-20-000-lao-dong-cho-du-an-khu-do-thi-the-thao-5074359.html",
+        "snippet": "Th\u1ecfa thu\u1eadn M\u1ef9 - Iran m\u1edf hy v\u1ecdng n\u1ed1i l\u1ea1i ngu\u1ed3n cung d\u1ea7u eo h\u1eb9p v\u00e0 h\u1ea1 nhi\u1ec7t gi\u00e1 n\u0103ng l\u01b0\u1ee3ng \u1edf ch\u00e2u \u00c1, nh\u01b0ng c\u00f3 \u0111\u1ed9 tr\u1ec5 v\u00e0i th\u00e1ng.",
+        "published_at": "2026-06-22T14:59:44.544645",
+        "url": "https://vnexpress.net/thoa-thuan-my-iran-thap-hy-vong-thoat-con-khat-dau-cua-chau-a-5087984.html",
+        "scope": "symbol"
+      },
+      {
+        "id": "d8bc8ad17754b3b9",
+        "title": "Gi\u00e1 v\u00e0ng th\u1ebf gi\u1edbi ch\u01b0a d\u1ee9t \u0111\u00e0 gi\u1ea3m",
+        "source": "VnExpress",
+        "snippet": "M\u1ed7i ounce v\u00e0ng hi\u1ec7n xu\u1ed1ng v\u00f9ng 4.150 USD, ghi nh\u1eadn tu\u1ea7n gi\u1ea3m th\u1ee9 3 li\u00ean ti\u1ebfp, ch\u1ee7 y\u1ebfu do kh\u1ea3 n\u0103ng Fed t\u0103ng l\u00e3i su\u1ea5t.",
+        "published_at": "2026-06-22T14:59:44.544677",
+        "url": "https://vnexpress.net/gia-vang-the-gioi-chua-dut-da-giam-5087867.html",
         "scope": "market"
       },
       {
-        "id": "7750aaa8151f672c",
-        "title": "'Doanh nghi\u1ec7p c\u1ea7n lu\u1eadt ch\u01a1i r\u00f5 r\u00e0ng \u0111\u1ec3 ph\u00e1t tri\u1ec3n'",
+        "id": "81dcbfcacaaf758c",
+        "title": "L\u01b0u l\u01b0\u1ee3ng t\u00e0u d\u1ea7u qua eo bi\u1ec3n Hormuz t\u0103ng",
         "source": "VnExpress",
-        "snippet": "\u0110\u1ea1i di\u1ec7n T\u00e2n Hi\u1ec7p Ph\u00e1t cho r\u1eb1ng doanh nghi\u1ec7p t\u01b0 nh\u00e2n s\u1eb5n s\u00e0ng \u0111\u1ea7u t\u01b0 d\u00e0i h\u1ea1n, \u0111\u1ed5i m\u1edbi c\u00f4ng ngh\u1ec7 v\u00e0 c\u1ea1nh tranh b\u1eb1ng n\u0103ng l\u1ef1c th\u1ef1c ch\u1ea5t n\u1ebfu m\u00f4i tr\u01b0\u1eddng kinh doanh minh b\u1ea1ch, \u1ed5n \u0111\u1ecbnh v\u00e0 d\u1ec5 d\u1ef1 \u0111o\u00e1n.",
-        "published_at": "2026-05-17T06:25:42.316400",
-        "url": "https://vnexpress.net/doanh-nghiep-can-luat-choi-ro-rang-de-phat-trien-5074487.html",
+        "snippet": "\u00cdt nh\u1ea5t 20 t\u00e0u d\u1ea7u \u0111\u00e3 \u0111i qua Hormuz t\u1eeb khi M\u1ef9 - Iran m\u1edf c\u1eeda l\u1ea1i eo bi\u1ec3n n\u00e0y, theo h\u00e3ng d\u1eef li\u1ec7u th\u01b0\u01a1ng m\u1ea1i Kpler.",
+        "published_at": "2026-06-22T14:59:44.544666",
+        "url": "https://vnexpress.net/luu-luong-tau-dau-qua-eo-bien-hormuz-tang-5087873.html",
         "scope": "market"
       },
       {
-        "id": "f6a247fae9fe3158",
-        "title": "Green SM h\u1ee3p t\u00e1c 75 doanh nghi\u1ec7p, tri\u1ec3n khai g\u1ea7n 18.500 xe VinFast",
+        "id": "062849325036b722",
+        "title": "EVN \u0111\u1ec1 ngh\u1ecb l\u00e0m r\u00f5 hi\u1ec7u qu\u1ea3 \u0111i\u1ec7n m\u1eb7t tr\u1eddi g\u1eafn pin l\u01b0u tr\u1eef",
         "source": "VnExpress",
-        "snippet": "H\u00e3ng taxi \u0111i\u1ec7n k\u00fd bi\u00ean b\u1ea3n ghi nh\u1edb, th\u1ecfa thu\u1eadn \u0111\u1eb7t c\u1ecdc v\u1edbi c\u00e1c doanh nghi\u1ec7p v\u1eadn t\u1ea3i, s\u1eafp v\u1eadn h\u00e0nh 18.497 \u00f4t\u00f4 \u0111i\u1ec7n VinFast t\u1ea1i th\u1ecb tr\u01b0\u1eddng Philippines, h\u00f4m 15/5.",
-        "published_at": "2026-05-17T06:25:42.316390",
-        "url": "https://vnexpress.net/green-sm-hop-tac-75-doanh-nghiep-trien-khai-gan-18-500-xe-vinfast-5074490.html",
+        "snippet": "EVN \u0111\u1ec1 ngh\u1ecb l\u00e0m r\u00f5 hi\u1ec7u qu\u1ea3 c\u1ee7a c\u00e1c d\u1ef1 \u00e1n \u0111i\u1ec7n m\u1eb7t tr\u1eddi g\u1eafn pin l\u01b0u tr\u1eef (BESS), khi m\u00f4 h\u00ecnh n\u00e0y l\u00e0m t\u0103ng gi\u00e1 \u0111i\u1ec7n nh\u01b0ng l\u1ee3i \u00edch v\u1edbi h\u1ec7 th\u1ed1ng ch\u01b0a r\u00f5.",
+        "published_at": "2026-06-22T14:59:44.544655",
+        "url": "https://vnexpress.net/evn-de-nghi-lam-ro-hieu-qua-dien-mat-troi-gan-pin-luu-tru-5087938.html",
         "scope": "market"
       }
     ],
     "BID": [
       {
-        "id": "5e552658aff030c0",
-        "title": "Vingroup tuy\u1ec3n 20.000 lao \u0111\u1ed9ng cho d\u1ef1 \u00e1n khu \u0111\u00f4 th\u1ecb th\u1ec3 thao",
+        "id": "d8bc8ad17754b3b9",
+        "title": "Gi\u00e1 v\u00e0ng th\u1ebf gi\u1edbi ch\u01b0a d\u1ee9t \u0111\u00e0 gi\u1ea3m",
         "source": "VnExpress",
-        "snippet": "T\u1eadp \u0111o\u00e0n Vingroup tuy\u1ec3n h\u01a1n 20.000 lao \u0111\u1ed9ng, \u01b0u ti\u00ean d\u00e2n \u0111\u1ecba ph\u01b0\u01a1ng, l\u00e0m vi\u1ec7c t\u1ea1i d\u1ef1 \u00e1n Khu \u0111\u00f4 th\u1ecb Th\u1ec3 thao Qu\u1ed1c t\u1ebf H\u00e0 N\u1ed9i v\u00e0 c\u00e1c d\u1ef1 \u00e1n kh\u00e1c trong th\u00e0nh ph\u1ed1.",
-        "published_at": "2026-05-17T06:25:42.316411",
-        "url": "https://vnexpress.net/vingroup-tuyen-20-000-lao-dong-cho-du-an-khu-do-thi-the-thao-5074359.html",
+        "snippet": "M\u1ed7i ounce v\u00e0ng hi\u1ec7n xu\u1ed1ng v\u00f9ng 4.150 USD, ghi nh\u1eadn tu\u1ea7n gi\u1ea3m th\u1ee9 3 li\u00ean ti\u1ebfp, ch\u1ee7 y\u1ebfu do kh\u1ea3 n\u0103ng Fed t\u0103ng l\u00e3i su\u1ea5t.",
+        "published_at": "2026-06-22T14:59:44.544677",
+        "url": "https://vnexpress.net/gia-vang-the-gioi-chua-dut-da-giam-5087867.html",
         "scope": "market"
       },
       {
-        "id": "7750aaa8151f672c",
-        "title": "'Doanh nghi\u1ec7p c\u1ea7n lu\u1eadt ch\u01a1i r\u00f5 r\u00e0ng \u0111\u1ec3 ph\u00e1t tri\u1ec3n'",
+        "id": "81dcbfcacaaf758c",
+        "title": "L\u01b0u l\u01b0\u1ee3ng t\u00e0u d\u1ea7u qua eo bi\u1ec3n Hormuz t\u0103ng",
         "source": "VnExpress",
-        "snippet": "\u0110\u1ea1i di\u1ec7n T\u00e2n Hi\u1ec7p Ph\u00e1t cho r\u1eb1ng doanh nghi\u1ec7p t\u01b0 nh\u00e2n s\u1eb5n s\u00e0ng \u0111\u1ea7u t\u01b0 d\u00e0i h\u1ea1n, \u0111\u1ed5i m\u1edbi c\u00f4ng ngh\u1ec7 v\u00e0 c\u1ea1nh tranh b\u1eb1ng n\u0103ng l\u1ef1c th\u1ef1c ch\u1ea5t n\u1ebfu m\u00f4i tr\u01b0\u1eddng kinh doanh minh b\u1ea1ch, \u1ed5n \u0111\u1ecbnh v\u00e0 d\u1ec5 d\u1ef1 \u0111o\u00e1n.",
-        "published_at": "2026-05-17T06:25:42.316400",
-        "url": "https://vnexpress.net/doanh-nghiep-can-luat-choi-ro-rang-de-phat-trien-5074487.html",
+        "snippet": "\u00cdt nh\u1ea5t 20 t\u00e0u d\u1ea7u \u0111\u00e3 \u0111i qua Hormuz t\u1eeb khi M\u1ef9 - Iran m\u1edf c\u1eeda l\u1ea1i eo bi\u1ec3n n\u00e0y, theo h\u00e3ng d\u1eef li\u1ec7u th\u01b0\u01a1ng m\u1ea1i Kpler.",
+        "published_at": "2026-06-22T14:59:44.544666",
+        "url": "https://vnexpress.net/luu-luong-tau-dau-qua-eo-bien-hormuz-tang-5087873.html",
         "scope": "market"
       },
       {
-        "id": "f6a247fae9fe3158",
-        "title": "Green SM h\u1ee3p t\u00e1c 75 doanh nghi\u1ec7p, tri\u1ec3n khai g\u1ea7n 18.500 xe VinFast",
+        "id": "062849325036b722",
+        "title": "EVN \u0111\u1ec1 ngh\u1ecb l\u00e0m r\u00f5 hi\u1ec7u qu\u1ea3 \u0111i\u1ec7n m\u1eb7t tr\u1eddi g\u1eafn pin l\u01b0u tr\u1eef",
         "source": "VnExpress",
-        "snippet": "H\u00e3ng taxi \u0111i\u1ec7n k\u00fd bi\u00ean b\u1ea3n ghi nh\u1edb, th\u1ecfa thu\u1eadn \u0111\u1eb7t c\u1ecdc v\u1edbi c\u00e1c doanh nghi\u1ec7p v\u1eadn t\u1ea3i, s\u1eafp v\u1eadn h\u00e0nh 18.497 \u00f4t\u00f4 \u0111i\u1ec7n VinFast t\u1ea1i th\u1ecb tr\u01b0\u1eddng Philippines, h\u00f4m 15/5.",
-        "published_at": "2026-05-17T06:25:42.316390",
-        "url": "https://vnexpress.net/green-sm-hop-tac-75-doanh-nghiep-trien-khai-gan-18-500-xe-vinfast-5074490.html",
+        "snippet": "EVN \u0111\u1ec1 ngh\u1ecb l\u00e0m r\u00f5 hi\u1ec7u qu\u1ea3 c\u1ee7a c\u00e1c d\u1ef1 \u00e1n \u0111i\u1ec7n m\u1eb7t tr\u1eddi g\u1eafn pin l\u01b0u tr\u1eef (BESS), khi m\u00f4 h\u00ecnh n\u00e0y l\u00e0m t\u0103ng gi\u00e1 \u0111i\u1ec7n nh\u01b0ng l\u1ee3i \u00edch v\u1edbi h\u1ec7 th\u1ed1ng ch\u01b0a r\u00f5.",
+        "published_at": "2026-06-22T14:59:44.544655",
+        "url": "https://vnexpress.net/evn-de-nghi-lam-ro-hieu-qua-dien-mat-troi-gan-pin-luu-tru-5087938.html",
         "scope": "market"
       }
     ],
     "CTG": [
       {
-        "id": "5e552658aff030c0",
-        "title": "Vingroup tuy\u1ec3n 20.000 lao \u0111\u1ed9ng cho d\u1ef1 \u00e1n khu \u0111\u00f4 th\u1ecb th\u1ec3 thao",
+        "id": "d8bc8ad17754b3b9",
+        "title": "Gi\u00e1 v\u00e0ng th\u1ebf gi\u1edbi ch\u01b0a d\u1ee9t \u0111\u00e0 gi\u1ea3m",
         "source": "VnExpress",
-        "snippet": "T\u1eadp \u0111o\u00e0n Vingroup tuy\u1ec3n h\u01a1n 20.000 lao \u0111\u1ed9ng, \u01b0u ti\u00ean d\u00e2n \u0111\u1ecba ph\u01b0\u01a1ng, l\u00e0m vi\u1ec7c t\u1ea1i d\u1ef1 \u00e1n Khu \u0111\u00f4 th\u1ecb Th\u1ec3 thao Qu\u1ed1c t\u1ebf H\u00e0 N\u1ed9i v\u00e0 c\u00e1c d\u1ef1 \u00e1n kh\u00e1c trong th\u00e0nh ph\u1ed1.",
-        "published_at": "2026-05-17T06:25:42.316411",
-        "url": "https://vnexpress.net/vingroup-tuyen-20-000-lao-dong-cho-du-an-khu-do-thi-the-thao-5074359.html",
+        "snippet": "M\u1ed7i ounce v\u00e0ng hi\u1ec7n xu\u1ed1ng v\u00f9ng 4.150 USD, ghi nh\u1eadn tu\u1ea7n gi\u1ea3m th\u1ee9 3 li\u00ean ti\u1ebfp, ch\u1ee7 y\u1ebfu do kh\u1ea3 n\u0103ng Fed t\u0103ng l\u00e3i su\u1ea5t.",
+        "published_at": "2026-06-22T14:59:44.544677",
+        "url": "https://vnexpress.net/gia-vang-the-gioi-chua-dut-da-giam-5087867.html",
         "scope": "market"
       },
       {
-        "id": "7750aaa8151f672c",
-        "title": "'Doanh nghi\u1ec7p c\u1ea7n lu\u1eadt ch\u01a1i r\u00f5 r\u00e0ng \u0111\u1ec3 ph\u00e1t tri\u1ec3n'",
+        "id": "81dcbfcacaaf758c",
+        "title": "L\u01b0u l\u01b0\u1ee3ng t\u00e0u d\u1ea7u qua eo bi\u1ec3n Hormuz t\u0103ng",
         "source": "VnExpress",
-        "snippet": "\u0110\u1ea1i di\u1ec7n T\u00e2n Hi\u1ec7p Ph\u00e1t cho r\u1eb1ng doanh nghi\u1ec7p t\u01b0 nh\u00e2n s\u1eb5n s\u00e0ng \u0111\u1ea7u t\u01b0 d\u00e0i h\u1ea1n, \u0111\u1ed5i m\u1edbi c\u00f4ng ngh\u1ec7 v\u00e0 c\u1ea1nh tranh b\u1eb1ng n\u0103ng l\u1ef1c th\u1ef1c ch\u1ea5t n\u1ebfu m\u00f4i tr\u01b0\u1eddng kinh doanh minh b\u1ea1ch, \u1ed5n \u0111\u1ecbnh v\u00e0 d\u1ec5 d\u1ef1 \u0111o\u00e1n.",
-        "published_at": "2026-05-17T06:25:42.316400",
-        "url": "https://vnexpress.net/doanh-nghiep-can-luat-choi-ro-rang-de-phat-trien-5074487.html",
+        "snippet": "\u00cdt nh\u1ea5t 20 t\u00e0u d\u1ea7u \u0111\u00e3 \u0111i qua Hormuz t\u1eeb khi M\u1ef9 - Iran m\u1edf c\u1eeda l\u1ea1i eo bi\u1ec3n n\u00e0y, theo h\u00e3ng d\u1eef li\u1ec7u th\u01b0\u01a1ng m\u1ea1i Kpler.",
+        "published_at": "2026-06-22T14:59:44.544666",
+        "url": "https://vnexpress.net/luu-luong-tau-dau-qua-eo-bien-hormuz-tang-5087873.html",
         "scope": "market"
       },
       {
-        "id": "f6a247fae9fe3158",
-        "title": "Green SM h\u1ee3p t\u00e1c 75 doanh nghi\u1ec7p, tri\u1ec3n khai g\u1ea7n 18.500 xe VinFast",
+        "id": "062849325036b722",
+        "title": "EVN \u0111\u1ec1 ngh\u1ecb l\u00e0m r\u00f5 hi\u1ec7u qu\u1ea3 \u0111i\u1ec7n m\u1eb7t tr\u1eddi g\u1eafn pin l\u01b0u tr\u1eef",
         "source": "VnExpress",
-        "snippet": "H\u00e3ng taxi \u0111i\u1ec7n k\u00fd bi\u00ean b\u1ea3n ghi nh\u1edb, th\u1ecfa thu\u1eadn \u0111\u1eb7t c\u1ecdc v\u1edbi c\u00e1c doanh nghi\u1ec7p v\u1eadn t\u1ea3i, s\u1eafp v\u1eadn h\u00e0nh 18.497 \u00f4t\u00f4 \u0111i\u1ec7n VinFast t\u1ea1i th\u1ecb tr\u01b0\u1eddng Philippines, h\u00f4m 15/5.",
-        "published_at": "2026-05-17T06:25:42.316390",
-        "url": "https://vnexpress.net/green-sm-hop-tac-75-doanh-nghiep-trien-khai-gan-18-500-xe-vinfast-5074490.html",
+        "snippet": "EVN \u0111\u1ec1 ngh\u1ecb l\u00e0m r\u00f5 hi\u1ec7u qu\u1ea3 c\u1ee7a c\u00e1c d\u1ef1 \u00e1n \u0111i\u1ec7n m\u1eb7t tr\u1eddi g\u1eafn pin l\u01b0u tr\u1eef (BESS), khi m\u00f4 h\u00ecnh n\u00e0y l\u00e0m t\u0103ng gi\u00e1 \u0111i\u1ec7n nh\u01b0ng l\u1ee3i \u00edch v\u1edbi h\u1ec7 th\u1ed1ng ch\u01b0a r\u00f5.",
+        "published_at": "2026-06-22T14:59:44.544655",
+        "url": "https://vnexpress.net/evn-de-nghi-lam-ro-hieu-qua-dien-mat-troi-gan-pin-luu-tru-5087938.html",
         "scope": "market"
       }
     ]
   },
-  "fetched_at": "2026-05-17T06:25:43.170212",
+  "fetched_at": "2026-06-22T14:59:45.415834",
   "symbols": [
     "HPG",
     "VNM",
@@ -313,5 +748,36 @@
     "BID",
     "CTG"
   ],
-  "days_back": 7
+  "days_back": 7,
+  "MWG_0d7b00ee64d9": {
+    "symbol_scores": [
+      {
+        "symbol": "MWG",
+        "buy_potential_score": 40,
+        "risk_score": 0,
+        "confidence": 0.2,
+        "horizon": "1-4w",
+        "key_bull_points": [
+          "Potential for increased demand due to competitive pricing"
+        ],
+        "key_risks": [
+          "Dependence on market trends and consumer behavior"
+        ],
+        "evidence": [
+          {
+            "id": "news1",
+            "supports": "bull"
+          },
+          {
+            "id": "news2",
+            "supports": "neutral"
+          },
+          {
+            "id": "news3",
+            "supports": "bull"
+          }
+        ]
+      }
+    ]
+  }
 }
