@@ -332,8 +332,26 @@ def format_weekly_digest(
             lines.append(f"   🛡️ SL {_smart_format(r.stop_loss)} • TP {_smart_format(r.take_profit)}")
             lines.append("")
 
+    exits = [r for r in plan.recommendations if r.action in ("SELL", "REDUCE")]
+    if exits:
+        grouped_exits = {
+            action: [r for r in exits if r.action == action]
+            for action in ("SELL", "REDUCE")
+        }
+        for action, recs in grouped_exits.items():
+            if not recs:
+                continue
+            icon = _ACTION_ICON.get(action, "🔔")
+            lines.append(f"{icon} {action} Signals ({len(recs)})")
+            lines.append("")
+            for r in recs:
+                lines.append(f"📉 {r.symbol}")
+                for bullet in r.rationale_bullets[:2]:
+                    lines.append(f"   • {bullet}")
+                lines.append("")
+
     # Simplified - treat all held positions the same
-    holds = [r for r in plan.recommendations if r.action in ("HOLD", "REDUCE", "SELL")]
+    holds = [r for r in plan.recommendations if r.action == "HOLD"]
     if holds:
         lines.append("📋 Open Positions")
         lines.append("")
