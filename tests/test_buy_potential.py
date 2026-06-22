@@ -97,6 +97,8 @@ class TestBuyPotentialScoring(TestCase):
             }
 
             with patch('src.news_ai.groq_buy_potential._is_available', return_value=True), \
+                 patch('src.news_ai.groq_buy_potential._load_cache', return_value={}), \
+                 patch('src.news_ai.groq_buy_potential._save_cache'), \
                  patch('src.news_ai.groq_buy_potential._score_symbol', return_value=mock_result):
 
                 result = score_buy_potential(plan_path, self.test_news)
@@ -250,7 +252,10 @@ class TestBuyPotentialScoring(TestCase):
                 }]
             }
 
+            cache_store = {}
             with patch('src.news_ai.groq_buy_potential._is_available', return_value=True), \
+                 patch('src.news_ai.groq_buy_potential._load_cache', return_value=cache_store), \
+                 patch('src.news_ai.groq_buy_potential._save_cache'), \
                  patch('src.news_ai.groq_buy_potential._call_groq', return_value=mock_result) as mock_call:
 
                 # First call should make API calls

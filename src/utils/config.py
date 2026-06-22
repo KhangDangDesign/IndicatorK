@@ -81,14 +81,38 @@ def get_provider(config_path: str = "config/providers.yml"):
         "cache": lambda: CacheProvider(cache_path=cache_path),
     }
 
-    primary = _build_provider(primary_name, provider_map)
-    secondary = _build_provider(secondary_name, provider_map)
     cache = CacheProvider(cache_path=cache_path)
+
+    primary = _build_provider(primary_name, provider_map, required=False)
+    secondary = _build_provider(secondary_name, provider_map, required=False)
+
+    if primary is None and secondary is None:
+        logger.warning(
+            "Configured providers '%s' and '%s' are unavailable; using cache only",
+            primary_name,
+            secondary_name,
+        )
+        primary = cache
+        secondary = cache
+    elif primary is None:
+        logger.warning(
+            "Primary provider '%s' is unavailable; using '%s' as primary fallback",
+            primary_name,
+            secondary.name,
+        )
+        primary = secondary
+        secondary = cache
+    elif secondary is None:
+        logger.warning(
+            "Secondary provider '%s' is unavailable; using cache as secondary fallback",
+            secondary_name,
+        )
+        secondary = cache
 
     return CompositeProvider(primary=primary, secondary=secondary, cache=cache)
 
 
-def _build_provider(name: str, provider_map: dict):
+def _build_provider(name: str, provider_map: dict, required: bool = True):
     """Build a single provider by name."""
     factory = provider_map.get(name)
     if factory is None:
@@ -99,7 +123,9 @@ def _build_provider(name: str, provider_map: dict):
         return factory()
     except Exception as e:
         logger.warning("Failed to init provider '%s': %s", name, e)
-        raise
+        if required:
+            raise
+        return None
 
 
 def get_strategy(config_path: str = "config/strategy.yml"):

@@ -359,11 +359,6 @@ def extract_news_scores(news_items: list[dict]) -> dict:
     prompt = _build_extraction_prompt(news_items)
     logger.info(f"Starting news extraction | model={_MODEL_EXTRACT} | items={len(news_items)}")
 
-    cache_key = hashlib.sha256(prompt.encode()).hexdigest()[:16]
-    if cache_key in _CACHE:
-        logger.info(f"📦 Process cache hit (hash={cache_key})")
-        return _CACHE[cache_key]
-
     result = _call_groq_with_retry(
         prompt=prompt,
         model=_MODEL_EXTRACT,
@@ -391,7 +386,6 @@ def extract_news_scores(news_items: list[dict]) -> dict:
     }
 
     # Cache the result
-    _CACHE[cache_key] = final_result
     cache[news_hash] = final_result
     _save_cache(cache)
 

@@ -7,7 +7,7 @@ import hashlib
 import logging
 import time
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Union
 
 import requests
 
@@ -261,7 +261,10 @@ def _score_symbol(symbol: str, news_items: List[Dict], cache: Dict[str, Any]) ->
     return stage_b_result
 
 
-def score_buy_potential(weekly_plan_path: str, symbol_news_mapping: Dict[str, List[Dict]]) -> Dict[str, Any]:
+def score_buy_potential(
+    weekly_plan_path: str,
+    symbol_news_mapping: Union[Dict[str, List[Dict]], List[Dict]],
+) -> Dict[str, Any]:
     """
     Score buy potential for symbols using news analysis.
 
@@ -279,11 +282,6 @@ def score_buy_potential(weekly_plan_path: str, symbol_news_mapping: Dict[str, Li
             "total_news": int
         }
     """
-    if not _is_available():
-        logger.warning("🚨 GROQ_API_KEY not configured — News analysis disabled")
-        logger.warning("💡 Set GROQ_API_KEY environment variable or add to .env file")
-        return {"symbol_scores": [], "status": "API_NOT_CONFIGURED"}
-
     # Load weekly plan to get symbols
     try:
         with open(weekly_plan_path) as f:
@@ -297,6 +295,18 @@ def score_buy_potential(weekly_plan_path: str, symbol_news_mapping: Dict[str, Li
         logger.info("No symbols to analyze")
         return {"symbol_scores": [], "status": "NO_SYMBOLS"}
 
+    if not _is_available():
+        logger.warning("🚨 GROQ_API_KEY not configured — News analysis disabled")
+        logger.warning("💡 Set GROQ_API_KEY environment variable or add to .env file")
+        return {"symbol_scores": [], "status": "API_NOT_CONFIGURED"}
+
+    if isinstance(symbol_news_mapping, list):
+        flat_news = symbol_news_mapping
+        symbol_news_mapping = {symbol: flat_news for symbol in symbols}
+        total_news_count = len(flat_news)
+    else:
+        total_news_count = sum(len(articles) for articles in symbol_news_mapping.values())
+
     # Use pre-matched symbol_news_mapping (avoids fragile keyword matching)
     # If a symbol isn't in the mapping, it gets an empty list
     logger.info(f"Using pre-matched news for {len(symbol_news_mapping)} symbols")
@@ -304,7 +314,6 @@ def score_buy_potential(weekly_plan_path: str, symbol_news_mapping: Dict[str, Li
     # Load cache
     cache = _load_cache()
     all_scores = []
-    total_news_count = sum(len(articles) for articles in symbol_news_mapping.values())
 
     try:
         for symbol in symbols:

@@ -27,6 +27,7 @@ class VnstockProvider(PriceProvider):
         self.source = source
         self.timeout = timeout
         self._vnstock = None
+        self._legacy_stock_historical_data = None
         self._api_style: str = "legacy"
         self._api_key_registered: bool = False
         self._init_library()
@@ -54,9 +55,10 @@ class VnstockProvider(PriceProvider):
 
         # Fall back to legacy function API (vnstock 0.2.x)
         try:
-            from vnstock import stock_historical_data  # noqa: F401
+            from vnstock.technical import stock_historical_data
             self._api_style = "legacy"
             self._vnstock = None
+            self._legacy_stock_historical_data = stock_historical_data
             return
         except ImportError:
             pass
@@ -132,7 +134,9 @@ class VnstockProvider(PriceProvider):
             return stock.quote.history(start=start_s, end=end_s)
 
         # Legacy API: stock_historical_data
-        from vnstock import stock_historical_data
+        stock_historical_data = self._legacy_stock_historical_data
+        if stock_historical_data is None:
+            from vnstock.technical import stock_historical_data
         # Legacy VCI/TCBS sources are unreliable; DNSE is the working source
         source = self.source if self.source not in ("VCI", "TCBS") else "DNSE"
         return stock_historical_data(
@@ -180,16 +184,22 @@ class VnstockProvider(PriceProvider):
 
                 records.append(OHLCV(
                     date=d,
-                    open=float(row[col_map["open"]]),
-                    high=float(row[col_map["high"]]),
-                    low=float(row[col_map["low"]]),
-                    close=float(row[col_map["close"]]),
+                    open=self._normalize_price(row[col_map["open"]]),
+                    high=self._normalize_price(row[col_map["high"]]),
+                    low=self._normalize_price(row[col_map["low"]]),
+                    close=self._normalize_price(row[col_map["close"]]),
                     volume=float(row.get(col_map.get("volume", "volume"), 0)),
                 ))
             except Exception as e:
                 logger.debug("vnstock: skipping row: %s", e)
         records.sort(key=lambda x: x.date)
         return records
+
+    def _normalize_price(self, value) -> float:
+        price = float(value)
+        if price >= 1000:
+            return price / 1000.0
+        return price
 
     def _detect_columns(self, df) -> dict[str, str]:
         """Detect column names from the DataFrame (vnstock can vary)."""

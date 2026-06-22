@@ -138,3 +138,51 @@ class TestConfigDrivenSelection:
         from src.utils.config import get_provider
         with pytest.raises(ValueError, match="Unknown provider"):
             get_provider(str(config))
+
+    def test_provider_falls_back_when_primary_init_fails(self, tmp_path, monkeypatch):
+        config = tmp_path / "providers.yml"
+        cache_path = tmp_path / "cache.json"
+        config.write_text(
+            "primary: vnstock\n"
+            "secondary: cache\n"
+            "cache_path: " + str(cache_path) + "\n"
+        )
+        cache_path.write_text('{"HPG": {"last_price": 23.0, "updated_at": "2025-01-01"}}')
+
+        from src.providers.vnstock_provider import VnstockProvider
+        from src.utils.config import get_provider
+
+        def fail_init(self, source="VCI", timeout=30):
+            raise ImportError("vnstock missing transitive dependency")
+
+        monkeypatch.setattr(VnstockProvider, "__init__", fail_init)
+
+        provider = get_provider(str(config))
+
+        assert provider.get_last_prices(["HPG"]) == {"HPG": 23.0}
+
+
+class TestVnstockProvider:
+    def test_legacy_prices_are_normalized_to_thousands(self):
+        from src.providers.vnstock_provider import VnstockProvider
+
+        class FakeDataFrame:
+            columns = ["time", "open", "high", "low", "close", "volume"]
+
+            def iterrows(self):
+                yield 0, {
+                    "time": "2025-03-03",
+                    "open": 20800,
+                    "high": 21100,
+                    "low": 20700,
+                    "close": 20860,
+                    "volume": 1000000,
+                }
+
+        provider = VnstockProvider.__new__(VnstockProvider)
+        records = provider._parse_dataframe(FakeDataFrame())
+
+        assert records[0].open == 20.8
+        assert records[0].high == 21.1
+        assert records[0].low == 20.7
+        assert records[0].close == 20.86

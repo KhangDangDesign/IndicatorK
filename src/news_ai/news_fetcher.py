@@ -368,44 +368,55 @@ def _fetch_from_vnexpress(symbols: List[str], days_back: int = 7) -> List[Dict[s
             response = requests.get(rss_url, timeout=REQUEST_TIMEOUT)
             response.raise_for_status()
 
-            root = ET.fromstring(response.content)
+            try:
+                root = ET.fromstring(response.content)
+            except ET.ParseError:
+                root = None
 
-            for item in root.findall(".//item")[:30]:
-                title_elem = item.find("title")
-                link_elem = item.find("link")
-                desc_elem = item.find("description")
-                pubdate_elem = item.find("pubDate")
-
-                if title_elem is None or link_elem is None:
+            if root is not None:
+                rss_items = root.findall(".//item")[:30]
+                if not rss_items:
+                    articles.extend(_extract_html_links(response.content, "VnExpress"))
                     continue
 
-                title = title_elem.text or ""
-                article_url = link_elem.text or ""
-                description = desc_elem.text if desc_elem is not None else ""
+                for item in rss_items:
+                    title_elem = item.find("title")
+                    link_elem = item.find("link")
+                    desc_elem = item.find("description")
+                    pubdate_elem = item.find("pubDate")
 
-                published_at = datetime.now().isoformat()
-                if pubdate_elem is not None and pubdate_elem.text:
-                    try:
-                        from email.utils import parsedate_to_datetime
-                        pub_dt = parsedate_to_datetime(pubdate_elem.text)
-                        if pub_dt < cutoff_date:
-                            continue
-                        published_at = pub_dt.isoformat()
-                    except:
-                        pass
+                    if title_elem is None or link_elem is None:
+                        continue
 
-                snippet = re.sub(r'<[^>]+>', '', description).strip()[:200]
-                if not snippet:
-                    snippet = "VnExpress business news"
+                    title = title_elem.text or ""
+                    article_url = link_elem.text or ""
+                    description = desc_elem.text if desc_elem is not None else ""
 
-                articles.append({
-                    "id": hashlib.md5(article_url.encode()).hexdigest()[:16],
-                    "title": title,
-                    "source": "VnExpress",
-                    "snippet": snippet,
-                    "published_at": published_at,
-                    "url": article_url,
-                })
+                    published_at = datetime.now().isoformat()
+                    if pubdate_elem is not None and pubdate_elem.text:
+                        try:
+                            from email.utils import parsedate_to_datetime
+                            pub_dt = parsedate_to_datetime(pubdate_elem.text)
+                            if pub_dt < cutoff_date:
+                                continue
+                            published_at = pub_dt.isoformat()
+                        except:
+                            pass
+
+                    snippet = re.sub(r'<[^>]+>', '', description).strip()[:200]
+                    if not snippet:
+                        snippet = "VnExpress business news"
+
+                    articles.append({
+                        "id": hashlib.md5(article_url.encode()).hexdigest()[:16],
+                        "title": title,
+                        "source": "VnExpress",
+                        "snippet": snippet,
+                        "published_at": published_at,
+                        "url": article_url,
+                    })
+            else:
+                articles.extend(_extract_html_links(response.content, "VnExpress"))
 
         except Exception as e:
             logger.debug(f"Failed to fetch RSS from {rss_url}: {e}")
@@ -483,44 +494,56 @@ def _fetch_from_vietnamnet(symbols: List[str], days_back: int = 7) -> List[Dict[
         response = requests.get(rss_url, timeout=REQUEST_TIMEOUT)
         response.raise_for_status()
 
-        root = ET.fromstring(response.content)
+        try:
+            root = ET.fromstring(response.content)
+        except ET.ParseError:
+            root = None
 
-        for item in root.findall(".//item")[:30]:
-            title_elem = item.find("title")
-            link_elem = item.find("link")
-            desc_elem = item.find("description")
-            pubdate_elem = item.find("pubDate")
+        if root is not None:
+            rss_items = root.findall(".//item")[:30]
+            if not rss_items:
+                articles.extend(_extract_html_links(response.content, "VietNamNet"))
+                logger.info(f"Fetched {len(articles)} articles from VietNamNet RSS")
+                return articles
 
-            if title_elem is None or link_elem is None:
-                continue
+            for item in rss_items:
+                title_elem = item.find("title")
+                link_elem = item.find("link")
+                desc_elem = item.find("description")
+                pubdate_elem = item.find("pubDate")
 
-            title = title_elem.text or ""
-            article_url = link_elem.text or ""
-            description = desc_elem.text if desc_elem is not None else ""
+                if title_elem is None or link_elem is None:
+                    continue
 
-            published_at = datetime.now().isoformat()
-            if pubdate_elem is not None and pubdate_elem.text:
-                try:
-                    from email.utils import parsedate_to_datetime
-                    pub_dt = parsedate_to_datetime(pubdate_elem.text)
-                    if pub_dt < cutoff_date:
-                        continue
-                    published_at = pub_dt.isoformat()
-                except:
-                    pass
+                title = title_elem.text or ""
+                article_url = link_elem.text or ""
+                description = desc_elem.text if desc_elem is not None else ""
 
-            snippet = re.sub(r'<[^>]+>', '', description).strip()[:200]
-            if not snippet:
-                snippet = "VietNamNet business news"
+                published_at = datetime.now().isoformat()
+                if pubdate_elem is not None and pubdate_elem.text:
+                    try:
+                        from email.utils import parsedate_to_datetime
+                        pub_dt = parsedate_to_datetime(pubdate_elem.text)
+                        if pub_dt < cutoff_date:
+                            continue
+                        published_at = pub_dt.isoformat()
+                    except:
+                        pass
 
-            articles.append({
-                "id": hashlib.md5(article_url.encode()).hexdigest()[:16],
-                "title": title,
-                "source": "VietNamNet",
-                "snippet": snippet,
-                "published_at": published_at,
-                "url": article_url,
-            })
+                snippet = re.sub(r'<[^>]+>', '', description).strip()[:200]
+                if not snippet:
+                    snippet = "VietNamNet business news"
+
+                articles.append({
+                    "id": hashlib.md5(article_url.encode()).hexdigest()[:16],
+                    "title": title,
+                    "source": "VietNamNet",
+                    "snippet": snippet,
+                    "published_at": published_at,
+                    "url": article_url,
+                })
+        else:
+            articles.extend(_extract_html_links(response.content, "VietNamNet"))
 
         logger.info(f"Fetched {len(articles)} articles from VietNamNet RSS")
         return articles
@@ -529,6 +552,33 @@ def _fetch_from_vietnamnet(symbols: List[str], days_back: int = 7) -> List[Dict[
         logger.warning(f"VietNamNet RSS fetch failed: {e}")
 
     return []
+
+
+def _extract_html_links(content: Any, source: str) -> List[Dict[str, Any]]:
+    """Fallback parser for mocked/simple HTML pages."""
+    try:
+        from bs4 import BeautifulSoup
+    except ImportError:
+        logger.warning("BeautifulSoup not installed; cannot parse HTML fallback")
+        return []
+
+    soup = BeautifulSoup(content, "html.parser")
+    articles = []
+    for link in soup.find_all("a")[:30]:
+        title = link.get_text(strip=True)
+        article_url = link.get("href")
+        if not title or not article_url:
+            continue
+
+        articles.append({
+            "id": hashlib.md5(article_url.encode()).hexdigest()[:16],
+            "title": title,
+            "source": source,
+            "snippet": title[:200],
+            "published_at": datetime.now().isoformat(),
+            "url": article_url,
+        })
+    return articles
 
 
 def fetch_recent_news(
@@ -560,6 +610,7 @@ def fetch_recent_news(
         id, title, source, snippet, published_at, url, scope (symbol|market)
         Returns empty dict if all sources fail.
     """
+    return_flat = symbols is None
     if symbols is None:
         symbols = list(VIETNAMESE_SYMBOLS)
 
@@ -569,10 +620,15 @@ def fetch_recent_news(
     if use_cache:
         cache = _load_cache()
         if _is_cache_valid(cache):
+            if return_flat and cache.get("articles"):
+                logger.info("Returning cached flat news articles")
+                return cache["articles"]
             symbol_news = cache.get("symbol_news", {})
             if symbol_news:
                 total_articles = sum(len(articles) for articles in symbol_news.values())
                 logger.info(f"Returning cached news for {len(symbol_news)} symbols ({total_articles} articles)")
+                if return_flat:
+                    return _flatten_symbol_news(symbol_news)
                 return symbol_news
 
     articles = []
@@ -592,9 +648,10 @@ def fetch_recent_news(
         vnexpress_articles = _fetch_from_vnexpress(symbols, days_back)
         articles.extend(vnexpress_articles)
 
-        # Try VietStock RSS (stock market focus)
-        vietstock_articles = _fetch_from_vietstock(symbols, days_back)
-        articles.extend(vietstock_articles)
+        if not (return_flat and articles):
+            # Try VietStock RSS (stock market focus)
+            vietstock_articles = _fetch_from_vietstock(symbols, days_back)
+            articles.extend(vietstock_articles)
 
         # Try VietNamNet RSS if we still need more
         if len(articles) < 5:
@@ -616,7 +673,6 @@ def fetch_recent_news(
 
     if not unique_articles:
         logger.warning("No news articles fetched from any source")
-        # Return empty dict with generic market news for each symbol
         generic_article = {
             "id": hashlib.md5(datetime.now().isoformat().encode()).hexdigest()[:16],
             "title": f"Vietnamese stock market news ({datetime.now().strftime('%Y-%m-%d')})",
@@ -626,9 +682,18 @@ def fetch_recent_news(
             "url": None,
             "scope": "market"
         }
+        if return_flat:
+            return [generic_article]
         return {symbol: [generic_article] for symbol in symbols}
 
     logger.info(f"Fetched {len(unique_articles)} unique news articles total")
+
+    if return_flat:
+        _save_cache({
+            "articles": unique_articles,
+            "fetched_at": datetime.now().isoformat(),
+        })
+        return unique_articles
 
     # Load symbol aliases and match articles to symbols
     symbol_aliases = _load_symbol_aliases()
@@ -644,6 +709,7 @@ def fetch_recent_news(
 
     # Save to cache (per-symbol news)
     cache = {
+        "articles": unique_articles,
         "symbol_news": symbol_news,
         "fetched_at": datetime.now().isoformat(),
         "symbols": symbols,
@@ -655,6 +721,19 @@ def fetch_recent_news(
     logger.info(f"Matched {total_matched} articles across {len(symbol_news)} symbols")
 
     return symbol_news
+
+
+def _flatten_symbol_news(symbol_news: Dict[str, List[Dict[str, Any]]]) -> List[Dict[str, Any]]:
+    seen = set()
+    articles = []
+    for symbol_articles in symbol_news.values():
+        for article in symbol_articles:
+            key = article.get("url") or article.get("id")
+            if key in seen:
+                continue
+            seen.add(key)
+            articles.append(article)
+    return articles
 
 
 def clear_cache() -> None:

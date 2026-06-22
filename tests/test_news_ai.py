@@ -121,7 +121,9 @@ class TestNewsAI(unittest.TestCase):
         }
         mock_call_groq.return_value = mock_response
 
-        with patch.dict(os.environ, {"GROQ_API_KEY": "test-key"}):
+        with patch('src.news_ai.groq_client._load_cache', return_value={}), \
+             patch('src.news_ai.groq_client._save_cache'), \
+             patch.dict(os.environ, {"GROQ_API_KEY": "test-key"}):
             result = extract_news_scores(self.sample_news_items)
 
         # Verify result structure
@@ -138,7 +140,9 @@ class TestNewsAI(unittest.TestCase):
         """Test news extraction behavior when API call fails."""
         mock_call_groq.return_value = None
 
-        with patch.dict(os.environ, {"GROQ_API_KEY": "test-key"}):
+        with patch('src.news_ai.groq_client._load_cache', return_value={}), \
+             patch('src.news_ai.groq_client._save_cache'), \
+             patch.dict(os.environ, {"GROQ_API_KEY": "test-key"}):
             result = extract_news_scores(self.sample_news_items)
 
         # Should return empty analysis on failure
@@ -281,7 +285,8 @@ class TestNewsAI(unittest.TestCase):
         }
         mock_call_groq.return_value = api_result
 
-        result = extract_news_scores(self.sample_news_items)
+        with patch.dict(os.environ, {"GROQ_API_KEY": "test-key"}):
+            result = extract_news_scores(self.sample_news_items)
 
         # Should have called API and saved to cache
         mock_call_groq.assert_called_once()

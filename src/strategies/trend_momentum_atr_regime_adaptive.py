@@ -78,6 +78,7 @@ class TrendMomentumATRRegimeAdaptive(Strategy):
         # ATH-aware TP capping for realistic targets
         self.ath_cap_pct = params.get("ath_cap_pct", 0.20)  # Cap TP at ATH + 20%
         self.ath_lookback_days = params.get("ath_lookback_days", 252)  # 1 year
+        self.ath_tracking = {}
 
     @property
     def id(self) -> str:
@@ -240,11 +241,30 @@ class TrendMomentumATRRegimeAdaptive(Strategy):
         """Get ATH-based TP cap for a symbol."""
         if not candles:
             return float("inf")  # No cap if no data
-        
+
+        ath = self._update_ath_tracking(symbol, candles)
+        if ath <= 0:
+            return float("inf")
+        return ath * (1 + self.ath_cap_pct)
+
+    def _update_ath_tracking(self, symbol: str, candles: list[OHLCV]) -> float:
+        """Track the all-time high within the configured lookback window."""
+        if not candles:
+            self.ath_tracking[symbol] = {"ath": 0.0, "date": None}
+            return 0.0
+
         # Look back N days for ATH
         lookback_candles = candles[-self.ath_lookback_days:] if len(candles) > self.ath_lookback_days else candles
-        ath = max(c.high for c in lookback_candles)
-        return ath * (1 + self.ath_cap_pct)
+
+        if not lookback_candles:
+            logger.warning("Empty lookback_candles for %s ATH calculation", symbol)
+            self.ath_tracking[symbol] = {"ath": 0.0, "date": None}
+            return 0.0
+
+        ath_candle = max(lookback_candles, key=lambda c: c.high)
+        ath = ath_candle.high
+        self.ath_tracking[symbol] = {"ath": ath, "date": ath_candle.date}
+        return ath
     
     def generate_weekly_plan(
         self,

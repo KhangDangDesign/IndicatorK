@@ -4,11 +4,12 @@ PyYAML>=6.0
 pytz>=2023.3
 python-dotenv>=0.19.0
 
+# Vietnamese stock data
+# vnstock legacy does not declare all runtime imports in package metadata.
+pandas>=2.0.0
+beautifulsoup4>=4.12.0
+IPython>=8.0.0
+vnstock>=0.2.9.2.3
+
 # Testing
 pytest>=7.0.0
-
-# Vietnamese stock data (optional locally, required on GitHub Actions)
-# Install separately: pip install vnstock
-# The vnstock_provider handles ImportError gracefully with instructions.
-# On GitHub Actions with Python 3.11: uncomment the line below
-# vnstock>=3.0.0
