@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-22T14:59:41.427421",
+  "generated_at": "2026-06-28T07:04:46.004689",
   "strategy_id": "regime_router_foundation",
   "strategy_version": "1.0.0",
   "allocation_targets": {
@@ -37,15 +37,15 @@
   ],
   "ai_analysis": {
     "generated": true,
-    "market_context": "The portfolio is heavily in cash, indicating a cautious market sentiment.",
-    "analysis_date": "2026-06-22",
+    "market_context": "The portfolio is heavily invested in cash, indicating a cautious market approach.",
+    "analysis_date": "2026-06-28",
     "data_sources": "Weekly technical analysis using Groq AI",
     "scores": {
       "MWG": {
         "symbol": "MWG",
         "score": 4,
-        "rationale": "Bear regime suggests a potential sell opportunity.",
-        "risk_note": "No specific risk noted"
+        "rationale": "Bear regime suggests a potential downward trend.",
+        "risk_note": "No specific risk noted, but selling in a bear regime may not be optimal."
       }
     }
   },
@@ -53,15 +53,16 @@
     "symbol_scores": [
       {
         "symbol": "MWG",
-        "buy_potential_score": 40,
-        "risk_score": 0,
-        "confidence": 0.20,
+        "buy_potential_score": 70,
+        "risk_score": 30,
+        "confidence": 0.60,
         "horizon": "1-4w",
         "key_bull_points": [
-          "Potential for increased demand due to competitive pricing"
+          "WinMart+ achieves significant business growth with revenue of nearly 18,911 dong in the first 5 months",
+          "WinMart+ has 5,000 stores, indicating strong market expansion and growth potential"
         ],
         "key_risks": [
-          "Dependence on market trends and consumer behavior"
+          "Potential losses and undervaluation may impact the stock's performance, according to Dragon Capital experts"
         ],
         "evidence": [
           {
@@ -70,18 +71,18 @@
           },
           {
             "id": "news2",
-            "supports": "neutral"
+            "supports": "bull"
           },
           {
             "id": "news3",
-            "supports": "bull"
+            "supports": "risk"
           }
         ]
       }
     ],
     "status": "SUCCESS",
     "analyzed_symbols": 1,
-    "total_news": 32
+    "total_news": 30
   },
   "market_regime": "bear",
   "router_state": null

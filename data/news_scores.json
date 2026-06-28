@@ -2,15 +2,16 @@
   "symbol_scores": [
     {
       "symbol": "MWG",
-      "buy_potential_score": 40,
-      "risk_score": 0,
-      "confidence": 0.2,
+      "buy_potential_score": 70,
+      "risk_score": 30,
+      "confidence": 0.6,
       "horizon": "1-4w",
       "key_bull_points": [
-        "Potential for increased demand due to competitive pricing"
+        "WinMart+ achieves significant business growth with revenue of nearly 18,911 dong in the first 5 months",
+        "WinMart+ has 5,000 stores, indicating strong market expansion and growth potential"
       ],
       "key_risks": [
-        "Dependence on market trends and consumer behavior"
+        "Potential losses and undervaluation may impact the stock's performance, according to Dragon Capital experts"
       ],
       "evidence": [
         {
@@ -19,16 +20,16 @@
         },
         {
           "id": "news2",
-          "supports": "neutral"
+          "supports": "bull"
         },
         {
           "id": "news3",
-          "supports": "bull"
+          "supports": "risk"
         }
       ]
     }
   ],
   "status": "SUCCESS",
   "analyzed_symbols": 1,
-  "total_news": 32
+  "total_news": 30
 }
